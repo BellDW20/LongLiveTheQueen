@@ -130,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1824546882806979448, guid: ab81d4b58d2f90949b94732b20ff3bd3, type: 3}
+      propertyPath: _bullet
+      value: 
+      objectReference: {fileID: 6554014128000149010, guid: 0b7d82d6c4a33a44ba93aa8f29b2793a, type: 3}
     - target: {fileID: 6909402962086368492, guid: ab81d4b58d2f90949b94732b20ff3bd3, type: 3}
       propertyPath: m_Name
       value: SniperPrefab
