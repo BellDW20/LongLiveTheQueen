@@ -37,7 +37,7 @@ public class Enemy : MonoBehaviour {
     }
 
     void Update() {
-        _agent.SetDestination(NavManager.nearestPlayerPosition(_transform.position));
+        _agent.SetDestination(MSMScript.NearestPlayerPosition(gameObject));
 
         float angle = 180*Mathf.Atan2(_agent.velocity.y, _agent.velocity.x)/Mathf.PI;
 
