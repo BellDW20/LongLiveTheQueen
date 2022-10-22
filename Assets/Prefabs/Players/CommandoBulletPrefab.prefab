@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -5432901210077015265}
   - component: {fileID: 5193812806988185382}
   - component: {fileID: 676199235316865490}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: CommandoBulletPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}

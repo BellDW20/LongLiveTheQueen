@@ -5,7 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - LightEnemy
-  - CommandoTag
+  - HeavyEnemy
+  - Bomb
+  - Bomber
   layers:
   - Default
   - TransparentFX
@@ -13,10 +15,10 @@ TagManager:
   - Tilemap
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
+  - EnemyProjectiles
+  - PlayerProjectiles
+  - Enemies
+  - Players
   - 
   - 
   - 

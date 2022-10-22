@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: -4070089176215795297}
   - component: {fileID: -8400072265850807889}
   - component: {fileID: 1824546882806979448}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SniperPrefab
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
