@@ -5,16 +5,18 @@ using UnityEngine;
 [System.Serializable]
 public class Gun {
 
-    public float _shootDelay;
+    [SerializeField] private float _shootDelay;
     private float _shotStartTime = float.NegativeInfinity;
     private bool _shooting;
 
-    public float _reloadDelay;
+    [SerializeField] private float _reloadDelay;
     private float _reloadStartTime = float.NegativeInfinity;
     private bool _reloading;
 
-    public int _magSize;
+    [SerializeField] private int _magSize;
     private int _bulletsInMag = 6;
+
+    [SerializeField] private float _spreadAngle;
 
     public bool CanShoot() {
         _shooting = (Time.time - _shotStartTime) < _shootDelay;
@@ -33,6 +35,10 @@ public class Gun {
             }
             return true;
         }
+    }
+
+    public float GetSpreadAngle() {
+        return Mathf.PI*Random.Range(-_spreadAngle, _spreadAngle)/180.0f;
     }
 
 }

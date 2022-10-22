@@ -7849,6 +7849,8 @@ GameObject:
   - component: {fileID: 878407246}
   - component: {fileID: 878407245}
   - component: {fileID: 878407248}
+  - component: {fileID: 878407250}
+  - component: {fileID: 878407249}
   m_Layer: 8
   m_Name: Bomber
   m_TagString: Bomber
@@ -7957,6 +7959,45 @@ MonoBehaviour:
   SHOT_SPEED: 10
   MUZZLE_POS: {fileID: 125145502}
   BOMB_PREFAB: {fileID: 6804890081495684258, guid: e6454487ba6ce0a468afe96ab58a0c01, type: 3}
+--- !u!61 &878407249
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 878407244}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.12056661, y: -0.15501463}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.7473836, y: 0.68997073}
+  m_EdgeRadius: 0
+--- !u!114 &878407250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 878407244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a907fcea70d80484bbfd471d95b49597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  max_health: 40
 --- !u!1 &1403406204
 GameObject:
   m_ObjectHideFlags: 0

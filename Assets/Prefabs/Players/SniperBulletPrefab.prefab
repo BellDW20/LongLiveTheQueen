@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 8886443407871761903}
   - component: {fileID: -5400076500341901517}
   - component: {fileID: 6131493481408712346}
+  - component: {fileID: -3773351028633668737}
   m_Layer: 7
   m_Name: SniperBulletPrefab
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -131,3 +132,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-3773351028633668737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6554014128000149010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4974c23af065be4e9918ba6c40b4a3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DAMAGE: 20

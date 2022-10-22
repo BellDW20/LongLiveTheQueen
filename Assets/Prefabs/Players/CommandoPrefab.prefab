@@ -143,6 +143,7 @@ MonoBehaviour:
     _shootDelay: 0.1
     _reloadDelay: 2
     _magSize: 20
+    _spreadAngle: 7
   _bullet: {fileID: 2237722464296919006, guid: ee369b8d931d52c46a6e063bb33387ee, type: 3}
 --- !u!95 &2517314239140340064
 Animator:

@@ -9,9 +9,6 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour {
 
     public float SPEED;
-    public float START_HEALTH;
-
-    private float health;
     private NavMeshAgent _agent;
     private Rigidbody2D _rbody;
     private Transform _transform;
@@ -28,8 +25,6 @@ public class Enemy : MonoBehaviour {
         _agent.speed = SPEED;
 
         _transform = transform;
-
-        health = START_HEALTH;
     }
 
     void Update() {
@@ -38,13 +33,6 @@ public class Enemy : MonoBehaviour {
         if (_agent.velocity.magnitude > 0.1f) {
             float angle = 180 * Mathf.Atan2(_agent.velocity.y, _agent.velocity.x) / Mathf.PI;
             _transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle - 90));
-        }
-    }
-
-    public void damage(float dmg) {
-        health -= dmg;
-        if (health <= 0) {
-            Destroy(this);
         }
     }
 
