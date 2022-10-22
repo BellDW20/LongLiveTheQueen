@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 6379535952992399305}
   - component: {fileID: 8886443407871761903}
   - component: {fileID: -5400076500341901517}
-  - component: {fileID: 4106849955091218857}
   - component: {fileID: 6131493481408712346}
   m_Layer: 7
   m_Name: SniperBulletPrefab
@@ -111,18 +110,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &4106849955091218857
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6554014128000149010}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c15813f16f469a640b6f375b480eb2b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!50 &6131493481408712346
 Rigidbody2D:
   serializedVersion: 4

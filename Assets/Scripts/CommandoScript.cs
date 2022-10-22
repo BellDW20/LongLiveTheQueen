@@ -2,53 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(SpriteRenderer))]
 public class CommandoScript : MonoBehaviour
 {
-    Rigidbody2D _rbody;
-    SpriteRenderer _sRender;
-    Transform _transform;
 
-    float _movementSpeed = 5;
-    const float DASH_SPEED = 10;
-    const float DASH_TIME = 0.1f;
-    bool _isDashing = false;
-    float _dashStart;
-    // Start is called before the first frame update
+    private Rigidbody2D _rbody;
+    private Transform _transform;
+    private Animations _animations;
+    [SerializeField] private PlayerController _playerController;
+    [SerializeField] private Gun _gun;
+    public GameObject _bullet;
+
     void Start()
     {
         _rbody = GetComponent<Rigidbody2D>();
-        _sRender = GetComponent<SpriteRenderer>();
         _transform = transform;
+        _animations = new Animations(GetComponent<Animator>(), "Stand");
+        _playerController.init(_rbody, _transform, _animations);
+
+        MSMScript.RegisterPlayer(gameObject);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            _rbody.velocity *= DASH_SPEED;
-            _isDashing = true;
-            _dashStart = Time.time;
-        }
 
-        if (Time.time - _dashStart >= DASH_TIME)
-        {
-            _rbody.velocity = (new Vector2(_rbody.velocity.normalized.x, _rbody.velocity.normalized.y) * _movementSpeed); ;
-            _isDashing = false;
-        }
-        if (_rbody.velocity != Vector2.zero)
-        {
-            _transform.up = _rbody.velocity;
+        _playerController.Update();
+
+        if(Input.GetMouseButton(0)) {
+            if(_gun.CanShoot()) {
+                GameObject tempBullet = Instantiate(_bullet, _transform.position, Quaternion.identity);
+                tempBullet.transform.up = _playerController.GetLookDirection();
+                tempBullet.GetComponent<Rigidbody2D>().velocity = _playerController.GetLookDirection().normalized * 10;
+            }
         }
     }
 
-    private void FixedUpdate()
-    {
-        if (_isDashing) return;
-
-        float x = Input.GetAxis("Horizontal");
-        float y = Input.GetAxis("Vertical");
-
-        _rbody.velocity = (new Vector2(x, y) * _movementSpeed);
-    }
 }

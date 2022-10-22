@@ -16,20 +16,16 @@ public class Enemy : MonoBehaviour {
     private Rigidbody2D _rbody;
     private Transform _transform;
     
-    private Animator _animator;
-    private string currentAnimation;
+    private Animations _animations;
 
     void Start() {
         _agent = GetComponent<NavMeshAgent>();
         _rbody = GetComponent<Rigidbody2D>();
-        _animator = GetComponent<Animator>();
+        _animations = new Animations(GetComponent<Animator>(), "Walk");
 
         _agent.updateRotation = false;
         _agent.updateUpAxis = false;
         _agent.speed = SPEED;
-
-        currentAnimation = "Walk";
-        _animator.Play(currentAnimation);
 
         _transform = transform;
 
@@ -39,24 +35,17 @@ public class Enemy : MonoBehaviour {
     void Update() {
         _agent.SetDestination(MSMScript.NearestPlayerPosition(gameObject));
 
-        float angle = 180*Mathf.Atan2(_agent.velocity.y, _agent.velocity.x)/Mathf.PI;
-
-        _transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle-90));
+        if (_agent.velocity.magnitude > 0.1f) {
+            float angle = 180 * Mathf.Atan2(_agent.velocity.y, _agent.velocity.x) / Mathf.PI;
+            _transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle - 90));
+        }
     }
 
     public void damage(float dmg) {
         health -= dmg;
-        if(health <= 0) {
+        if (health <= 0) {
             Destroy(this);
         }
-    }
-
-    private void setAnimation(string animation) {
-        if (currentAnimation.Equals(animation)) {
-            return;
-        }
-        currentAnimation = animation;
-        _animator.Play(animation);
     }
 
 }
