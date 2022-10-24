@@ -6,6 +6,7 @@ public class BomberScript : MonoBehaviour {
 
     public float SHOT_COOLDOWN;
     public float SHOT_SPEED;
+    public float BOMBER_RANGE;
     public Transform MUZZLE_POS;
     public GameObject BOMB_PREFAB;
 
@@ -22,7 +23,7 @@ public class BomberScript : MonoBehaviour {
             lastTimeShot = Time.time;
             GameObject nearestPlayer = MSMScript.NearestPlayer(gameObject);
 
-            if (nearestPlayer != null && (_transform.position - nearestPlayer.transform.position).magnitude < 15f) {
+            if (nearestPlayer != null && (_transform.position - nearestPlayer.transform.position).magnitude < BOMBER_RANGE) {
                 ShootBombAt(nearestPlayer);
             }
         }

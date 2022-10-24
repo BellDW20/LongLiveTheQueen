@@ -10,7 +10,7 @@ public class PlayerProjectileScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.layer == LayerMask.NameToLayer("Enemies")) {
-            HealthScript health = other.gameObject.GetComponent<HealthScript>();
+            EnemyHealthScript health = other.gameObject.GetComponent<EnemyHealthScript>();
             health.Damage(DAMAGE);
         }
         Destroy(gameObject);

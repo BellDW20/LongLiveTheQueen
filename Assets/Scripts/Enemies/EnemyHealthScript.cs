@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthScript : MonoBehaviour {
+public class EnemyHealthScript : MonoBehaviour {
 
     [SerializeField] private float max_health;
     private float health;
@@ -14,6 +14,7 @@ public class HealthScript : MonoBehaviour {
     public void Heal(float hp) {
         health = Mathf.Min(health + hp, max_health);
     }
+
     public void Damage(float hp) {
         health -= hp;
         if (health <= 0) {

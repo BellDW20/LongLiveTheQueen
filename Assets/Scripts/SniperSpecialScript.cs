@@ -45,12 +45,20 @@ public class SniperSpecialScript : MonoBehaviour
             tempSpecial1.GetComponent<SniperSpecialScript>().SetSplits(_splitsLeft - 1);
             tempSpecial2.GetComponent<SniperSpecialScript>().SetSplits(_splitsLeft - 1);
 
-            Destroy(this.gameObject);
+            Cleanup(collision);
         }
         else if(_splitsLeft < 0)
         {
-            Destroy(this.gameObject);
+            Cleanup(collision);
         }
+    }
+
+    private void Cleanup(Collider2D other) {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Enemies")) {
+            EnemyHealthScript health = other.gameObject.GetComponent<EnemyHealthScript>();
+            health.Damage(20);
+        }
+        Destroy(this.gameObject);
     }
 
     private void OnTriggerExit2D(Collider2D collision)

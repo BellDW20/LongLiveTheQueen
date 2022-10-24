@@ -15,16 +15,20 @@ public class PlayerController {
     private Rigidbody2D _rbody;
     private Transform _transform;
     private Animations _animations;
+    private int _playerNumber;
 
     private Vector2 _lookDirection;
 
-    public void Init(Rigidbody2D _rbody, Transform _transform, Animations _animations) {
+    public void Init(Rigidbody2D _rbody, Transform _transform, Animations _animations, int _playerNumber) {
         this._rbody = _rbody;
         this._transform = _transform;
         this._animations = _animations;
+        this._playerNumber = _playerNumber;
     }
 
     public void Update() {
+        Camera.main.transform.position = new Vector3(_transform.position.x, _transform.position.y, Camera.main.transform.position.z);
+
         if (Input.GetKeyDown(KeyCode.LeftShift)) {
             _rbody.velocity *= DASH_SPEED;
             _isDashing = true;
@@ -62,6 +66,10 @@ public class PlayerController {
 
     public Vector2 GetLookDirection() {
         return _lookDirection;
+    }
+
+    public int GetPlayerNumber() {
+        return _playerNumber;
     }
 
 }

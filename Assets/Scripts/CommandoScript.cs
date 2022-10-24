@@ -19,7 +19,7 @@ public class CommandoScript : MonoBehaviour
         _rbody = GetComponent<Rigidbody2D>();
         _transform = transform;
         _animations = new Animations(GetComponent<Animator>(), "Stand");
-        _playerController.Init(_rbody, _transform, _animations);
+        _playerController.Init(_rbody, _transform, _animations, LevelManagerScript.GetPlayerNumber(gameObject));
         _gun.Init();
 
         MSMScript.RegisterPlayer(gameObject);
@@ -27,7 +27,6 @@ public class CommandoScript : MonoBehaviour
 
     void Update()
     {
-
         _playerController.Update();
 
         if(Input.GetMouseButton(0)) {
