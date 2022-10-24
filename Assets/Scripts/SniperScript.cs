@@ -20,7 +20,8 @@ public class SniperScript : MonoBehaviour
         _rbody = GetComponent<Rigidbody2D>();
         _transform = transform;
         _animations = new Animations(GetComponent<Animator>(), "Walk");
-        _playerController.init(_rbody, _transform, _animations);
+        _playerController.Init(_rbody, _transform, _animations);
+        _gun.Init();
 
         MSMScript.RegisterPlayer(gameObject);
     }

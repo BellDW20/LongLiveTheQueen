@@ -18,7 +18,7 @@ public class PlayerController {
 
     private Vector2 _lookDirection;
 
-    public void init(Rigidbody2D _rbody, Transform _transform, Animations _animations) {
+    public void Init(Rigidbody2D _rbody, Transform _transform, Animations _animations) {
         this._rbody = _rbody;
         this._transform = _transform;
         this._animations = _animations;

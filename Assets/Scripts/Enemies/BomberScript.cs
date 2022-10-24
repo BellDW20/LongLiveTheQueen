@@ -22,7 +22,7 @@ public class BomberScript : MonoBehaviour {
             lastTimeShot = Time.time;
             GameObject nearestPlayer = MSMScript.NearestPlayer(gameObject);
 
-            if (nearestPlayer != null) {
+            if (nearestPlayer != null && (_transform.position - nearestPlayer.transform.position).magnitude < 15f) {
                 ShootBombAt(nearestPlayer);
             }
         }

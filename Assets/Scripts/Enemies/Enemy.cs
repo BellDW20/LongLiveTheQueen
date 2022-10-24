@@ -9,11 +9,12 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour {
 
     public float SPEED;
+    public float RANGE;
     private NavMeshAgent _agent;
     private Rigidbody2D _rbody;
     private Transform _transform;
-    
     private Animations _animations;
+    private float _lastPathRefresh;
 
     void Start() {
         _agent = GetComponent<NavMeshAgent>();
@@ -25,10 +26,19 @@ public class Enemy : MonoBehaviour {
         _agent.speed = SPEED;
 
         _transform = transform;
+        _lastPathRefresh = Time.time;
     }
 
     void Update() {
-        _agent.SetDestination(MSMScript.NearestPlayerPosition(gameObject));
+
+        if (Time.time - _lastPathRefresh > 0.3f) {
+            Vector2 dest = MSMScript.NearestPlayerPosition(gameObject);
+            _agent.enabled = (_rbody.position - dest).magnitude < RANGE;
+            if(_agent.enabled) {
+                _agent.SetDestination(dest);
+            }
+            _lastPathRefresh = Time.time;
+        }
 
         if (_agent.velocity.magnitude > 0.1f) {
             float angle = 180 * Mathf.Atan2(_agent.velocity.y, _agent.velocity.x) / Mathf.PI;

@@ -14,9 +14,13 @@ public class Gun {
     private bool _reloading;
 
     [SerializeField] private int _magSize;
-    private int _bulletsInMag = 6;
+    private int _bulletsInMag;
 
     [SerializeField] private float _spreadAngle;
+
+    public void Init() {
+        _bulletsInMag = _magSize;
+    }
 
     public bool CanShoot() {
         _shooting = (Time.time - _shotStartTime) < _shootDelay;
