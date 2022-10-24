@@ -1,0 +1,80 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+[RequireComponent(typeof(Rigidbody2D))]
+public class SniperSpecialScript : MonoBehaviour
+{
+    int _splitsLeft;
+    Transform _transform;
+    GameObject _self;
+    Rigidbody2D _rbody;
+
+    bool _isActive = false;
+    // Start is called before the first frame update
+    void Start()
+    {
+        _transform = transform;
+        _rbody = GetComponent<Rigidbody2D>();
+        _self = this.gameObject;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (_isActive && _splitsLeft >= 0)
+        {
+            GameObject tempSpecial1 = Instantiate(_self, _transform.position, Quaternion.identity);
+            GameObject tempSpecial2 = Instantiate(_self, _transform.position, Quaternion.identity);
+
+            Vector2 currentVelocity = _rbody.velocity;
+            Vector3 temp = new Vector3(currentVelocity.x, currentVelocity.y, 0);
+
+            Vector3 vel1 = Quaternion.AngleAxis(30, new Vector3(0, 0, 1)) * temp;
+            Vector3 vel2 = Quaternion.AngleAxis(-30, new Vector3(0, 0, 1)) * temp;
+            tempSpecial1.GetComponent<Rigidbody2D>().velocity = vel1;
+            tempSpecial2.GetComponent<Rigidbody2D>().velocity = vel2;
+
+
+            tempSpecial1.GetComponent<SniperSpecialScript>().SetSplits(_splitsLeft - 1);
+            tempSpecial2.GetComponent<SniperSpecialScript>().SetSplits(_splitsLeft - 1);
+
+            Destroy(this.gameObject);
+        }
+        else if(_splitsLeft < 0)
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        _isActive = true;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Destroy(this.gameObject);
+    }
+
+    private void OnBecameInvisible()
+    {
+        Destroy(this.gameObject);
+    }
+
+    public void SetSplits(int splits)
+    {
+        _splitsLeft = splits;
+    }
+
+    public void SetIsActive()
+    {
+        _isActive = true;
+    }
+}
