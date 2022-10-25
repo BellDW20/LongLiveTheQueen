@@ -139,6 +139,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SPEED: 1.5
   RANGE: 10
+  DAMAGE: 15
 --- !u!114 &6538673527046810429
 MonoBehaviour:
   m_ObjectHideFlags: 0

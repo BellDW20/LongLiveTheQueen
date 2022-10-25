@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 6826603460242443131}
   - component: {fileID: 6826603460242443128}
   - component: {fileID: 295387697}
-  m_Layer: 0
+  - component: {fileID: 2321786325738636058}
+  m_Layer: 6
   m_Name: BombExplosionAnim
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115,3 +116,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44016ce379def6947a57e3b00c7583f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!58 &2321786325738636058
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6826603460242443129}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.75

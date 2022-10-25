@@ -3,40 +3,63 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class PlayerController {
+[RequireComponent(typeof(Transform))]
+[RequireComponent(typeof(SpriteRenderer))]
+[RequireComponent(typeof(Rigidbody2D))]
+public class PlayerController : MonoBehaviour {
+
+    private static readonly Color INVULN_COLOR = new Color(1, 0.5f, 0.5f, 0.75f);
 
     public float MOVE_SPEED;
     public float DASH_SPEED;
     public float DASH_TIME;
+    public float INVULN_TIME;
     
-    private bool _isDashing = false;
+    private bool _isDashing = false, _initComplete = false;
     private float _dashStartTime;
+    private float _timeLastDamaged;
 
     private Rigidbody2D _rbody;
     private Transform _transform;
     private Animations _animations;
+    private SpriteRenderer _spr;
     private int _playerNumber;
+    private PlayerInfo _playerInfo;
+    private Camera _cam;
 
     private Vector2 _lookDirection;
 
-    public void Init(Rigidbody2D _rbody, Transform _transform, Animations _animations, int _playerNumber) {
-        this._rbody = _rbody;
-        this._transform = _transform;
-        this._animations = _animations;
-        this._playerNumber = _playerNumber;
+    public void Init() {
+        _rbody = GetComponent<Rigidbody2D>();
+        _animations = new Animations(GetComponent<Animator>(), "Stand");
+        _spr = GetComponent<SpriteRenderer>();
+        _transform = transform;
+        _playerNumber = LevelManagerScript.GetPlayerNumber(gameObject);
+        _playerInfo = LevelManagerScript.pInfos[_playerNumber];
+        _cam = Camera.main;
+        _initComplete = true;
     }
 
     public void Update() {
-        Camera.main.transform.position = new Vector3(_transform.position.x, _transform.position.y, Camera.main.transform.position.z);
+        if(!_initComplete) { Init(); }
+
+        //Temp camera code
+        _cam.transform.position = new Vector3(_transform.position.x, _transform.position.y, _cam.transform.position.z);
+
+        if(IsInvulnerable()) {
+            _spr.color = INVULN_COLOR;
+        } else {
+            _spr.color = Color.white;
+        }
 
         if (Input.GetKeyDown(KeyCode.LeftShift)) {
-            _rbody.velocity *= DASH_SPEED;
+            _rbody.velocity = _rbody.velocity.normalized*DASH_SPEED;
             _isDashing = true;
             _dashStartTime = Time.time;
         }
 
         if (Time.time - _dashStartTime >= DASH_TIME) {
-            _rbody.velocity = (new Vector2(_rbody.velocity.normalized.x, _rbody.velocity.normalized.y) * MOVE_SPEED); ;
+            _rbody.velocity = (_rbody.velocity.normalized * MOVE_SPEED); ;
             _isDashing = false;
         }
 
@@ -70,6 +93,21 @@ public class PlayerController {
 
     public int GetPlayerNumber() {
         return _playerNumber;
+    }
+
+    public bool IsDead() {
+        return _playerInfo.health <= 0;
+    }
+    public bool IsInvulnerable() {
+        return (Time.time - _timeLastDamaged) < INVULN_TIME;
+    }
+
+    public void Damage(float amt) {
+        if(!IsInvulnerable()) {
+            _playerInfo.health -= amt;
+            _timeLastDamaged = Time.time;
+            GameHUDScript.UpdatePlayerHealthVisual(_playerNumber);
+        }
     }
 
 }

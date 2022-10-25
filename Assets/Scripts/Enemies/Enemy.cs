@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour {
 
     public float SPEED;
     public float RANGE;
+    public float DAMAGE;
     private NavMeshAgent _agent;
     private Rigidbody2D _rbody;
     private Transform _transform;
@@ -30,7 +31,6 @@ public class Enemy : MonoBehaviour {
     }
 
     void Update() {
-
         if (Time.time - _lastPathRefresh > 0.3f) {
             Vector2 dest = MSMScript.NearestPlayerPosition(gameObject);
             _agent.enabled = (_rbody.position - dest).magnitude < RANGE;
@@ -43,6 +43,13 @@ public class Enemy : MonoBehaviour {
         if (_agent.velocity.magnitude > 0.1f) {
             float angle = 180 * Mathf.Atan2(_agent.velocity.y, _agent.velocity.x) / Mathf.PI;
             _transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle - 90));
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision) {
+        if(collision.CompareTag("Player")) {
+            PlayerController pc = collision.gameObject.GetComponent<PlayerController>();
+            pc.Damage(DAMAGE);
         }
     }
 

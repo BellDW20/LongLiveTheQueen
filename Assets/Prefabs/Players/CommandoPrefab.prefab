@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6409156301832736310}
   - component: {fileID: 1117717084}
   - component: {fileID: 736769903}
+  - component: {fileID: 391904884028995021}
   - component: {fileID: 2517314239140340064}
   m_Layer: 9
   m_Name: CommandoPrefab
@@ -135,16 +136,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 647717b825f66324f9d34832788ebd07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerController:
-    MOVE_SPEED: 5
-    DASH_SPEED: 7
-    DASH_TIME: 0.1
   _gun:
     _shootDelay: 0.1
     _reloadDelay: 2
     _magSize: 20
     _spreadAngle: 7
   _bullet: {fileID: 2237722464296919006, guid: ee369b8d931d52c46a6e063bb33387ee, type: 3}
+--- !u!114 &391904884028995021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6765054618615783676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c6d59cf823682241a8ac0622c1f774e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MOVE_SPEED: 4
+  DASH_SPEED: 7
+  DASH_TIME: 0.2
+  INVULN_TIME: 0.5
 --- !u!95 &2517314239140340064
 Animator:
   serializedVersion: 3

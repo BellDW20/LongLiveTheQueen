@@ -4,33 +4,25 @@ using UnityEngine;
 
 public class SniperScript : MonoBehaviour
 {
-    private Rigidbody2D _rbody;
-    private Transform _transform;
-    private Animations _animations;
 
-    [SerializeField] private PlayerController _playerController;
+    private Transform _transform;
+    private PlayerController _playerController;
     [SerializeField] public Gun _gun;
     [SerializeField] public GameObject _bullet;
-    public GameObject _specialBullet;
+    [SerializeField] public GameObject _specialBullet;
 
     private float _shotVelocity = 10;
     private float _specialCooldown = 5.0f;
     private float _specialTimer = -30.0f;
-    private float _maxLife = 10;
 
-    void Start()
-    {
-        _rbody = GetComponent<Rigidbody2D>();
+    void Start() {
+        _playerController = GetComponent<PlayerController>();
         _transform = transform;
-        _animations = new Animations(GetComponent<Animator>(), "Walk");
-        _playerController.Init(_rbody, _transform, _animations, LevelManagerScript.GetPlayerNumber(gameObject));
         _gun.Init();
-
         MSMScript.RegisterPlayer(gameObject);
     }
 
-    void Update()
-    {
+    void Update() {
         _playerController.Update();
 
         if (Input.GetMouseButton(0)) {
@@ -38,6 +30,7 @@ public class SniperScript : MonoBehaviour
                 GameObject tempBullet = Instantiate(_bullet, _transform.position, Quaternion.identity);
                 tempBullet.transform.up = _playerController.GetLookDirection();
                 tempBullet.GetComponent<Rigidbody2D>().velocity = _playerController.GetLookDirection().normalized * _shotVelocity;
+                tempBullet.GetComponent<PlayerProjectileScript>().SetPlayerCreatedBy(_playerController.GetPlayerNumber());
             }
         }
 
@@ -46,6 +39,7 @@ public class SniperScript : MonoBehaviour
             GameObject tempSpecial = Instantiate(_specialBullet, _transform.position, Quaternion.identity);
             tempSpecial.transform.up = _playerController.GetLookDirection();
             tempSpecial.GetComponent<Rigidbody2D>().velocity = _playerController.GetLookDirection().normalized * _shotVelocity;
+            tempSpecial.GetComponent<SniperSpecialScript>().SetPlayerCreatedBy(_playerController.GetPlayerNumber());
 
             SniperSpecialScript script = tempSpecial.GetComponent<SniperSpecialScript>();
             script.SetIsActive();

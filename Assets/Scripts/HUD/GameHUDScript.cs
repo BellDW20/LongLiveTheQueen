@@ -25,7 +25,7 @@ public class GameHUDScript : MonoBehaviour {
     }
     public static void UpdatePlayerHealthVisual(int player) {
         PlayerInfo pInfo = LevelManagerScript.pInfos[player];
-        Vector3 scale = new Vector3(pInfo.health / pInfo.GetMaxHealth(), 1, 1);
+        Vector3 scale = new Vector3(Mathf.Clamp(pInfo.health / pInfo.GetMaxHealth(), 0, 1), 1, 1);
         if(player == 0) {
             instance.p1Health.transform.localScale = scale;
         } else if(player == 1) {

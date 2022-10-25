@@ -57,7 +57,7 @@ public class LevelManagerScript : MonoBehaviour {
 
     public static int GetPlayerNumber(GameObject player) {
         for (int i = 0; i < pInfos.Length; i++) {
-            if (Object.ReferenceEquals(pInfos[i], player)) { return i; }
+            if (Object.ReferenceEquals(players[i], player)) { return i; }
         }
         return -1;
     }

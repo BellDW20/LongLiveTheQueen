@@ -6,6 +6,9 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class SniperSpecialScript : MonoBehaviour
 {
+
+    private int _playerCreatedBy;
+
     int _splitsLeft;
     Transform _transform;
     GameObject _self;
@@ -42,8 +45,13 @@ public class SniperSpecialScript : MonoBehaviour
             tempSpecial2.GetComponent<Rigidbody2D>().velocity = vel2;
 
 
-            tempSpecial1.GetComponent<SniperSpecialScript>().SetSplits(_splitsLeft - 1);
-            tempSpecial2.GetComponent<SniperSpecialScript>().SetSplits(_splitsLeft - 1);
+            SniperSpecialScript tmpScr = tempSpecial1.GetComponent<SniperSpecialScript>();
+            tmpScr.SetSplits(_splitsLeft - 1);
+            tmpScr.SetPlayerCreatedBy(_playerCreatedBy);
+
+            tmpScr = tempSpecial2.GetComponent<SniperSpecialScript>();
+            tmpScr.SetSplits(_splitsLeft - 1);
+            tmpScr.SetPlayerCreatedBy(_playerCreatedBy);
 
             Cleanup(collision);
         }
@@ -56,6 +64,7 @@ public class SniperSpecialScript : MonoBehaviour
     private void Cleanup(Collider2D other) {
         if (other.gameObject.layer == LayerMask.NameToLayer("Enemies")) {
             EnemyHealthScript health = other.gameObject.GetComponent<EnemyHealthScript>();
+            //Update score based on player created by & damage
             health.Damage(20);
         }
         Destroy(this.gameObject);
@@ -84,5 +93,9 @@ public class SniperSpecialScript : MonoBehaviour
     public void SetIsActive()
     {
         _isActive = true;
+    }
+
+    public void SetPlayerCreatedBy(int _playerCreatedBy) {
+        this._playerCreatedBy = _playerCreatedBy;
     }
 }
