@@ -6,11 +6,19 @@ public class CommandoScript : MonoBehaviour
 {
 
     private Transform _transform;
-    private PlayerController _playerController;
+
+    [SerializeField] private PlayerController _playerController;
     [SerializeField] private Gun _gun;
     [SerializeField] private GameObject _bullet;
+    [SerializeField] private GameObject _specialBullet;
 
-    void Start() {
+    private float _shotVelocity = 10;
+    private float _specialShotVelocity = 5;
+    private float _specialCooldown = 5.0f;
+    private float _specialTimer = -30.0f;
+
+    void Start()
+    {
         _playerController = GetComponent<PlayerController>();
         _transform = transform;
         _gun.Init();
@@ -36,6 +44,13 @@ public class CommandoScript : MonoBehaviour
                 tempBullet.GetComponent<PlayerProjectileScript>().SetPlayerCreatedBy(_playerController.GetPlayerNumber());
             }
         }
-    }
 
+        if (Input.GetMouseButtonDown(1) && Time.time - _specialTimer >= _specialCooldown)
+        {
+            GameObject tempSpecial = Instantiate(_specialBullet, _transform.position, Quaternion.identity);
+            tempSpecial.transform.up = _playerController.GetLookDirection();
+            tempSpecial.GetComponent<Rigidbody2D>().velocity = _playerController.GetLookDirection().normalized * _specialShotVelocity;
+            _specialTimer = Time.time;
+        }
+    }
 }
