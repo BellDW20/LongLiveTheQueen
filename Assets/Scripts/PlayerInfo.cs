@@ -10,20 +10,24 @@ public class PlayerInfo {
         100, 100
     };
 
-    public int type, score, level;
-    public float health;
+    public int type, score, level, stock;
+    public float health, damageScale;
+
     public PlayerInfo(int type) {
         this.type = type;
         this.health = GetMaxHealth();
         this.score = 0;
         this.level = 1;
+        this.stock = 3;
+        this.damageScale = 1;
     }
 
-    public PlayerInfo(int type, float health, int score, int level) {
+    public PlayerInfo(int type, float health, int score, int level, int stock) {
         this.type = type;
         this.health = health;
         this.score = score;
         this.level = level;
+        this.stock = stock;
     }
 
     public void ClearForNextLevel() {
@@ -32,6 +36,10 @@ public class PlayerInfo {
 
     public float GetMaxHealth() {
         return PLAYER_MAX_HEALTH[type];
+    }
+
+    public void AddToScore(int points) {
+        score += points;
     }
 
 }

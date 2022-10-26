@@ -7,6 +7,7 @@ public class CommandoSpecialScript : MonoBehaviour
 {
     public GameObject EXPLOSION_ANIM;
     public GameObject EXPLOSION_PARTICLES;
+    private int _playerCreatedBy;
 
     Rigidbody2D _rbody;
 
@@ -50,11 +51,15 @@ public class CommandoSpecialScript : MonoBehaviour
                 GameObject enemyGameObject = enemy.gameObject;
                 if(enemyGameObject.layer == LayerMask.NameToLayer("Enemies"))
                 {
-                    enemyGameObject.GetComponent<EnemyHealthScript>().Damage(40);
+                    Enemy.DamageAndScore(enemyGameObject, 40, _playerCreatedBy);
                 }
             }
         }
         
         Destroy(gameObject);
+    }
+
+    public void SetPlayerCreatedBy(int _playerCreatedBy) {
+        this._playerCreatedBy = _playerCreatedBy;
     }
 }
