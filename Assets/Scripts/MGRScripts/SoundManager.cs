@@ -11,7 +11,12 @@ public class SoundManager : MonoBehaviour {
     public AudioClip[] begin;
     public AudioClip[] loop;
 
-    //sfx constants here
+    public const int SFX_MACHINE_GUN_SHOT = 0;
+    public const int SFX_SNIPER_RIFLE_SHOT = 1;
+    public const int SFX_EXPLOSION = 2;
+    public const int SFX_ENEMY_DEATH = 3;
+    public const int SFX_ENEMY_HIT = 4;
+    public const int SFX_BOMB_WHISTLE = 5;
     public AudioSource sfxSource;
     public AudioClip[] sfx;
 

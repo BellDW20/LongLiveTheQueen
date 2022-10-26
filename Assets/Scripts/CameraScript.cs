@@ -17,16 +17,19 @@ public class CameraScript : MonoBehaviour
     private bool _canMoveUp = false;
     private bool _canMoveDown = false;
 
-    // Start is called before the first frame update
+    private Vector2 _target;
+    private float _rightTargetX, _upTargetY;
+    private float _leftTargetX, _downTargetY;
+
     void Start()
     {
         _transform = transform;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
+    private void FixedUpdate() {
+        float nx = _transform.position.x + (_target.x - _transform.position.x) * 0.1f;
+        float ny = _transform.position.y + (_target.y - _transform.position.y) * 0.1f;
+        _transform.position = new Vector3(nx, ny, _transform.position.z);
     }
 
     private void LateUpdate()
@@ -35,53 +38,62 @@ public class CameraScript : MonoBehaviour
         {
             foreach (GameObject player in _msManager.GetPlayers())
             {
-                print(player.name);
                 _playerTransforms.Add(player.transform);
             }
         }
-        float playerTotalX = 0;
-        float playerTotalY = 0;
 
-        _canMoveLeft = _canMoveRight = _canMoveUp = _canMoveDown = false;
+        _canMoveLeft = _canMoveRight = _canMoveUp = _canMoveDown = true;
+
+        float bestPDX = float.PositiveInfinity;
+        float bestPDY = float.PositiveInfinity;
+        float bestNDX = float.NegativeInfinity;
+        float bestNDY = float.NegativeInfinity;
 
         foreach (Transform playerTransform in _playerTransforms)
         {
-            if(playerTransform.position.x > _transform.position.x)
-            {
-                _canMoveRight = true;
-            }
-            else if(playerTransform.position.x < _transform.position.x)
-            {
-                _canMoveLeft = true;
+            float dx = playerTransform.position.x - _transform.position.x;
+            float dy = playerTransform.position.y - _transform.position.y;
+
+            _canMoveRight &= (dx > 0);
+            _canMoveLeft &= (dx < 0);
+            _canMoveUp &= (dy > 0);
+            _canMoveDown &= (dy < 0);
+            
+            if(dx > 0 && dx < bestPDX) {
+                bestPDX = dx;
+                _rightTargetX = playerTransform.position.x;
+            } else if(dx < 0 && dx > bestNDX) {
+                bestNDX = dx;
+                _leftTargetX = playerTransform.position.x;
             }
 
-            if (playerTransform.position.y > _transform.position.y)
-            {
-                _canMoveUp = true;
+            if (dy > 0 && dy < bestPDY) {
+                bestPDY = dy;
+                _upTargetY = playerTransform.position.y;
             }
-            else if (playerTransform.position.y < _transform.position.y)
-            {
-                _canMoveDown = true;
+            else if (dy < 0 && dy > bestNDY) {
+                bestNDY = dy;
+                _downTargetY = playerTransform.position.y;
             }
-            playerTotalX += playerTransform.position.x;
-            playerTotalY += playerTransform.position.y;
         }
 
-        float moveTowardX = _transform.position.x;
-        if (_canMoveLeft ^ _canMoveRight)
-        {
-            moveTowardX = playerTotalX / _playerTransforms.Count;
+        if(_canMoveRight || _canMoveLeft || _canMoveUp || _canMoveDown) {
+            float targetX = _transform.position.x;
+            float targetY = _transform.position.y;
+            if (_canMoveRight) {
+                targetX = _rightTargetX;
+            } else if(_canMoveLeft) {
+                targetX = _leftTargetX;
+            }
+
+            if (_canMoveUp) {
+                targetY = _upTargetY;
+            }
+            else if (_canMoveDown) {
+                targetY = _downTargetY;
+            }
+            _target = new Vector2(targetX, targetY);
         }
 
-        float moveTowardY = _transform.position.y;
-        if(_canMoveUp ^ _canMoveDown)
-        {
-            moveTowardY = playerTotalY / _playerTransforms.Count;
-        }
-        //print(moveTowardX);
-
-        //float step = speed * Time.deltaTime;
-        //_transform.position = Vector3.MoveTowards(_transform.position, new Vector3(moveTowardX, moveTowardY, _transform.position.z), step);
-        _transform.position = new Vector3(moveTowardX, moveTowardY, _transform.position.z);
     }
 }

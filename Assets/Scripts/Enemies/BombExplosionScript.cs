@@ -7,7 +7,11 @@ public class BombExplosionScript : MonoBehaviour {
 
     private const int DAMAGE = 8;
 
-    public void DestroyObject( ) {
+    public void Start() {
+        SoundManager.PlaySFX(SoundManager.SFX_EXPLOSION);
+    }
+
+    public void DestroyObject() {
         Destroy(gameObject);
     }
 

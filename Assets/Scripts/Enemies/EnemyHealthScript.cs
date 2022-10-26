@@ -18,6 +18,7 @@ public class EnemyHealthScript : MonoBehaviour {
     public void Damage(float hp) {
         health -= hp;
         if (health <= 0) {
+            SoundManager.PlaySFX(SoundManager.SFX_ENEMY_DEATH);
             Destroy(gameObject);
         }
     }

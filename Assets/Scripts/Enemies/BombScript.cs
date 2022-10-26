@@ -14,6 +14,7 @@ public class BombScript : MonoBehaviour {
 
     void Start() {
         _rbody = GetComponent<Rigidbody2D>();
+        SoundManager.PlaySFX(SoundManager.SFX_BOMB_WHISTLE);
     }
 
     void Update() {

@@ -31,6 +31,7 @@ public class CommandoScript : MonoBehaviour
 
         if(InputManager.GetFireInput(_playerController.GetPlayerNumber())) {
             if(_gun.CanShoot()) {
+                SoundManager.PlaySFX(SoundManager.SFX_MACHINE_GUN_SHOT);
                 GameObject tempBullet = Instantiate(_bullet, _transform.position, Quaternion.identity);
 
                 float shotAngle = Mathf.Atan2(

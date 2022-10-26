@@ -47,9 +47,6 @@ public class PlayerController : MonoBehaviour {
     public void Update() {
         if(!_initComplete) { Init(); }
 
-        //Temp camera code
-        //_cam.transform.position = new Vector3(_transform.position.x, _transform.position.y, _cam.transform.position.z);
-
         if(IsInvulnerable()) {
             _spr.color = INVULN_COLOR;
         } else {
@@ -64,7 +61,7 @@ public class PlayerController : MonoBehaviour {
         }
 
         if (Time.time - _dashStartTime >= DASH_TIME) {
-            _rbody.velocity = (_rbody.velocity.normalized * MOVE_SPEED); ;
+            _rbody.velocity = (_rbody.velocity.normalized * MOVE_SPEED);
             _isDashing = false;
         }
 
@@ -96,9 +93,7 @@ public class PlayerController : MonoBehaviour {
     {
         if (_playerNumber == 0)
         {
-            Vector3 tempDir = Camera.main.ScreenToWorldPoint(Input.mousePosition) - _transform.position;
-            return new Vector2(tempDir.x, tempDir.y);
-
+            return (Vector2)_cam.ScreenToWorldPoint(Input.mousePosition) - _rbody.position;
         }
         else
         {

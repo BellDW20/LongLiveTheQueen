@@ -28,6 +28,8 @@ public class SniperScript : MonoBehaviour
 
         if (InputManager.GetFireInput(_playerController.GetPlayerNumber())) {
             if (_gun.CanShoot()) {
+                SoundManager.PlaySFX(SoundManager.SFX_SNIPER_RIFLE_SHOT);
+
                 GameObject tempBullet = Instantiate(_bullet, _transform.position, Quaternion.identity);
                 tempBullet.transform.up = _playerController.GetLookDirection();
                 tempBullet.GetComponent<Rigidbody2D>().velocity = _playerController.GetLookDirection().normalized * _shotVelocity;
