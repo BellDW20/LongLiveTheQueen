@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour {
         if(!_initComplete) { Init(); }
 
         //Temp camera code
-        _cam.transform.position = new Vector3(_transform.position.x, _transform.position.y, _cam.transform.position.z);
+        //_cam.transform.position = new Vector3(_transform.position.x, _transform.position.y, _cam.transform.position.z);
 
         if(IsInvulnerable()) {
             _spr.color = INVULN_COLOR;
