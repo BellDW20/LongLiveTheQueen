@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
 [RequireComponent(typeof(Transform))]
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(CircleCollider2D))]
+[System.Serializable]
 public class PlayerController : MonoBehaviour {
 
     private static readonly Color INVULN_COLOR = new Color(1, 0.5f, 0.5f, 0.75f);
@@ -14,12 +15,14 @@ public class PlayerController : MonoBehaviour {
     public float DASH_SPEED;
     public float DASH_TIME;
     public float INVULN_TIME;
-    
+    public float DEATH_INVULN_TIME;
+
     private bool _isDashing = false, _initComplete = false;
     private float _dashStartTime;
-    private float _timeLastDamaged;
+    private float _timeLastDamaged, _timeLastRespawned;
 
     private Rigidbody2D _rbody;
+    private CircleCollider2D _collider;
     private Transform _transform;
     private Animations _animations;
     private SpriteRenderer _spr;
@@ -31,6 +34,7 @@ public class PlayerController : MonoBehaviour {
 
     public void Init() {
         _rbody = GetComponent<Rigidbody2D>();
+        _collider = GetComponent<CircleCollider2D>();
         _animations = new Animations(GetComponent<Animator>(), "Stand");
         _spr = GetComponent<SpriteRenderer>();
         _transform = transform;
@@ -121,15 +125,41 @@ public class PlayerController : MonoBehaviour {
         return _playerInfo.health <= 0;
     }
     public bool IsInvulnerable() {
-        return (Time.time - _timeLastDamaged) < INVULN_TIME;
+        return (Time.time - _timeLastDamaged) < INVULN_TIME || (Time.time - _timeLastRespawned) < DEATH_INVULN_TIME;
     }
 
     public void Damage(float amt) {
         if(!IsInvulnerable()) {
             _playerInfo.health -= amt;
-            _timeLastDamaged = Time.time;
+            if (_playerInfo.health <= 0) {
+                Die();
+            } else {
+                _timeLastDamaged = Time.time;
+            }
             GameHUDScript.UpdatePlayerHealthVisual(_playerNumber);
         }
+    }
+
+    private void Die() {
+        _playerInfo.stock--;
+        GameHUDScript.UpdatePlayerStockVisual(_playerNumber);
+
+        _spr.enabled = false;
+        _rbody.simulated = false;
+        _collider.enabled = false;
+
+        if (_playerInfo.stock>=0) {
+            Invoke("Respawn", 4);
+        }
+    }
+
+    private void Respawn() {
+        _spr.enabled = true;
+        _rbody.simulated = true;
+        _collider.enabled = true;
+        _timeLastRespawned = Time.time;
+        _playerInfo.health = _playerInfo.GetMaxHealth();
+        GameHUDScript.UpdatePlayerHealthVisual(_playerNumber);
     }
 
 }

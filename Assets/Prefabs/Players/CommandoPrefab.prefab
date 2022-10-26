@@ -157,8 +157,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MOVE_SPEED: 4
-  DASH_SPEED: 7
-  DASH_TIME: 0.2
+  DASH_SPEED: 10
+  DASH_TIME: 0.4
   INVULN_TIME: 0.5
 --- !u!95 &2517314239140340064
 Animator:

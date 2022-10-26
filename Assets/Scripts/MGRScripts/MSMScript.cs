@@ -26,7 +26,7 @@ public class MSMScript : MonoBehaviour {
 
         while(cur != null) {
             float mag = (cur.Value.transform.position-oPos).magnitude;
-            if (mag < closestMag) {
+            if (mag < closestMag && !cur.Value.GetComponent<PlayerController>().IsDead()) {
                 closestMag = mag;
                 closestPlayer = cur.Value;
             }

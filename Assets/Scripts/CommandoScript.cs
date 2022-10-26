@@ -27,6 +27,7 @@ public class CommandoScript : MonoBehaviour
 
     void Update() {
         _playerController.Update();
+        if(_playerController.IsDead()) { return; }
 
         if(InputManager.GetFireInput(_playerController.GetPlayerNumber())) {
             if(_gun.CanShoot()) {

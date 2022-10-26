@@ -118,9 +118,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed393e91f2ace2e4eb3c9b6e3b75509a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SHOT_COOLDOWN: 2
-  SHOT_SPEED: 10
-  BOMBER_RANGE: 9
+  SHOT_COOLDOWN: 2.5
+  SHOT_SPEED: 9
+  BOMBER_RANGE: 8
   MUZZLE_POS: {fileID: 1743696466953296888}
   BOMB_PREFAB: {fileID: 6804890081495684258, guid: e6454487ba6ce0a468afe96ab58a0c01, type: 3}
 --- !u!114 &1743696466199979060

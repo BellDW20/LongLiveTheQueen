@@ -10,6 +10,7 @@ public class GameHUDScript : MonoBehaviour {
     [SerializeField] private Text[] pStockText;
     [SerializeField] private Image[] pHealthBar;
     [SerializeField] private Text[] pScoreText;
+    [SerializeField] private Image[] pLevelBar;
 
     void Awake() {
         instance = this;
@@ -20,6 +21,7 @@ public class GameHUDScript : MonoBehaviour {
             pStockText[i].enabled = playerInGame;
             pHealthBar[i].enabled = playerInGame;
             pScoreText[i].enabled = playerInGame;
+            pLevelBar[i].enabled = playerInGame;
         }
     }
 
@@ -30,7 +32,10 @@ public class GameHUDScript : MonoBehaviour {
     }
 
     public static void UpdatePlayerScoreVisual(int player) {
-        instance.pScoreText[player].text = "Score: " + LevelManagerScript.pInfos[player].score;
+        PlayerInfo pInfo = LevelManagerScript.pInfos[player];
+        instance.pScoreText[player].text = "Score: " + pInfo.score;
+        Vector3 scale = new Vector3(pInfo.ProgressToNextLevel(), 1, 1);
+        instance.pLevelBar[player].transform.localScale = scale;
     }
 
     public static void UpdatePlayerStockVisual(int player) {

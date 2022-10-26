@@ -40,6 +40,23 @@ public class PlayerInfo {
 
     public void AddToScore(int points) {
         score += points;
+        while(score > ScoreForLevelUp(level)) {
+            damageScale = DamageScaleAtLevel(level);
+            level++;
+        }
+    }
+
+    public float ProgressToNextLevel() {
+        float lastLevelScore = ScoreForLevelUp(level - 1);
+        return (score - lastLevelScore) / (ScoreForLevelUp(level) - lastLevelScore);
+    }
+
+    private static int ScoreForLevelUp(int level) {
+        return 80 * level * level * level;
+    }
+
+    private static float DamageScaleAtLevel(int level) {
+        return Mathf.Sqrt(level);
     }
 
 }
