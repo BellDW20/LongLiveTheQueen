@@ -7,30 +7,34 @@ public class GameHUDScript : MonoBehaviour {
 
     private static GameHUDScript instance;
 
-    [SerializeField] private Text p1Text;
-    [SerializeField] private Text p2Text;
-    [SerializeField] private Image p1Health;
-    [SerializeField] private Image p2Health;
+    [SerializeField] private Text[] pStockText;
+    [SerializeField] private Image[] pHealthBar;
+    [SerializeField] private Text[] pScoreText;
 
     void Awake() {
         instance = this;
     }
     private void Start() {
-        bool p1InGame = (LevelManagerScript.pInfos[0] != null);
-        bool p2InGame = (LevelManagerScript.pInfos[1] != null);
-        p1Text.enabled = p1InGame;
-        p2Text.enabled = p2InGame;
-        p1Health.enabled = p1InGame;
-        p2Health.enabled = p2InGame;
+        for (int i = 0; i < pStockText.Length; i++) {
+            bool playerInGame = (LevelManagerScript.pInfos[i] != null);
+            pStockText[i].enabled = playerInGame;
+            pHealthBar[i].enabled = playerInGame;
+            pScoreText[i].enabled = playerInGame;
+        }
     }
+
     public static void UpdatePlayerHealthVisual(int player) {
         PlayerInfo pInfo = LevelManagerScript.pInfos[player];
         Vector3 scale = new Vector3(Mathf.Clamp(pInfo.health / pInfo.GetMaxHealth(), 0, 1), 1, 1);
-        if(player == 0) {
-            instance.p1Health.transform.localScale = scale;
-        } else if(player == 1) {
-            instance.p2Health.transform.localScale = scale;
-        }
+        instance.pHealthBar[player].transform.localScale = scale;
+    }
+
+    public static void UpdatePlayerScoreVisual(int player) {
+        instance.pScoreText[player].text = "Score: " + LevelManagerScript.pInfos[player].score;
+    }
+
+    public static void UpdatePlayerStockVisual(int player) {
+        instance.pStockText[player].text = "P"+(player+1)+" - Stock: "+LevelManagerScript.pInfos[player].stock;
     }
 
 }

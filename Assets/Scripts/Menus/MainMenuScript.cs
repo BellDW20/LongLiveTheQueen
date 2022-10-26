@@ -5,7 +5,7 @@ using UnityEngine;
 public class MainMenuScript : MonoBehaviour {
 
     public void OnSinglePlayerPressed() {
-        LevelManagerScript.SetupSinglePlayerGame(1);
+        LevelManagerScript.SetupSinglePlayerGame(0);
         LevelManagerScript.BeginLevel(LevelManagerScript.LEVEL_1_1, LevelManagerScript.LEVEL_TRANSITION);
     }
 

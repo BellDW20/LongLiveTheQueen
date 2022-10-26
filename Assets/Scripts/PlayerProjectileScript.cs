@@ -11,9 +11,7 @@ public class PlayerProjectileScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.layer == LayerMask.NameToLayer("Enemies")) {
-            EnemyHealthScript health = other.gameObject.GetComponent<EnemyHealthScript>();
-            //update score of player based on projectile's player creation number
-            health.Damage(DAMAGE);
+            Enemy.DamageAndScore(other.gameObject, DAMAGE, _playerCreatedBy);
         }
         Destroy(gameObject);
     }

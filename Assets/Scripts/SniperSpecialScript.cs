@@ -63,9 +63,7 @@ public class SniperSpecialScript : MonoBehaviour
 
     private void Cleanup(Collider2D other) {
         if (other.gameObject.layer == LayerMask.NameToLayer("Enemies")) {
-            EnemyHealthScript health = other.gameObject.GetComponent<EnemyHealthScript>();
-            //Update score based on player created by & damage
-            health.Damage(20);
+            Enemy.DamageAndScore(other.gameObject, 20, _playerCreatedBy);
         }
         Destroy(this.gameObject);
     }
