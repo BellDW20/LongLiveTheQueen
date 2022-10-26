@@ -52,7 +52,8 @@ public class PlayerController : MonoBehaviour {
             _spr.color = Color.white;
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftShift)) {
+        if (InputManager.GetDashInput(_playerNumber))
+        {
             _rbody.velocity = _rbody.velocity.normalized*DASH_SPEED;
             _isDashing = true;
             _dashStartTime = Time.time;
@@ -63,13 +64,23 @@ public class PlayerController : MonoBehaviour {
             _isDashing = false;
         }
 
-        Vector2 input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        Vector2 input;
+        if (_playerNumber == 0)
+        {
+            input = new Vector2(InputManager.GetHorizontalKeyboard(), InputManager.GetVerticalKeyboard());
+        }
+        else
+        {
+            input = new Vector2(InputManager.GetHorizontalGamepad(_playerNumber), InputManager.GetVerticalGamepad(_playerNumber));
+        }
+
         if (_rbody.velocity.magnitude > 0.1f && input.magnitude > 0.1f) {
             _animations.SetAnimation("Walk");
         } else {
             _animations.SetAnimation("Stand");
         }
 
+        _lookDirection = ChangeLookDirection();
         UpdateLookDirection();
 
         if (_isDashing) return;
@@ -77,10 +88,21 @@ public class PlayerController : MonoBehaviour {
         _rbody.velocity = (input * MOVE_SPEED);
     }
 
-    private void UpdateLookDirection() {
-        Vector3 tempDir = Camera.main.ScreenToWorldPoint(Input.mousePosition) - _transform.position;
-        _lookDirection = new Vector2(tempDir.x, tempDir.y);
+    private Vector2 ChangeLookDirection()
+    {
+        if (_playerNumber == 0)
+        {
+            Vector3 tempDir = Camera.main.ScreenToWorldPoint(Input.mousePosition) - _transform.position;
+            return new Vector2(tempDir.x, tempDir.y);
 
+        }
+        else
+        {
+            return new Vector2(InputManager.GetAimInputGamepadHorizontal(_playerNumber), InputManager.GetAimInputGamepadVertical(_playerNumber));
+        }
+    }
+
+    private void UpdateLookDirection() {
         //update rotation to follow looking direction
         _transform.rotation = Quaternion.Euler(
             new Vector3(0, 0, 180 * Mathf.Atan2(_lookDirection.y, _lookDirection.x) / Mathf.PI - 90)

@@ -28,7 +28,7 @@ public class CommandoScript : MonoBehaviour
     void Update() {
         _playerController.Update();
 
-        if(Input.GetMouseButton(0)) {
+        if(InputManager.GetFireInput(_playerController.GetPlayerNumber())) {
             if(_gun.CanShoot()) {
                 GameObject tempBullet = Instantiate(_bullet, _transform.position, Quaternion.identity);
 
@@ -45,7 +45,7 @@ public class CommandoScript : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButtonDown(1) && Time.time - _specialTimer >= _specialCooldown)
+        if (InputManager.GetSpecialInput(_playerController.GetPlayerNumber()) && Time.time - _specialTimer >= _specialCooldown)
         {
             GameObject tempSpecial = Instantiate(_specialBullet, _transform.position, Quaternion.identity);
             tempSpecial.transform.up = _playerController.GetLookDirection();
