@@ -9,6 +9,7 @@ TagManager:
   - Bomb
   - Bomber
   - Bullet
+  - Boss
   layers:
   - Default
   - TransparentFX

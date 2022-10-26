@@ -51,7 +51,7 @@ public class CommandoSpecialScript : MonoBehaviour
                 GameObject enemyGameObject = enemy.gameObject;
                 if(enemyGameObject.layer == LayerMask.NameToLayer("Enemies"))
                 {
-                    Enemy.DamageAndScore(enemyGameObject, 40, _playerCreatedBy);
+                    EnemyHealthScript.DamageAndScore(enemyGameObject, 40, _playerCreatedBy);
                 }
             }
         }
