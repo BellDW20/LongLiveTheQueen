@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 1565348361424349521}
   - component: {fileID: -5694307863092697525}
   - component: {fileID: -6477358492901290341}
-  - component: {fileID: -3456227242646955953}
   - component: {fileID: -5650069285305175742}
+  - component: {fileID: -3455474356985596768}
   m_Layer: 7
   m_Name: SniperSpecialBullet
   m_TagString: Bullet
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 5874215974149055255}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.05, y: 0.15, z: 1}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 1278534193
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: bc2f7c742779fd845bf693fe63ef29c8, type: 3}
+  m_Sprite: {fileID: -2413806693520163455, guid: f26b1ee0888c9154586f2b9f07bb8079, type: 3}
   m_Color: {r: 0, g: 0.86123896, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -106,32 +106,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &-3456227242646955953
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5874215974149055255}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!114 &-5650069285305175742
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,3 +118,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fc4872412d7b8f45a15b5e99ce27146, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!58 &-3455474356985596768
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5874215974149055255}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5

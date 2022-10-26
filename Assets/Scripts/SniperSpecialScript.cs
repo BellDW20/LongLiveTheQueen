@@ -15,6 +15,7 @@ public class SniperSpecialScript : MonoBehaviour
     Rigidbody2D _rbody;
 
     bool _isActive = false;
+    float _spreadAngle = 15;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,8 +40,8 @@ public class SniperSpecialScript : MonoBehaviour
             Vector2 currentVelocity = _rbody.velocity;
             Vector3 temp = new Vector3(currentVelocity.x, currentVelocity.y, 0);
 
-            Vector3 vel1 = Quaternion.AngleAxis(30, new Vector3(0, 0, 1)) * temp;
-            Vector3 vel2 = Quaternion.AngleAxis(-30, new Vector3(0, 0, 1)) * temp;
+            Vector3 vel1 = Quaternion.AngleAxis(_spreadAngle, new Vector3(0, 0, 1)) * temp;
+            Vector3 vel2 = Quaternion.AngleAxis(-_spreadAngle, new Vector3(0, 0, 1)) * temp;
             tempSpecial1.GetComponent<Rigidbody2D>().velocity = vel1;
             tempSpecial2.GetComponent<Rigidbody2D>().velocity = vel2;
 
