@@ -48,8 +48,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSourceBegin: {fileID: 208066106791135597}
   musicSourceLoop: {fileID: 208066106791135598}
-  begin: []
-  loop: []
+  begin:
+  - {fileID: 8300000, guid: 6c60fdb09f6bc1f4baf2c36973bc906d, type: 3}
+  loop:
+  - {fileID: 8300000, guid: 6c60fdb09f6bc1f4baf2c36973bc906d, type: 3}
   sfxSource: {fileID: 208066106791135595}
   sfx:
   - {fileID: 8300000, guid: 1d9043366b09a20419ad065ffe74ed65, type: 3}

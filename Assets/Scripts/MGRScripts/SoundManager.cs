@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class SoundManager : MonoBehaviour {
 
     //music constants here
+    public const int MUS_LEVEL_1 = 0;
     public AudioSource musicSourceBegin;
     public AudioSource musicSourceLoop;
     public AudioClip[] begin;
@@ -28,6 +29,11 @@ public class SoundManager : MonoBehaviour {
 
     private void Start() {
         //startup music depending on the scene
+        switch(SceneManager.GetActiveScene().name) {
+            case "Level1Scene":
+                I_PlayMusic(MUS_LEVEL_1);
+                break;
+        }
     }
 
     private void I_PlayMusic(int musicID) {
@@ -35,6 +41,7 @@ public class SoundManager : MonoBehaviour {
         musicSourceLoop.clip = loop[musicID];
         musicSourceBegin.Play();
         musicSourceLoop.PlayScheduled(AudioSettings.dspTime + begin[musicID].length);
+        musicSourceLoop.loop = true;
     }
 
     private void I_PlaySFX(int sfxID) {
