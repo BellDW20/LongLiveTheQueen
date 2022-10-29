@@ -46,6 +46,7 @@ public class CommandoScript : MonoBehaviour
                 tempBullet.GetComponent<PlayerProjectileScript>().SetPlayerCreatedBy(_playerController.GetPlayerNumber());
             }
         }
+        GameHUDScript.UpdatePlayerAmmoVisual(_playerController.GetPlayerNumber(), _gun);
 
         if (InputManager.GetSpecialInput(_playerController.GetPlayerNumber()) && Time.time - _specialTimer >= _specialCooldown)
         {
@@ -54,5 +55,7 @@ public class CommandoScript : MonoBehaviour
             tempSpecial.GetComponent<Rigidbody2D>().velocity = _playerController.GetLookDirection().normalized * _specialShotVelocity;
             _specialTimer = Time.time;
         }
+        GameHUDScript.UpdatePlayerSpecialVisual(_playerController.GetPlayerNumber(), Time.time - _specialTimer >= _specialCooldown);
+
     }
 }

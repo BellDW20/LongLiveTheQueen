@@ -32,7 +32,9 @@ public class EnemyHealthScript : MonoBehaviour {
         EnemyHealthScript enHealth = enemyToDamage.GetComponent<EnemyHealthScript>();
         PlayerInfo pInfo = LevelManagerScript.pInfos[player];
         float actualDamage = rawDamage * pInfo.damageScale;
-        pInfo.AddToScore((int)actualDamage);
+        if(pInfo.AddToScore((int)actualDamage)) {
+            GameHUDScript.UpdatePlayerLevelVisual(player);
+        }
         GameHUDScript.UpdatePlayerScoreVisual(player);
         enHealth.Damage(rawDamage * pInfo.damageScale);
     }

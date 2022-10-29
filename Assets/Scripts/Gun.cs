@@ -45,4 +45,17 @@ public class Gun {
         return Mathf.PI*Random.Range(-_spreadAngle, _spreadAngle)/180.0f;
     }
 
+    public int GetBulletsInMag() {
+        return _bulletsInMag;
+    }
+
+    public int GetMagSize() {
+        return _magSize;
+    }
+
+    public bool IsReloading() {
+        _reloading = (Time.time - _reloadStartTime) < _reloadDelay;
+        return _reloading;
+    }
+
 }

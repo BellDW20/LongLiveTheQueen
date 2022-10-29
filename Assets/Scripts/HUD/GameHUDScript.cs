@@ -11,6 +11,11 @@ public class GameHUDScript : MonoBehaviour {
     [SerializeField] private Image[] pHealthBar;
     [SerializeField] private Text[] pScoreText;
     [SerializeField] private Image[] pLevelBar;
+    [SerializeField] private Text[] pLevelText;
+    [SerializeField] private Image[] pHeart;
+    [SerializeField] private Image[] pAmmo;
+    [SerializeField] private Text[] pAmmoText;
+    [SerializeField] private Text[] pSpecialText;
 
     void Awake() {
         instance = this;
@@ -22,6 +27,11 @@ public class GameHUDScript : MonoBehaviour {
             pHealthBar[i].enabled = playerInGame;
             pScoreText[i].enabled = playerInGame;
             pLevelBar[i].enabled = playerInGame;
+            pLevelText[i].enabled = playerInGame;
+            pHeart[i].enabled = playerInGame;
+            pAmmo[i].enabled = playerInGame;
+            pAmmoText[i].enabled = playerInGame;
+            pSpecialText[i].enabled = playerInGame;
         }
     }
 
@@ -38,8 +48,25 @@ public class GameHUDScript : MonoBehaviour {
         instance.pLevelBar[player].transform.localScale = scale;
     }
 
+    public static void UpdatePlayerLevelVisual(int player) {
+        instance.pLevelText[player].text = "Dmg Level " + LevelManagerScript.pInfos[player].level;
+    }
+
     public static void UpdatePlayerStockVisual(int player) {
-        instance.pStockText[player].text = "P"+(player+1)+" - Stock: "+LevelManagerScript.pInfos[player].stock;
+        int stock = LevelManagerScript.pInfos[player].stock;
+        instance.pStockText[player].text = (stock < 0) ? "Game Over" : ("P"+(player+1)+" - Stock: "+stock);
+    }
+    public static void UpdatePlayerSpecialVisual(int player, bool available) {
+        instance.pSpecialText[player].enabled = available;
+    }
+
+    public static void UpdatePlayerAmmoVisual(int player, Gun gun) {
+        Text text = instance.pAmmoText[player];
+        if(gun.IsReloading()) {
+            text.text = "RELOADING";
+        } else {
+            text.text = gun.GetBulletsInMag() + "/" + gun.GetMagSize();
+        }
     }
 
 }

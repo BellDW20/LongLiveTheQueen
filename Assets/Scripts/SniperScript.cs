@@ -36,6 +36,7 @@ public class SniperScript : MonoBehaviour
                 tempBullet.GetComponent<PlayerProjectileScript>().SetPlayerCreatedBy(_playerController.GetPlayerNumber());
             }
         }
+        GameHUDScript.UpdatePlayerAmmoVisual(_playerController.GetPlayerNumber(), _gun);
 
         if (InputManager.GetSpecialInput(_playerController.GetPlayerNumber()) && Time.time - _specialTimer >= _specialCooldown)
         {

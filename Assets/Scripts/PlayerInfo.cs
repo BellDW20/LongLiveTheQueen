@@ -38,12 +38,14 @@ public class PlayerInfo {
         return PLAYER_MAX_HEALTH[type];
     }
 
-    public void AddToScore(int points) {
+    public bool AddToScore(int points) {
         score += points;
+        int lastLevel = level;
         while(score > ScoreForLevelUp(level)) {
             damageScale = DamageScaleAtLevel(level);
             level++;
         }
+        return level > lastLevel;
     }
 
     public float ProgressToNextLevel() {
