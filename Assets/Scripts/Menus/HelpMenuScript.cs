@@ -5,9 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class HelpMenuScript : MonoBehaviour {
 
+    [SerializeField] private GameObject _mainCanvas;
+    [SerializeField] private GameObject _helpCanvas;
+
     void Update() {
-        if(Input.GetKey(KeyCode.Escape)) {
-            SceneManager.LoadScene("MainMenu");
+        if(Input.GetKeyDown(KeyCode.Escape)) {
+            _mainCanvas.SetActive(true);
+            _helpCanvas.SetActive(false);
         }
     }
 

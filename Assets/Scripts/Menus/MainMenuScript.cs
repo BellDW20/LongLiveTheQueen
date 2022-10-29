@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuScript : MonoBehaviour {
 
+    [SerializeField] private GameObject _mainCanvas;
+    [SerializeField] private GameObject _helpCanvas;
+
     public void OnSinglePlayerPressed() {
         LevelManagerScript.SetupSinglePlayerGame(0);
         LevelManagerScript.BeginLevel(LevelManagerScript.LEVEL_1_1, LevelManagerScript.LEVEL_TRANSITION);
@@ -16,7 +19,9 @@ public class MainMenuScript : MonoBehaviour {
     }
 
     public void OnHelpPressed() {
-        SceneManager.LoadScene("HelpMenu");
+        //SceneTransitioner.BeginTransition(SceneTransitioner.FADE_OUT, 0.5f, "HelpMenu
+        _mainCanvas.SetActive(false);
+        _helpCanvas.SetActive(true);
     }
 
     public void OnQuitPressed() {

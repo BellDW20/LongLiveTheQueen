@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Transform))]
 [RequireComponent(typeof(SpriteRenderer))]
@@ -144,7 +145,9 @@ public class PlayerController : MonoBehaviour {
         _collider.enabled = false;
 
         if (_playerInfo.stock>=0) {
-            Invoke("Respawn", 4);
+            Invoke("Respawn", 3);
+        } else if (LevelManagerScript.IsGameOver()) {
+            Invoke("GameOver", 3);
         }
     }
 
@@ -155,6 +158,10 @@ public class PlayerController : MonoBehaviour {
         _timeLastRespawned = Time.time;
         _playerInfo.health = _playerInfo.GetMaxHealth();
         GameHUDScript.UpdatePlayerHealthVisual(_playerNumber);
+    }
+
+    private void GameOver() {
+        SceneTransitioner.BeginTransition(SceneTransitioner.FADE_OUT, 0.5f, "GameOverScene");
     }
 
 }

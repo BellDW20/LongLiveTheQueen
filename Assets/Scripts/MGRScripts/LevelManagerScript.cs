@@ -6,18 +6,24 @@ using UnityEngine.SceneManagement;
 public class LevelManagerScript : MonoBehaviour {
 
     public const int LEVEL_1_1 = 0;
-    private static string[] LEVEL_NAMES = {
-        "Level1Scene"
+    public const int LEVEL_2_1 = 1;
+    private static readonly string[] LEVEL_SCENE_NAMES = {
+        "Level1Scene", "Level2Scene"
+    };
+    private static readonly string[] LEVEL_DISPLAY_NAMES = {
+        "Level 1", "Level 2"
     };
     public const int SUBLEVEL_TRANSITION = 0;
     public const int LEVEL_TRANSITION = 1;
 
+    private static int _levelToTransitionTo;
     private static int _levelTransitionType;
 
     [SerializeField] private Transform[] _pSpawns;
     [SerializeField] private GameObject[] _PlayerPrefabs;
     private static GameObject[] players = new GameObject[2];
     public static PlayerInfo[] pInfos = new PlayerInfo[2];
+    private static bool _gameWon;
 
     void Start() {
         if (_levelTransitionType == LEVEL_TRANSITION) {
@@ -42,7 +48,8 @@ public class LevelManagerScript : MonoBehaviour {
 
     public static void BeginLevel(int levelID, int transitionType) {
         _levelTransitionType = transitionType;
-        SceneManager.LoadScene(LEVEL_NAMES[levelID]);
+        _levelToTransitionTo = levelID;
+        SceneTransitioner.BeginTransition(SceneTransitioner.FADE_OUT, 0.5f, "LevelTransitionScene");
     }
 
     public static void SetupSinglePlayerGame(int p1Type) {
@@ -60,6 +67,30 @@ public class LevelManagerScript : MonoBehaviour {
             if (Object.ReferenceEquals(players[i], player)) { return i; }
         }
         return -1;
+    }
+
+    public static bool IsGameOver() {
+        int playersInGame = 0;
+        int playersDead = 0;
+        for (int i = 0; i < pInfos.Length; i++) {
+            if(pInfos[i] != null) {
+                playersInGame++;
+                if(pInfos[i].stock < 0) { playersDead++; }
+            }
+        }
+        return (playersInGame == playersDead);
+    }
+
+    public static bool WasGameWon() {
+        return _gameWon;
+    }
+
+    public static string GetLevelName() {
+        return LEVEL_DISPLAY_NAMES[_levelToTransitionTo];
+    }
+
+    public static string GetLevelSceneName() {
+        return LEVEL_SCENE_NAMES[_levelToTransitionTo];
     }
 
 }

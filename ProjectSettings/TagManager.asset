@@ -10,6 +10,7 @@ TagManager:
   - Bomber
   - Bullet
   - Boss
+  - LevelEnd
   layers:
   - Default
   - TransparentFX
