@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour {
     public float DASH_TIME;
     public float INVULN_TIME;
     public float DEATH_INVULN_TIME;
+    public GameObject DASH_PARTICLES;
 
     private bool _isDashing = false, _initComplete = false;
     private float _dashStartTime;
@@ -48,17 +49,21 @@ public class PlayerController : MonoBehaviour {
     public void Update() {
         if(!_initComplete) { Init(); }
 
+        if(IsDead()) { return; }
+
         if(IsInvulnerable()) {
             _spr.color = INVULN_COLOR;
         } else {
             _spr.color = Color.white;
         }
 
-        if (InputManager.GetDashInput(_playerNumber))
+        if (InputManager.GetDashInput(_playerNumber) && _rbody.velocity.magnitude > 0.1f)
         {
             _rbody.velocity = _rbody.velocity.normalized*DASH_SPEED;
             _isDashing = true;
             _dashStartTime = Time.time;
+            SoundManager.PlaySFX(SoundManager.SFX_DASH);
+            Instantiate(DASH_PARTICLES, _transform.position, Quaternion.identity);
         }
 
         if (Time.time - _dashStartTime >= DASH_TIME) {

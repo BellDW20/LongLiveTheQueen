@@ -153,6 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   max_health: 20
+  BLOOD_PARTICLES: {fileID: 423819991086098478, guid: 12f1530a4737f974ba5e594a062af0a0, type: 3}
 --- !u!195 &5900110714668388244
 NavMeshAgent:
   m_ObjectHideFlags: 0

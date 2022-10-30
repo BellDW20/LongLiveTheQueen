@@ -5,10 +5,13 @@ using UnityEngine;
 public class EnemyHealthScript : MonoBehaviour {
 
     [SerializeField] private float max_health;
+    [SerializeField] private GameObject BLOOD_PARTICLES;
+    private Transform _transform;
     private float health;
 
     public void Start() {
         health = max_health;
+        _transform = transform;
     }
 
     public void Heal(float hp) {
@@ -17,6 +20,7 @@ public class EnemyHealthScript : MonoBehaviour {
 
     public void Damage(float hp) {
         health -= hp;
+        Instantiate(BLOOD_PARTICLES, _transform.position, Quaternion.identity);
         if (health <= 0) {
             SoundManager.PlaySFX(SoundManager.SFX_ENEMY_DEATH);
             Destroy(gameObject);

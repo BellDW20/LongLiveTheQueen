@@ -159,6 +159,8 @@ MonoBehaviour:
   DASH_SPEED: 8
   DASH_TIME: 0.35
   INVULN_TIME: 0.75
+  DEATH_INVULN_TIME: 3
+  DASH_PARTICLES: {fileID: 2765344471174570845, guid: 71acb65cd21b3a141be5ba33fb875951, type: 3}
 --- !u!95 &5074306447314417217
 Animator:
   serializedVersion: 3

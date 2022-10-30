@@ -8,6 +8,7 @@ public class SoundManager : MonoBehaviour {
     //music constants here
     public const int MUS_LEVEL_1 = 0;
     public const int MUS_GAME_OVER = 1;
+    public const int MUS_INTRO = 2;
     public AudioSource musicSourceBegin;
     public AudioSource musicSourceLoop;
     public AudioClip[] begin;
@@ -20,6 +21,7 @@ public class SoundManager : MonoBehaviour {
     public const int SFX_ENEMY_HIT = 4;
     public const int SFX_BOMB_WHISTLE = 5;
     public const int SFX_LEVEL_CLEAR = 6;
+    public const int SFX_DASH = 7;
     public AudioSource sfxSource;
     public AudioClip[] sfx;
 
@@ -38,6 +40,9 @@ public class SoundManager : MonoBehaviour {
                 break;
             case "GameOverScene":
                 I_PlayMusic(MUS_GAME_OVER);
+                break;
+            case "IntroCutscene":
+                I_PlayMusic(MUS_INTRO);
                 break;
         }
     }

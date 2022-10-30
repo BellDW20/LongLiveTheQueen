@@ -51,9 +51,11 @@ MonoBehaviour:
   begin:
   - {fileID: 8300000, guid: 6c60fdb09f6bc1f4baf2c36973bc906d, type: 3}
   - {fileID: 8300000, guid: 8e1594190c4236c44a77c87fc0c5d3e9, type: 3}
+  - {fileID: 8300000, guid: 10810cd22f1834340aa1d374c07fde49, type: 3}
   loop:
   - {fileID: 8300000, guid: 6c60fdb09f6bc1f4baf2c36973bc906d, type: 3}
   - {fileID: 8300000, guid: 8e1594190c4236c44a77c87fc0c5d3e9, type: 3}
+  - {fileID: 8300000, guid: 10810cd22f1834340aa1d374c07fde49, type: 3}
   sfxSource: {fileID: 208066106791135595}
   sfx:
   - {fileID: 8300000, guid: 1d9043366b09a20419ad065ffe74ed65, type: 3}
@@ -63,6 +65,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: ac9bd54f685561b4f896867d629a1eb3, type: 3}
   - {fileID: 8300000, guid: 9afa5e05685239a44a663e6c5c06cba9, type: 3}
   - {fileID: 8300000, guid: 4c74205f0edbc4043b421ecfa119965e, type: 3}
+  - {fileID: 8300000, guid: c9544ba605171784ba46e34b396049db, type: 3}
 --- !u!82 &208066106791135597
 AudioSource:
   m_ObjectHideFlags: 0

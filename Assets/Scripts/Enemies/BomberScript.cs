@@ -10,20 +10,22 @@ public class BomberScript : MonoBehaviour {
     public Transform MUZZLE_POS;
     public GameObject BOMB_PREFAB;
 
-    private float lastTimeShot;
+    private float _lastTimeShot;
+    private bool _offscreen;
     private Transform _transform;
 
     void Start() {
-        lastTimeShot = Time.time;
+        _lastTimeShot = Time.time+Random.Range(0, 0.5f);
         _transform = GetComponent<Transform>();
+        _offscreen = true;
     }
 
     void Update() {
-        if(Time.time - lastTimeShot > SHOT_COOLDOWN) {
-            lastTimeShot = Time.time;
+        if(Time.time - _lastTimeShot > SHOT_COOLDOWN) {
+            _lastTimeShot = Time.time;
             GameObject nearestPlayer = MSMScript.NearestPlayer(gameObject);
 
-            if (nearestPlayer != null && (_transform.position - nearestPlayer.transform.position).magnitude < BOMBER_RANGE) {
+            if (!_offscreen && nearestPlayer != null && (_transform.position - nearestPlayer.transform.position).magnitude < BOMBER_RANGE) {
                 ShootBombAt(nearestPlayer);
             }
         }
@@ -43,6 +45,13 @@ public class BomberScript : MonoBehaviour {
         float estTimeToTravel = estDistToTravel / SHOT_SPEED;
 
         return _rb.position + 0.5f * estTimeToTravel * _rb.velocity;
+    }
+
+    private void OnBecameVisible() {
+        _offscreen = false;
+    }
+    private void OnBecameInvisible() {
+        _offscreen = true;
     }
 
 }

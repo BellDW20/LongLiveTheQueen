@@ -32,6 +32,12 @@ public class GameHUDScript : MonoBehaviour {
             pAmmo[i].enabled = playerInGame;
             pAmmoText[i].enabled = playerInGame;
             pSpecialText[i].enabled = playerInGame;
+            if (playerInGame) {
+                UpdatePlayerHealthVisual(i);
+                UpdatePlayerScoreVisual(i);
+                UpdatePlayerLevelVisual(i);
+                UpdatePlayerStockVisual(i);
+            }
         }
     }
 
