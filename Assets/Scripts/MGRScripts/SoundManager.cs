@@ -5,15 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class SoundManager : MonoBehaviour {
 
-    //music constants here
+    //Music IDs to be used with PlayMusic and I_PlayMusic
     public const int MUS_LEVEL_1 = 0;
     public const int MUS_GAME_OVER = 1;
     public const int MUS_INTRO = 2;
-    public AudioSource musicSourceBegin;
-    public AudioSource musicSourceLoop;
-    public AudioClip[] begin;
-    public AudioClip[] loop;
+    public AudioSource musicSourceBegin; //Used for playing the beginning portion of music
+    public AudioSource musicSourceLoop; //Used for playing the looping portino of music
+    public AudioClip[] begin; //References to beginning portions of music associated with music IDs
+    public AudioClip[] loop; //References to looping portions of music associated with music IDs
 
+    //Sound effect IDs to be used with PlaySFX and I_PlaySFX
     public const int SFX_MACHINE_GUN_SHOT = 0;
     public const int SFX_SNIPER_RIFLE_SHOT = 1;
     public const int SFX_EXPLOSION = 2;
@@ -22,18 +23,21 @@ public class SoundManager : MonoBehaviour {
     public const int SFX_BOMB_WHISTLE = 5;
     public const int SFX_LEVEL_CLEAR = 6;
     public const int SFX_DASH = 7;
-    public AudioSource sfxSource;
-    public AudioClip[] sfx;
+    public AudioSource sfxSource; //Used for playing sound effects
+    public AudioClip[] sfx; //References to sound effect clips associated with SFX IDs
 
-    private static SoundManager instance;
+    private static SoundManager instance; //The sound manager of the active scene
 
     void Awake() {
+        //Set this scene's sound manager object as the active sound manager
         instance = this;
     }
 
     private void Start() {
+        //On startup, assume playback is at full volume
         SetVolume(1);
-        //startup music depending on the scene
+
+        //Play music corresponding to the scene we are in, if applicable
         switch(SceneManager.GetActiveScene().name) {
             case "Level1Scene":
                 I_PlayMusic(MUS_LEVEL_1);
@@ -47,28 +51,41 @@ public class SoundManager : MonoBehaviour {
         }
     }
 
+    //Internal play music command, plays the given music track
+    //with looping setup by default
     private void I_PlayMusic(int musicID) {
+        //Set the beginning and looping portions to the correct clips
         musicSourceBegin.clip = begin[musicID];
         musicSourceLoop.clip = loop[musicID];
+
+        //Play the beginning portion of the music immediately
         musicSourceBegin.Play();
+
+        //Schedule (accurately) for the looping portion to play
+        //when the beginning portion of the track is over
         musicSourceLoop.PlayScheduled(AudioSettings.dspTime + begin[musicID].length);
         musicSourceLoop.loop = true;
     }
 
+    //Internal play sound effects command, plays the given sound effect
     private void I_PlaySFX(int sfxID) {
         sfxSource.PlayOneShot(sfx[sfxID]);
     }
 
+    //External play music command, plays the given music track
+    //with looping setup by default
     public static void PlayMusic(int musicID) {
         if (instance == null) { return; }
         instance.I_PlayMusic(musicID);
     }
 
+    //External play sound effects command, plays the given sound effect
     public static void PlaySFX(int sfxID) {
         if (instance == null) { return; }
         instance.I_PlaySFX(sfxID);
     }
 
+    //Immediately stops all music and sound effects currently playing
     public static void StopAllSounds() {
         if (instance == null) { return; }
         instance.musicSourceBegin.Stop();
@@ -76,6 +93,8 @@ public class SoundManager : MonoBehaviour {
         instance.sfxSource.Stop();
     }
 
+    //Sets the volume of both music and sound effects to the given
+    //volume scale from 0 to 1
     public static void SetVolume(float volume) {
         if(instance==null) { return; }
         instance.musicSourceBegin.volume = volume;
