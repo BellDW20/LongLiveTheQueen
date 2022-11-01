@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class PlayerInfo {
 
+    //Player type constants
     public const int TYPE_COMMANDO = 0;
     public const int TYPE_SNIPER = 1;
+
+    //The maximum health that each type of player has,
+    //indexed by the type constants above
     public static readonly int[] PLAYER_MAX_HEALTH = {
-        100, 100
+        100, 120
     };
 
-    public int type, score, level, stock;
-    public float health, damageScale;
+    public int type; //The type of player (commando, sniper, etc.) this player is
+    public int score; //This player's current score
+    public int level; //The current level of this player
+    public int stock; //How many stocks this player has left
+    public float health; //The player's current health
+    public float damageScale; //The damage scale depending on the player's current level
 
+    //Sets up a player info for a given type of player
     public PlayerInfo(int type) {
         this.type = type;
         this.health = GetMaxHealth();
@@ -22,41 +31,49 @@ public class PlayerInfo {
         this.damageScale = 1;
     }
 
-    public PlayerInfo(int type, float health, int score, int level, int stock) {
-        this.type = type;
-        this.health = health;
-        this.score = score;
-        this.level = level;
-        this.stock = stock;
-    }
-
+    //Resets the player's health for the next level
     public void ClearForNextLevel() {
         health = PLAYER_MAX_HEALTH[type];
     }
 
+    //Returns the maximum health this player can have according to its type
     public float GetMaxHealth() {
         return PLAYER_MAX_HEALTH[type];
     }
 
+    //Adds an amount of points to the player's score
+    //returning true if the player leveled up as a result
     public bool AddToScore(int points) {
         score += points;
         int lastLevel = level;
+        
+        //While we still have enough points to level up...
         while(score > ScoreForLevelUp(level)) {
-            damageScale = DamageScaleAtLevel(level);
+            //increase our level
             level++;
+            //and set our damage scale to the next level's damage scale
+            damageScale = DamageScaleAtLevel(level);
         }
+
+        //if we leveled up, return true, otherwise return false
         return level > lastLevel;
     }
 
+    //Returns a factor from 0 to 1 indicating how far
+    //this player is from leveling up
     public float ProgressToNextLevel() {
         float lastLevelScore = ScoreForLevelUp(level - 1);
+        //returns a factor of how many points we've earned since the last level
+        //divided by the number of points needed to level up
         return (score - lastLevelScore) / (ScoreForLevelUp(level) - lastLevelScore);
     }
 
+    //Returns how many points (cumulatively) are needed to achieve a specified level
     private static int ScoreForLevelUp(int level) {
         return 80 * level * level * level;
     }
 
+    //Returns how much a player's damage output is scaled at a given level
     private static float DamageScaleAtLevel(int level) {
         return Mathf.Sqrt(level);
     }

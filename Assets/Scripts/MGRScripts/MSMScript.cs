@@ -63,8 +63,8 @@ public class MSMScript : MonoBehaviour {
         return closestPlayer.transform.position;
     }
 
-    public LinkedList<GameObject> GetPlayers()
+    public static LinkedList<GameObject> GetPlayers()
     {
-        return players;
+        return instance.players;
     }
 }
