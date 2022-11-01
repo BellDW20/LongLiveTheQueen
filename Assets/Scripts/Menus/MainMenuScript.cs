@@ -2,11 +2,37 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenuScript : MonoBehaviour {
 
     [SerializeField] private GameObject _mainCanvas; //Canvas full of main menu UI objects
     [SerializeField] private GameObject _helpCanvas; //Canvas full of help menu UI objects
+
+    [SerializeField] private RectTransform _sky0Transform;
+    [SerializeField] private RectTransform _sky1Transform;
+    [SerializeField] private RectTransform _castle0Transform;
+    [SerializeField] private RectTransform _castle1Transform;
+
+    private void Update() {
+        _sky0Transform.position = new Vector3(_sky0Transform.position.x - 400 * Time.deltaTime, _sky0Transform.position.y, _sky0Transform.position.z);
+        _sky1Transform.position = new Vector3(_sky1Transform.position.x - 400 * Time.deltaTime, _sky1Transform.position.y, _sky1Transform.position.z);
+        if(_sky0Transform.position.x < -640) {
+            _sky0Transform.position = new Vector3(_sky0Transform.position.x + 2240, _sky0Transform.position.y, _sky0Transform.position.z);
+            RectTransform temp = _sky1Transform;
+            _sky1Transform = _sky0Transform;
+            _sky0Transform = temp;
+        }
+
+        _castle0Transform.position = new Vector3(_castle0Transform.position.x - 250 * Time.deltaTime, _castle0Transform.position.y, _castle0Transform.position.z);
+        _castle1Transform.position = new Vector3(_castle1Transform.position.x - 250 * Time.deltaTime, _castle1Transform.position.y, _castle1Transform.position.z);
+        if (_castle0Transform.position.x < -640) {
+            _castle0Transform.position = new Vector3(_castle0Transform.position.x + 2240, _castle0Transform.position.y, _castle0Transform.position.z);
+            RectTransform temp = _castle1Transform;
+            _castle1Transform = _castle0Transform;
+            _castle0Transform = temp;
+        }
+    }
 
     //When the singleplayer button is pressed on the main menu...
     public void OnSinglePlayerPressed() {
