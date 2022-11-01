@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LevelTransitionScene.unity
     guid: 230eff14b2e9f6545ba905061dd0daf8
+  - enabled: 1
+    path: Assets/Scenes/Levels/BossRoom.unity
+    guid: c562ef03d848a7a47ad783a89ee525ad
   m_configObjects: {}
