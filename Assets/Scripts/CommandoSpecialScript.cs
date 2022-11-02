@@ -5,25 +5,26 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class CommandoSpecialScript : MonoBehaviour
 {
-    public GameObject EXPLOSION_ANIM;
-    public GameObject EXPLOSION_PARTICLES;
-    private int _playerCreatedBy;
+    public GameObject EXPLOSION_ANIM; //Explosion animation
+    public GameObject EXPLOSION_PARTICLES; //Explosion particle effect
+    private int _playerCreatedBy; //Records which player created this special (for keeping score)
 
     Rigidbody2D _rbody;
 
     const float _TTL = 1f; //Molotov's time to live after being thrown
-    const float _EXPLOSION_RANGE = 1.5f;
-    float _start = 0f;
+    const float _EXPLOSION_RANGE = 1.5f; //Radius of circle in which damage occurs
+    float _start = 0f; //When molotov is spawned
 
     // Start is called before the first frame update
     void Start()
     {
         _rbody = GetComponent<Rigidbody2D>();
-        _start = Time.time;
+        _start = Time.time; //Set spawn time
     }
 
     private void FixedUpdate()
     {
+        //If molotov has exceeded it's TTL, explode
         if (Time.time - _start >= _TTL)
         {
             Explode();
@@ -32,22 +33,29 @@ public class CommandoSpecialScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //If molotov collides (with an enemy), explode
         Explode();
     }
 
+    /// <summary>
+    /// Plays explosion animation and damages enemies within range
+    /// </summary>
     private void Explode()
     {
+        //Instantiate animation and particle effect
         Instantiate(EXPLOSION_ANIM, _rbody.position, Quaternion.identity);
         Instantiate(EXPLOSION_PARTICLES, _rbody.position, Quaternion.identity);
 
         List<Collider2D> enemies = new List<Collider2D>();
         ContactFilter2D filter = new ContactFilter2D();
+        //Get objects in circular range specified
         int numCollisions = Physics2D.OverlapCircle(_rbody.position, _EXPLOSION_RANGE, filter.NoFilter(), enemies);
 
         if(numCollisions > 0)
         {
             foreach(Collider2D enemy in enemies)
             {
+                //For each collision, if it is an enemy, damage the enemy and add to player's score
                 GameObject enemyGameObject = enemy.gameObject;
                 if(enemyGameObject.layer == LayerMask.NameToLayer("Enemies"))
                 {
@@ -59,6 +67,10 @@ public class CommandoSpecialScript : MonoBehaviour
         Destroy(gameObject);
     }
 
+    /// <summary>
+    /// Sets the player that created this object
+    /// </summary>
+    /// <param name="_playerCreatedBy">Player, recorded as int</param>
     public void SetPlayerCreatedBy(int _playerCreatedBy) {
         this._playerCreatedBy = _playerCreatedBy;
     }
