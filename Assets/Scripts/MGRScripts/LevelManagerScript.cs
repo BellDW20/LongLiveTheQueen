@@ -113,6 +113,13 @@ public class LevelManagerScript : MonoBehaviour {
 
     public static void WinGame() {
         _gameWon = true;
+        for (int i = 0; i < pInfos.Length; i++)
+        {
+            if (pInfos[i] != null)
+            {
+                HighScoreManager.LogScore(i, pInfos[i].score);
+            }
+        }
     }
 
     public static bool WasGameWon() {

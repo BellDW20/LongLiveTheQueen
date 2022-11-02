@@ -8,6 +8,7 @@ public class MainMenuScript : MonoBehaviour {
 
     [SerializeField] private GameObject _mainCanvas; //Canvas full of main menu UI objects
     [SerializeField] private GameObject _helpCanvas; //Canvas full of help menu UI objects
+    [SerializeField] private GameObject _highscoreCanvas; //Canvas full of highscore menu UI objects
 
     [SerializeField] private RectTransform _sky0Transform; //The two sky backgrounds to scroll
     [SerializeField] private RectTransform _sky1Transform;
@@ -66,6 +67,12 @@ public class MainMenuScript : MonoBehaviour {
     public void OnQuitPressed() {
         //Quit the game
         Application.Quit();
+    }
+
+    public void OnHighscorePressed()
+    {
+        _mainCanvas.SetActive(false);
+        _highscoreCanvas.SetActive(true);
     }
 
 }
