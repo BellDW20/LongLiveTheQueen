@@ -121,7 +121,7 @@ public class BossScript : MonoBehaviour
 
     void SpawnAttack()
     {
-        _rbody.velocity = _rbody.velocity.normalized * _moveSpeed;
+        _rbody.velocity = (new Vector2(-1, -1)) * _moveSpeed;
         _animator.SetBool("Spawn", true);
 
         if (_spawnTimer <= 0)
