@@ -139,7 +139,7 @@ MonoBehaviour:
   _gun:
     _shootDelay: 0.5
     _reloadDelay: 1
-    _magSize: 6
+    _magSize: 8
     _spreadAngle: 0
   _bullet: {fileID: 6554014128000149010, guid: 0b7d82d6c4a33a44ba93aa8f29b2793a, type: 3}
   _specialBullet: {fileID: 5874215974149055255, guid: 9b3aac796c937f344ab3eb73a9bbf977, type: 3}
@@ -155,10 +155,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c6d59cf823682241a8ac0622c1f774e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MOVE_SPEED: 3
-  DASH_SPEED: 8
-  DASH_TIME: 0.35
-  INVULN_TIME: 0.75
+  MOVE_SPEED: 4
+  DASH_SPEED: 10
+  DASH_TIME: 0.4
+  INVULN_TIME: 0.5
   DEATH_INVULN_TIME: 3
   DASH_PARTICLES: {fileID: 2765344471174570845, guid: 71acb65cd21b3a141be5ba33fb875951, type: 3}
 --- !u!95 &5074306447314417217

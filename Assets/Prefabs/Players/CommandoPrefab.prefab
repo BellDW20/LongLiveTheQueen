@@ -139,8 +139,8 @@ MonoBehaviour:
   _playerController: {fileID: 0}
   _gun:
     _shootDelay: 0.1
-    _reloadDelay: 2
-    _magSize: 20
+    _reloadDelay: 1.5
+    _magSize: 30
     _spreadAngle: 7
   _bullet: {fileID: 2237722464296919006, guid: ee369b8d931d52c46a6e063bb33387ee, type: 3}
   _specialBullet: {fileID: 3098583267504684525, guid: fd39a323ce6147d42872ad7147892e80, type: 3}
