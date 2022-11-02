@@ -22,7 +22,7 @@ public class HighscoreMenuScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (InputManager.GetBackInput(0) || InputManager.GetBackInput(1))
         {
             _mainCanvas.SetActive(true);
             this.gameObject.SetActive(false);

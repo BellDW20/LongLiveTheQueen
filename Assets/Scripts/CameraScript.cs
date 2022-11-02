@@ -13,6 +13,7 @@ public class CameraScript : MonoBehaviour
     private bool _canMoveRight = false;
     private bool _canMoveUp = false;
     private bool _canMoveDown = false;
+    private bool _anyPlayers = false;
 
     private Vector2 _target; //Where the camera intends to move towards
 
@@ -40,6 +41,7 @@ public class CameraScript : MonoBehaviour
     {
         //Assume initially that we can move the camera in any direction we'd like
         _canMoveLeft = _canMoveRight = _canMoveUp = _canMoveDown = true;
+        _anyPlayers = false;
 
         //These values keep track of the closest x & y positions
         //to the...
@@ -52,7 +54,11 @@ public class CameraScript : MonoBehaviour
         //For every player's position
         foreach (GameObject player in MSMScript.GetPlayers())
         {
-            if(player.GetComponent<PlayerController>().IsDead()) { continue; }
+            if (player.GetComponent<PlayerController>().IsDead()) {
+                continue;
+            } else {
+                _anyPlayers = true;
+            }
             Transform playerTransform = player.transform;
 
             //calculate their signed x & y distance to the camera
@@ -86,12 +92,12 @@ public class CameraScript : MonoBehaviour
                 _downTargetY = playerTransform.position.y;
             }
         }
+        //Assume initially the camera will stay at its current position
+        float targetX = _transform.position.x;
+        float targetY = _transform.position.y;
 
         //If all players are in any of the same x or y halves of the screen...
-        if(_canMoveRight || _canMoveLeft || _canMoveUp || _canMoveDown) {
-            //Assume initially the camera will stay at its current position
-            float targetX = _transform.position.x;
-            float targetY = _transform.position.y;
+        if (_anyPlayers && (_canMoveRight || _canMoveLeft || _canMoveUp || _canMoveDown)) {
 
             //set the x target position depending on the direction of movement (if possible)
             if (_canMoveRight) {
@@ -107,10 +113,9 @@ public class CameraScript : MonoBehaviour
             else if (_canMoveDown) {
                 targetY = _downTargetY;
             }
-
-            //Update the target position
-            _target = new Vector2(targetX, targetY);
         }
 
+        //Update the target position
+        _target = new Vector2(targetX, targetY);
     }
 }

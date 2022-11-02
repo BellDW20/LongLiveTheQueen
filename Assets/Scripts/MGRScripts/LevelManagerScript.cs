@@ -32,17 +32,25 @@ public class LevelManagerScript : MonoBehaviour {
     public static PlayerInfo[] pInfos = new PlayerInfo[2]; //The data for each player saved globally to carry across levels
     private static bool _gameWon; //Whether or not the game was won upon the game ending (false=game over)
 
-    void Start() {
+    void Awake() {
+        //If we are doing a full level transition
+        if (_levelTransitionType == LEVEL_TRANSITION) {
+            //for every POSSIBLE player (P1, P2, etc.)
+            for (int i = 0; i < pInfos.Length; i++) {
+                //If that player is actually in the game
+                if (pInfos[i] != null) {
+                    //Reset important player info like health/ammo
+                    pInfos[i].ClearForNextLevel();
+                }
+            }
+        }
+    }
+
+    private void Start() {
         //for every POSSIBLE player (P1, P2, etc.)
         for (int i = 0; i < pInfos.Length; i++) {
             //If that player is actually in the game
             if (pInfos[i] != null) {
-                //If we are doing a full level transition
-                if (_levelTransitionType == LEVEL_TRANSITION) {
-                    //Reset important player info like health/ammo
-                    pInfos[i].ClearForNextLevel();
-                }
-
                 //Create a player of the correct type (sniper, commando, etc.)
                 //at that given player number's spawn point in the current level
                 players[i] = Instantiate(
@@ -113,13 +121,6 @@ public class LevelManagerScript : MonoBehaviour {
 
     public static void WinGame() {
         _gameWon = true;
-        for (int i = 0; i < pInfos.Length; i++)
-        {
-            if (pInfos[i] != null)
-            {
-                HighScoreManager.LogScore(i, pInfos[i].score);
-            }
-        }
     }
 
     public static bool WasGameWon() {

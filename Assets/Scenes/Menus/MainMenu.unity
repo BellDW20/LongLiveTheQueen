@@ -645,8 +645,10 @@ MonoBehaviour:
 
     Shoot: Right Trigger
 
-    Special:
-    Left Trigger
+    Reload:
+    X
+
+    Special: Left Trigger
 
     Dash: Left Bumper'
 --- !u!222 &468125694
@@ -2085,10 +2087,12 @@ MonoBehaviour:
 
     Aiming: Mouse
 
-    Shoot: Left CLick
+    Shoot: Left Click
 
-    Special:
-    Right CLick
+    Reload:
+    R
+
+    Special: Right Click
 
     Dash: Left shift'
 --- !u!222 &1266311677
@@ -2766,7 +2770,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Highscores
+  m_Text: High Scores
 --- !u!222 &1845109641
 CanvasRenderer:
   m_ObjectHideFlags: 0

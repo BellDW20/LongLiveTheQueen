@@ -45,6 +45,8 @@ public class CommandoScript : MonoBehaviour
                 tempBullet.GetComponent<Rigidbody2D>().velocity = 10*shotDirection;
                 tempBullet.GetComponent<PlayerProjectileScript>().SetPlayerCreatedBy(_playerController.GetPlayerNumber());
             }
+        } else if (InputManager.GetReloadInput(_playerController.GetPlayerNumber())) {
+            _gun.Reload();
         }
         GameHUDScript.UpdatePlayerAmmoVisual(_playerController.GetPlayerNumber(), _gun);
 

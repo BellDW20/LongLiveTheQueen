@@ -12,13 +12,20 @@ public class GameOverScreenScript : MonoBehaviour {
     void Start() {
         //For every POSSIBLE player
         for(int i=0; i<_pScoreText.Length; i++) {
+            PlayerInfo pInfo = LevelManagerScript.pInfos[i];
             //If the player was in the game...
-            bool playerInGame = (LevelManagerScript.pInfos[i] != null);
             //Show their score
-            _pScoreText[i].enabled = playerInGame;
-            if(playerInGame) {
-                _pScoreText[i].text = "P" + (i + 1) + " Score: " + LevelManagerScript.pInfos[i].score;
-                //TODO: flash if high score
+            _pScoreText[i].enabled = (pInfo != null);
+            if (pInfo != null) {
+                _pScoreText[i].text = "P" + (i + 1) + " Score: " + pInfo.score;
+
+                //Log their score to the high score manager
+                int ranking = HighScoreManager.LogScore(pInfo.type, pInfo.score);
+                //If they got a high score, make it known!
+                if(ranking != -1) {
+                    _pScoreText[i].text = _pScoreText[i].text+" (#"+ranking+" high score)";
+                    _pScoreText[i].color = Color.green;
+                }
             }
         }
 
@@ -28,7 +35,7 @@ public class GameOverScreenScript : MonoBehaviour {
 
     public void Update() {
         //If escape is typed, return to the main menu
-        if(Input.GetKeyDown(KeyCode.Escape)) {
+        if(InputManager.GetBackInput(0) || InputManager.GetBackInput(1)) {
             SceneTransitioner.BeginTransition(SceneTransitioner.FADE_OUT, 0.5f, "MainMenu");
         }
     }

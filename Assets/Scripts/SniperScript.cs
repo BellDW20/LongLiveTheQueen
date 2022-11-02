@@ -35,6 +35,8 @@ public class SniperScript : MonoBehaviour
                 tempBullet.GetComponent<Rigidbody2D>().velocity = _playerController.GetLookDirection().normalized * _shotVelocity;
                 tempBullet.GetComponent<PlayerProjectileScript>().SetPlayerCreatedBy(_playerController.GetPlayerNumber());
             }
+        } else if(InputManager.GetReloadInput(_playerController.GetPlayerNumber())) {
+            _gun.Reload();
         }
         GameHUDScript.UpdatePlayerAmmoVisual(_playerController.GetPlayerNumber(), _gun);
 
@@ -50,6 +52,7 @@ public class SniperScript : MonoBehaviour
             script.SetSplits(3);
             _specialTimer = Time.time;
         }
+        GameHUDScript.UpdatePlayerSpecialVisual(_playerController.GetPlayerNumber(), Time.time - _specialTimer >= _specialCooldown);
     }
 
 }

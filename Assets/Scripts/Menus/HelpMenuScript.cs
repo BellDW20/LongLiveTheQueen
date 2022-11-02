@@ -11,7 +11,7 @@ public class HelpMenuScript : MonoBehaviour {
     void Update() {
         //Since we're in the help menu, if we press escape, hide
         //the help menu and show the main menu
-        if(Input.GetKeyDown(KeyCode.Escape)) {
+        if(InputManager.GetBackInput(0) || InputManager.GetBackInput(1)) {
             _mainCanvas.SetActive(true);
             _helpCanvas.SetActive(false);
         }
