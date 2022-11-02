@@ -23,6 +23,15 @@ public class Gun {
         _bulletsInMag = _magSize;
     }
 
+    public void Reload()
+    {
+        if (!IsReloading())
+        {
+            _bulletsInMag = _magSize;
+            _reloadStartTime = Time.time;
+        }
+    }
+
     public bool CanShoot() {
         //If the time since the last shot is past the shot delay, we are no longer shooting
         _shooting = (Time.time - _shotStartTime) < _shootDelay;

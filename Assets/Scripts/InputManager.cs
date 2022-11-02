@@ -93,4 +93,32 @@ public class InputManager
 
         return 0;
     }
+
+    public static bool GetReloadInput(int playerNum)
+    {
+        if (playerNum == 0)
+        {
+            return Input.GetKeyDown(KeyCode.R);
+        }
+        else if (playerNum == 1)
+        {
+            return Input.GetKeyDown(KeyCode.Joystick1Button2);
+        }
+
+        return false;
+    }
+
+    public static bool GetBackInput(int playerNum)
+    {
+        if (playerNum == 0)
+        {
+            return Input.GetKeyDown(KeyCode.Escape);
+        }
+        else if (playerNum == 1)
+        {
+            return Input.GetKeyDown(KeyCode.Joystick1Button1);
+        }
+
+        return false;
+    }
 }
