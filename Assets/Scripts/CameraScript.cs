@@ -7,7 +7,6 @@ public class CameraScript : MonoBehaviour
 {
 
     private Transform _transform; //Focus position of the camera
-    private List<Transform> _playerTransforms = new List<Transform>(); //List of transforms of all players in the scene
     
     //flags indicating whether the camera is allowed to move in each direction
     private bool _canMoveLeft = false;
@@ -39,16 +38,6 @@ public class CameraScript : MonoBehaviour
     //We use late update to sync camera panning with finalized player movement
     private void LateUpdate()
     {
-        //if we haven't gotten the transforms of players in the scene yet...
-        if(_playerTransforms.Count < 1)
-        {
-            //cache each player's transform
-            foreach (GameObject player in MSMScript.GetPlayers())
-            {
-                _playerTransforms.Add(player.transform);
-            }
-        }
-
         //Assume initially that we can move the camera in any direction we'd like
         _canMoveLeft = _canMoveRight = _canMoveUp = _canMoveDown = true;
 
@@ -61,8 +50,11 @@ public class CameraScript : MonoBehaviour
         //the camera.
 
         //For every player's position
-        foreach (Transform playerTransform in _playerTransforms)
+        foreach (GameObject player in MSMScript.GetPlayers())
         {
+            if(player.GetComponent<PlayerController>().IsDead()) { continue; }
+            Transform playerTransform = player.transform;
+
             //calculate their signed x & y distance to the camera
             float dx = playerTransform.position.x - _transform.position.x;
             float dy = playerTransform.position.y - _transform.position.y;
