@@ -39,7 +39,6 @@ public class HighScoreManager : MonoBehaviour {
                 _highScores.Add(new HighScoreEntry(0, (i+1)*1000));
             }
         }
-        print(HighScoreFilePath());
         SaveToFile();
     }
 

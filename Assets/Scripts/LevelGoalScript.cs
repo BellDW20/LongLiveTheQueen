@@ -21,7 +21,8 @@ public class LevelGoalScript : MonoBehaviour {
         //of time since the triggering occurred...
         if(_triggered && Time.realtimeSinceStartup - _timeTriggered > 3) {
             //If the level to go to is GAME_CLEAR, go to game clear
-            if(_levelToGoTo == GAME_CLEAR) {
+            //Check if game was already won, don't want to call this 1000 times
+            if(_levelToGoTo == GAME_CLEAR && !LevelManagerScript.WasGameWon()) {
                 LevelManagerScript.WinGame();
                 SceneTransitioner.BeginTransition(SceneTransitioner.FADE_OUT, 0.5f, "GameOverScene");
             } else {
