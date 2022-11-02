@@ -9,6 +9,8 @@ public class SoundManager : MonoBehaviour {
     public const int MUS_LEVEL_1 = 0;
     public const int MUS_GAME_OVER = 1;
     public const int MUS_INTRO = 2;
+    public const int MUS_BOSS_THEME = 3;
+    public const int MUS_TITLE_THEME = 4;
     public AudioSource musicSourceBegin; //Used for playing the beginning portion of music
     public AudioSource musicSourceLoop; //Used for playing the looping portino of music
     public AudioClip[] begin; //References to beginning portions of music associated with music IDs
@@ -23,6 +25,7 @@ public class SoundManager : MonoBehaviour {
     public const int SFX_BOMB_WHISTLE = 5;
     public const int SFX_LEVEL_CLEAR = 6;
     public const int SFX_DASH = 7;
+    public const int SFX_PLAYER_GRUNT = 8;
     public AudioSource sfxSource; //Used for playing sound effects
     public AudioClip[] sfx; //References to sound effect clips associated with SFX IDs
 
@@ -40,13 +43,24 @@ public class SoundManager : MonoBehaviour {
         //Play music corresponding to the scene we are in, if applicable
         switch(SceneManager.GetActiveScene().name) {
             case "Level1Scene":
+            case "Level2Scene":
                 I_PlayMusic(MUS_LEVEL_1);
                 break;
+            case "BossRoom":
+                I_PlayMusic(MUS_BOSS_THEME);
+                break;
             case "GameOverScene":
-                I_PlayMusic(MUS_GAME_OVER);
+                if(LevelManagerScript.WasGameWon()) {
+                    I_PlayMusic(MUS_INTRO);
+                } else {
+                    I_PlayMusic(MUS_GAME_OVER);
+                }
                 break;
             case "IntroCutscene":
                 I_PlayMusic(MUS_INTRO);
+                break;
+            case "MainMenu":
+                I_PlayMusic(MUS_TITLE_THEME);
                 break;
         }
     }

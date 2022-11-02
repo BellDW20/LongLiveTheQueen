@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour {
             _spr.color = Color.white;
         }
 
-        if (InputManager.GetDashInput(_playerNumber) && _rbody.velocity.magnitude > 0.1f)
+        if (!_isDashing && InputManager.GetDashInput(_playerNumber) && _rbody.velocity.magnitude > 0.1f)
         {
             _rbody.velocity = _rbody.velocity.normalized*DASH_SPEED;
             _isDashing = true;
@@ -66,9 +66,12 @@ public class PlayerController : MonoBehaviour {
             Instantiate(DASH_PARTICLES, _transform.position, Quaternion.identity);
         }
 
-        if (Time.time - _dashStartTime >= DASH_TIME) {
-            _rbody.velocity = (_rbody.velocity.normalized * MOVE_SPEED);
+        float timeSinceDash = Time.time - _dashStartTime;
+        if (timeSinceDash >= DASH_TIME) {
             _isDashing = false;
+        } else {
+            float factor = timeSinceDash / DASH_TIME;
+            _rbody.velocity = (_rbody.velocity.normalized * Mathf.Lerp(DASH_SPEED, MOVE_SPEED, factor));
         }
 
         Vector2 input;
@@ -137,6 +140,7 @@ public class PlayerController : MonoBehaviour {
             } else {
                 _timeLastDamaged = Time.time;
             }
+            SoundManager.PlaySFX(SoundManager.SFX_PLAYER_GRUNT);
             GameHUDScript.UpdatePlayerHealthVisual(_playerNumber);
         }
     }

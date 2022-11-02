@@ -5,6 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 public class LevelGoalScript : MonoBehaviour {
 
+    public const int GAME_CLEAR = -1; //Used to indicate that a goal is representing the game being completed
+
     //The level code of the level that this goal will try to transition to when touched by a player
     [SerializeField] private int _levelToGoTo;
 
@@ -18,8 +20,14 @@ public class LevelGoalScript : MonoBehaviour {
         //If the goal has been triggered and it has been a sufficient amount
         //of time since the triggering occurred...
         if(_triggered && Time.realtimeSinceStartup - _timeTriggered > 3) {
-            //Go to the intended level/sublevel
-            LevelManagerScript.BeginLevel(_levelToGoTo, _levelTransitionType);
+            //If the level to go to is GAME_CLEAR, go to game clear
+            if(_levelToGoTo == GAME_CLEAR) {
+                LevelManagerScript.WinGame();
+                SceneTransitioner.BeginTransition(SceneTransitioner.FADE_OUT, 0.5f, "GameOverScene");
+            } else {
+                //Go to the intended level/sublevel
+                LevelManagerScript.BeginLevel(_levelToGoTo, _levelTransitionType);
+            }
         }
     }
 

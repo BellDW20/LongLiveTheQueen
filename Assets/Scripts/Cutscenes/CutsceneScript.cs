@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class CutsceneScript : MonoBehaviour {
 
     [SerializeField] private Text[] _slideTexts; //Slides of text (in order) which the cutscene shows
+    [SerializeField] private Image[] _slideImgs; //Slides of images (in order) which the cutscene shows
     [SerializeField] private float _timeForSlide; //Time that it takes to reveal the text on each slide
     [SerializeField] private float _timeForSlideDelay; //Time between when the text on a slide is fully revealed and when
                                                        //the next slide is switched to
@@ -22,8 +23,9 @@ public class CutsceneScript : MonoBehaviour {
         _fullSlideText = _slideTexts[0].text;
         //showing no text
         _slideTexts[0].text = "";
-        //but render this slide's text box
+        //but render this slide's content
         _slideTexts[0].enabled = true;
+        _slideImgs[0].enabled = true;
         _slideStartTime = Time.time;
     }
 
@@ -58,6 +60,7 @@ public class CutsceneScript : MonoBehaviour {
     private void advanceSlides() {
         //make this slide invisible
         _slideTexts[_slideOn].enabled = false;
+        _slideImgs[_slideOn].enabled = false;
         //move to the next slide
         _slideOn++;
 
@@ -73,6 +76,7 @@ public class CutsceneScript : MonoBehaviour {
         _slideTexts[_slideOn].text = "";
         //allow this slide to be seen
         _slideTexts[_slideOn].enabled = true;
+        _slideImgs[_slideOn].enabled = true;
         _slideStartTime = Time.time;
     }
 }

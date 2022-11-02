@@ -63,6 +63,8 @@ public class LevelManagerScript : MonoBehaviour {
 
     //Sets up for a singleplayer game
     public static void SetupSinglePlayerGame(int p1Type) {
+        //Make sure to mark the newest game as not yet won
+        _gameWon = false;
         //The first player is in the game, using the chosen character (p1Type)
         pInfos[0] = new PlayerInfo(p1Type);
         //No other players are in the game
@@ -71,6 +73,8 @@ public class LevelManagerScript : MonoBehaviour {
 
     //Sets up for a multiplayer game
     public static void SetupCoOpGame(int p1Type, int p2Type) {
+        //Make sure to mark the newest game as not yet won
+        _gameWon = false;
         //The first player is in the game, using the chosen character (p1Type)
         pInfos[0] = new PlayerInfo(p1Type);
         //The first player is in the game, using the chosen character (p2Type)
@@ -105,6 +109,10 @@ public class LevelManagerScript : MonoBehaviour {
         //matches the number who have used up all of their continues,
         //a game over has occurred
         return (playersInGame == playersDead);
+    }
+
+    public static void WinGame() {
+        _gameWon = true;
     }
 
     public static bool WasGameWon() {

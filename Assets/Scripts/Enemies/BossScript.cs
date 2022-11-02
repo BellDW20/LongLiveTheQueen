@@ -12,6 +12,7 @@ public class BossScript : MonoBehaviour
     Transform _transform;
 
     public GameObject _enhancement;
+    public GameObject _gameClearBox;
 
     int _currentAttack = 0;
     float _attackCooldown = 1.5f;
@@ -48,6 +49,7 @@ public class BossScript : MonoBehaviour
 
         if (_enhancement == null)
         {
+            _gameClearBox.SetActive(true);
             Destroy(this.gameObject);
         }
 
