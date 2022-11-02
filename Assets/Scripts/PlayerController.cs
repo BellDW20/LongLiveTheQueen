@@ -90,8 +90,12 @@ public class PlayerController : MonoBehaviour {
             _animations.SetAnimation("Stand");
         }
 
-        _lookDirection = ChangeLookDirection();
-        UpdateLookDirection();
+        Vector2 tempLookDir = ChangeLookDirection();
+        if(tempLookDir.magnitude != 0)
+        {
+            _lookDirection = tempLookDir;
+            UpdateLookDirection();
+        }
 
         if (_isDashing) return;
 

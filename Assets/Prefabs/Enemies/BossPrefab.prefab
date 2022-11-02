@@ -211,8 +211,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c4adeb78febc7447a25b45c38813fbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _minionPrefab: {fileID: 5900110714668388254, guid: 013062b4823dec24ebca9b86f51d0bd4, type: 3}
+  _minionPrefab: {fileID: 5900110714668388254, guid: ec445b926e005914b8a27b6c7d7cac45, type: 3}
   _enhancement: {fileID: 2047398362696036652}
+  _gameClearBox: {fileID: 0}
 --- !u!95 &-2432478837372605470
 Animator:
   serializedVersion: 3

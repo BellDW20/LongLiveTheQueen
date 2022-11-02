@@ -45,13 +45,13 @@ public class MainMenuScript : MonoBehaviour {
         //Setup variables in the level manager for a singleplayer game
         LevelManagerScript.SetupSinglePlayerGame(0);
         //Then tell the level manager to start the first level using a full level transition
-        LevelManagerScript.BeginLevel(LevelManagerScript.LEVEL_3_1, LevelManagerScript.LEVEL_TRANSITION);
+        LevelManagerScript.BeginLevel(LevelManagerScript.LEVEL_1_1, LevelManagerScript.LEVEL_TRANSITION);
     }
 
     //When the multiplayer button is pressed on the main menu...
     public void OnCoOpPressed() {
         //Setup variables in the level manager for a multiplayer game
-        LevelManagerScript.SetupCoOpGame(0, 1);
+        LevelManagerScript.SetupCoOpGame(1, 0);
         //Then tell the level manager to start the first level using a full level transition
         LevelManagerScript.BeginLevel(LevelManagerScript.LEVEL_1_1, LevelManagerScript.LEVEL_TRANSITION);
     }
