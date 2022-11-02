@@ -53,7 +53,7 @@ public class BossScript : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        if (_attackCooldown <= 0)
+        if (_attackTimer <= 0)
         {
             _attackTimer = Time.time;
             _animator.speed = 0.5f;
@@ -100,7 +100,7 @@ public class BossScript : MonoBehaviour
 
     void DashAttack()
     {
-        _transform.Rotate(0, 0, 200 * Time.deltaTime);
+        _transform.Rotate(0, 0, 500 * Time.deltaTime);
 
         if (_dashStartupTimer <= 0)
         {
@@ -121,6 +121,7 @@ public class BossScript : MonoBehaviour
 
     void SpawnAttack()
     {
+        _rbody.velocity = (new Vector2(-1, -1)) * _moveSpeed;
         _animator.SetBool("Spawn", true);
 
         if (_spawnTimer <= 0)
@@ -139,6 +140,7 @@ public class BossScript : MonoBehaviour
                 _currentAttack = 0;
                 _attackTimer = 0;
                 _spawnCount = 0;
+                _rbody.velocity = Vector2.zero;
             }
         }
     }
@@ -160,8 +162,9 @@ public class BossScript : MonoBehaviour
                 _currentAttack = 2;
                 _transform.rotation = Quaternion.identity;
                 _attackTimer = 0;
+                _dashStartupTimer = 0;
                 _isDashing = false;
-                _rbody.velocity = _rbody.velocity.normalized * _moveSpeed;
+                _rbody.velocity = Vector2.zero;
             }
         }
 

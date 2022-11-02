@@ -61,7 +61,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a907fcea70d80484bbfd471d95b49597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  max_health: 1000
+  max_health: 3000
   BLOOD_PARTICLES: {fileID: 423819991086098478, guid: 12f1530a4737f974ba5e594a062af0a0, type: 3}
 --- !u!114 &3728783564659439336
 MonoBehaviour:
