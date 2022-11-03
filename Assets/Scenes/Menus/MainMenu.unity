@@ -650,7 +650,9 @@ MonoBehaviour:
 
     Special: Left Trigger
 
-    Dash: Left Bumper'
+    Dash: Left Bumper
+
+    Back To Menu: B'
 --- !u!222 &468125694
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1825,7 +1827,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Help
+  m_Text: Controls
 --- !u!222 &910350418
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2073,7 +2075,9 @@ MonoBehaviour:
 
     Special: Right Click
 
-    Dash: Left shift'
+    Dash: Left shift
+
+    Back To Menu: Escape'
 --- !u!222 &1266311677
 CanvasRenderer:
   m_ObjectHideFlags: 0

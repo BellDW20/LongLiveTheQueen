@@ -57,6 +57,10 @@ public class PlayerController : MonoBehaviour {
             _spr.color = Color.white;
         }
 
+        if(InputManager.GetBackInput(_playerNumber)) {
+            SceneTransitioner.BeginTransition(SceneTransitioner.FADE_OUT, 0.5f, "MainMenu");
+        }
+
         if (!_isDashing && InputManager.GetDashInput(_playerNumber) && _rbody.velocity.magnitude > 0.1f)
         {
             _rbody.velocity = _rbody.velocity.normalized*DASH_SPEED;
