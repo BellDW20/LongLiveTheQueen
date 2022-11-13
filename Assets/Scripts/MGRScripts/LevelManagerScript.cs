@@ -9,14 +9,15 @@ public class LevelManagerScript : MonoBehaviour {
     public const int LEVEL_1_1 = 0;
     public const int LEVEL_2_1 = 1;
     public const int LEVEL_3_1 = 2;
+    public const int LEVEL_DEBUG = 3;
 
     //Names of the level/sublevel scenes corresponding to level codes
     private static readonly string[] LEVEL_SCENE_NAMES = {
-        "Level1Scene", "Level2Scene", "BossRoom"
+        "Level1Scene", "Level2Scene", "BossRoom", "EnemyTestScene"
     };
     //Names of the levels/sublevels to be displayed corresponding to level codes
     private static readonly string[] LEVEL_DISPLAY_NAMES = {
-        "Level 1", "Level 2", "Final Boss"
+        "Level 1", "Level 2", "Final Boss", "Debug"
     };
 
     //Constants representing how to transition between level scenes

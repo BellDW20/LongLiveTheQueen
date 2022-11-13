@@ -9,5 +9,6 @@ public enum SFX {
     BOMB_WHISTLE,
     LEVEL_CLEAR,
     DASH,
-    PLAYER_GRUNT
+    PLAYER_GRUNT,
+    KNIGHT_SLASH
 }

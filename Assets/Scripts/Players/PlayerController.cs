@@ -150,7 +150,7 @@ public class PlayerController : MonoBehaviour {
         return (Time.time - _timeLastDamaged) < INVULN_TIME || (Time.time - _timeLastRespawned) < DEATH_INVULN_TIME;
     }
 
-    public void Damage(float amt) {
+    public bool Damage(float amt) {
         if(!IsInvulnerable()) {
             _playerInfo.health -= amt;
             if (_playerInfo.health <= 0) {
@@ -160,6 +160,9 @@ public class PlayerController : MonoBehaviour {
             }
             SoundManager.PlaySFX(SFX.PLAYER_GRUNT);
             GameHUDScript.UpdatePlayerHealthVisual(_playerNumber);
+            return true;
+        } else {
+            return false;
         }
     }
 

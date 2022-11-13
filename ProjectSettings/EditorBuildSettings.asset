@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Levels/BossRoom.unity
     guid: c562ef03d848a7a47ad783a89ee525ad
+  - enabled: 1
+    path: Assets/Scenes/Debug/EnemyTestScene.unity
+    guid: 54f9163a36a6d0549a1c39d6d4bd1629
   m_configObjects: {}

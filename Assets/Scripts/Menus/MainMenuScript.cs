@@ -10,6 +10,13 @@ public class MainMenuScript : MonoBehaviour {
     [SerializeField] private GameObject _helpCanvas; //Canvas full of help menu UI objects
     [SerializeField] private GameObject _highscoreCanvas; //Canvas full of highscore menu UI objects
 
+    public void Update() {
+        if (Input.GetKey(KeyCode.Q) && Input.GetKey(KeyCode.P) && Input.GetKey(KeyCode.Comma)) {
+            LevelManagerScript.SetupGame(PlayerType.COMMANDO);
+            LevelManagerScript.BeginLevel(LevelManagerScript.LEVEL_DEBUG, LevelManagerScript.LEVEL_TRANSITION);
+        }
+    }
+
     //When the singleplayer button is pressed on the main menu...
     public void OnSinglePlayerPressed() {
         //Setup variables in the level manager for a singleplayer game
