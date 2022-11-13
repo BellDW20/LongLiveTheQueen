@@ -72,7 +72,7 @@ public class Gun : Weapon {
         //Make sure that the bullet is facing in the direction it gets shot
         tempBullet.transform.up = shotDirection;
         //Set velocity and the player who created the shot
-        tempBullet.GetComponent<Rigidbody2D>().velocity = 10 * shotDirection;
+        tempBullet.GetComponent<Rigidbody2D>().velocity = _shotVelocity * shotDirection;
         tempBullet.GetComponent<PlayerProjectileScript>().SetPlayerCreatedBy(playerNumber);
     }
 
