@@ -3,21 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider2D))]
+[RequireComponent(typeof(Rigidbody2D))]
 public class PlayerProjectileScript : MonoBehaviour
 {
 
     [SerializeField] private float DAMAGE;
-    private int _playerCreatedBy;
+    protected int _playerCreatedBy;
 
-    private void OnTriggerEnter2D(Collider2D other) {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Enemies")) {
-            EnemyHealthScript.DamageAndScore(other.gameObject, DAMAGE, _playerCreatedBy);
-            SoundManager.PlaySFX(SoundManager.SFX_ENEMY_HIT);
-        }
+    public virtual void OnEnemyHit(GameObject enemy) {
+        EnemyHealthScript.DamageAndScore(enemy, DAMAGE, _playerCreatedBy);
+        SoundManager.PlaySFX(SFX.ENEMY_HIT);
         Destroy(gameObject);
     }
+
+    public void OnTriggerEnter2D(Collider2D other) {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Enemies")) {
+            OnEnemyHit(other.gameObject);
+        }
+    }
     
-    private void OnBecameInvisible() {
+    public void OnBecameInvisible() {
         Destroy(gameObject);
     }
 

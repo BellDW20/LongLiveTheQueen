@@ -28,8 +28,9 @@ public class LevelManagerScript : MonoBehaviour {
 
     [SerializeField] private Transform[] _pSpawns; //The positions at which players spawn
     [SerializeField] private GameObject[] _PlayerPrefabs; //The prefabs for all types of players
-    private static GameObject[] players = new GameObject[2]; //References to each player in the active level
-    public static PlayerInfo[] pInfos = new PlayerInfo[2]; //The data for each player saved globally to carry across levels
+    private static GameObject[] players = new GameObject[4]; //References to each player in the active level
+    public static PlayerInfo[] pInfos = new PlayerInfo[4]; //The data for each player saved globally to carry across levels
+    private static int _playerCount; //The number of players that were setup to play this game
     private static bool _gameWon; //Whether or not the game was won upon the game ending (false=game over)
 
     void Awake() {
@@ -69,24 +70,15 @@ public class LevelManagerScript : MonoBehaviour {
         SceneTransitioner.BeginTransition(SceneTransitioner.FADE_OUT, 0.5f, "LevelTransitionScene");
     }
 
-    //Sets up for a singleplayer game
-    public static void SetupSinglePlayerGame(int p1Type) {
-        //Make sure to mark the newest game as not yet won
-        _gameWon = false;
-        //The first player is in the game, using the chosen character (p1Type)
-        pInfos[0] = new PlayerInfo(p1Type);
-        //No other players are in the game
-        pInfos[1] = null;
-    }
-
     //Sets up for a multiplayer game
-    public static void SetupCoOpGame(int p1Type, int p2Type) {
+    public static void SetupGame(params PlayerType[] pTypes) {
         //Make sure to mark the newest game as not yet won
         _gameWon = false;
-        //The first player is in the game, using the chosen character (p1Type)
-        pInfos[0] = new PlayerInfo(p1Type);
-        //The first player is in the game, using the chosen character (p2Type)
-        pInfos[1] = new PlayerInfo(p2Type);
+        _playerCount = pTypes.Length;
+
+        for(int i=0; i<4; i++) {
+            pInfos[i] = (i<pTypes.Length) ? new PlayerInfo(pTypes[i]) : null;
+        }
     }
 
     //Uses the saved references to tell a player object
@@ -99,6 +91,12 @@ public class LevelManagerScript : MonoBehaviour {
         }
         //Otherwise, the object passed was not a player, and is given an invalid player number
         return -1;
+    }
+
+    //Returns the total number of players
+    //that this game was setup to have in it
+    public static int GetPlayerCount() {
+        return _playerCount;
     }
 
     //Determines if the game is over

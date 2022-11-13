@@ -5646,6 +5646,66 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &785257279
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 785257280}
+  m_Layer: 0
+  m_Name: P3Spawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &785257280
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 785257279}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.75, y: -5.02, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1772263299}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1163595967
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1163595968}
+  m_Layer: 0
+  m_Name: P4Spawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1163595968
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1163595967}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.72, y: -5.01, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1772263299}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1269582883
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -53992,7 +54052,7 @@ PrefabInstance:
       objectReference: {fileID: 1772263297}
     - target: {fileID: 3023744730477877359, guid: e6a7415476f80754497dcdbe701ceddb, type: 3}
       propertyPath: _pSpawns.Array.size
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3023744730477877359, guid: e6a7415476f80754497dcdbe701ceddb, type: 3}
       propertyPath: _pSpawns.Array.data[0]
@@ -54002,21 +54062,29 @@ PrefabInstance:
       propertyPath: _pSpawns.Array.data[1]
       value: 
       objectReference: {fileID: 1772263297}
+    - target: {fileID: 3023744730477877359, guid: e6a7415476f80754497dcdbe701ceddb, type: 3}
+      propertyPath: _pSpawns.Array.data[2]
+      value: 
+      objectReference: {fileID: 785257280}
+    - target: {fileID: 3023744730477877359, guid: e6a7415476f80754497dcdbe701ceddb, type: 3}
+      propertyPath: _pSpawns.Array.data[3]
+      value: 
+      objectReference: {fileID: 1163595968}
     - target: {fileID: 3023744731106304775, guid: e6a7415476f80754497dcdbe701ceddb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5
+      value: 1.27
       objectReference: {fileID: 0}
     - target: {fileID: 3023744731106304775, guid: e6a7415476f80754497dcdbe701ceddb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.11
+      value: -4.98
       objectReference: {fileID: 0}
     - target: {fileID: 3023744731142425664, guid: e6a7415476f80754497dcdbe701ceddb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.5
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 3023744731142425664, guid: e6a7415476f80754497dcdbe701ceddb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.99
+      value: -5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6a7415476f80754497dcdbe701ceddb, type: 3}
@@ -54028,6 +54096,11 @@ Transform:
 --- !u!4 &1772263298 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3023744731142425664, guid: e6a7415476f80754497dcdbe701ceddb, type: 3}
+  m_PrefabInstance: {fileID: 1772263296}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1772263299 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3023744730477877358, guid: e6a7415476f80754497dcdbe701ceddb, type: 3}
   m_PrefabInstance: {fileID: 1772263296}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1792021545
@@ -54077,7 +54150,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.043333333
+  m_VoxelSize: 0.016666668
   m_BuildHeightMesh: 0
   m_HideEditorLogs: 0
   m_NavMeshData: {fileID: 23800000, guid: 07fd3e630667f384fae3213cda2d6576, type: 2}

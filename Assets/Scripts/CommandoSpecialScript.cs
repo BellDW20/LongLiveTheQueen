@@ -2,12 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
-public class CommandoSpecialScript : MonoBehaviour
+public class CommandoSpecialScript : PlayerProjectileScript
 {
     public GameObject EXPLOSION_ANIM; //Explosion animation
     public GameObject EXPLOSION_PARTICLES; //Explosion particle effect
-    private int _playerCreatedBy; //Records which player created this special (for keeping score)
 
     Rigidbody2D _rbody;
 
@@ -22,6 +20,10 @@ public class CommandoSpecialScript : MonoBehaviour
         _start = Time.time; //Set spawn time
     }
 
+    public override void OnEnemyHit(GameObject enemy) {
+        Explode();
+    }
+
     private void FixedUpdate()
     {
         //If molotov has exceeded it's TTL, explode
@@ -31,15 +33,6 @@ public class CommandoSpecialScript : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        //If molotov collides (with an enemy), explode
-        Explode();
-    }
-
-    /// <summary>
-    /// Plays explosion animation and damages enemies within range
-    /// </summary>
     private void Explode()
     {
         //Instantiate animation and particle effect
@@ -67,11 +60,4 @@ public class CommandoSpecialScript : MonoBehaviour
         Destroy(gameObject);
     }
 
-    /// <summary>
-    /// Sets the player that created this object
-    /// </summary>
-    /// <param name="_playerCreatedBy">Player, recorded as int</param>
-    public void SetPlayerCreatedBy(int _playerCreatedBy) {
-        this._playerCreatedBy = _playerCreatedBy;
-    }
 }

@@ -4,15 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class SniperSpecialScript : MonoBehaviour
-{
-    //player ID
-    private int _playerCreatedBy;
+public class SniperSpecialScript : PlayerProjectileScript {
 
     Transform _transform;
     GameObject _self;        //Reference to self for duplication when splitting
     Rigidbody2D _rbody;
-
 
     int _splitsLeft;         //Number of times the shot has left to split
     bool _isActive = false;  //If shot is active
@@ -27,11 +23,10 @@ public class SniperSpecialScript : MonoBehaviour
         _self = this.gameObject;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public override void OnEnemyHit(GameObject enemy)
     {
         if (_isActive && _splitsLeft >= 0)
         {
-
             //Instantiate new bullets
             GameObject tempSpecial1 = Instantiate(_self, _transform.position, Quaternion.identity);
             GameObject tempSpecial2 = Instantiate(_self, _transform.position, Quaternion.identity);
@@ -50,41 +45,20 @@ public class SniperSpecialScript : MonoBehaviour
             SniperSpecialScript tmpScr = tempSpecial1.GetComponent<SniperSpecialScript>();
             tmpScr.SetSplits(_splitsLeft - 1);
             tmpScr.SetPlayerCreatedBy(_playerCreatedBy);
+            tmpScr._isActive = false;
 
             tmpScr = tempSpecial2.GetComponent<SniperSpecialScript>();
             tmpScr.SetSplits(_splitsLeft - 1);
             tmpScr.SetPlayerCreatedBy(_playerCreatedBy);
-
-            Cleanup(collision);
+            tmpScr._isActive = false;
         }
-        else if(_splitsLeft < 0)
-        {
-            Cleanup(collision);
-        }
-    }
-
-    //Applies player scores on collisions with enemies
-    private void Cleanup(Collider2D other) {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Enemies")) {
-            EnemyHealthScript.DamageAndScore(other.gameObject, 20, _playerCreatedBy);
-        }
-        Destroy(this.gameObject);
+        base.OnEnemyHit(enemy);
     }
 
     //Prevents bullet from infinitely splitting on the same enemy
     private void OnTriggerExit2D(Collider2D collision)
     {
         _isActive = true;
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        Destroy(this.gameObject);
-    }
-
-    private void OnBecameInvisible()
-    {
-        Destroy(this.gameObject);
     }
 
     public void SetSplits(int splits)
@@ -97,7 +71,4 @@ public class SniperSpecialScript : MonoBehaviour
         _isActive = true;
     }
 
-    public void SetPlayerCreatedBy(int _playerCreatedBy) {
-        this._playerCreatedBy = _playerCreatedBy;
-    }
 }

@@ -43,7 +43,7 @@ public class LevelGoalScript : MonoBehaviour {
 
             //Stop all sounds, and play the level clear sound
             SoundManager.StopAllSounds();
-            SoundManager.PlaySFX(SoundManager.SFX_LEVEL_CLEAR);
+            SoundManager.PlaySFX(SFX.LEVEL_CLEAR);
 
             //Pause all other game activities temporarily
             Time.timeScale = 0;

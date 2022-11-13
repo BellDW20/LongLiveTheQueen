@@ -16,7 +16,7 @@ public class BombScript : MonoBehaviour {
         _rbody = GetComponent<Rigidbody2D>();
 
         //Play a whistling sound as this bomb goes to its target
-        SoundManager.PlaySFX(SoundManager.SFX_BOMB_WHISTLE);
+        SoundManager.PlaySFX(SFX.BOMB_WHISTLE);
     }
 
     void Update() {

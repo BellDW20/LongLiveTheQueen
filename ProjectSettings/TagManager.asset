@@ -51,3 +51,6 @@ TagManager:
   - name: Entities
     uniqueID: 1278534193
     locked: 0
+  - name: DamageIndicators
+    uniqueID: 3645788683
+    locked: 0

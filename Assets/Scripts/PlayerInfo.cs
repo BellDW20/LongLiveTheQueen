@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class PlayerInfo {
 
-    //Player type constants
-    public const int TYPE_COMMANDO = 0;
-    public const int TYPE_SNIPER = 1;
-
     //The maximum health that each type of player has,
     //indexed by the type constants above
     public static readonly int[] PLAYER_MAX_HEALTH = {
-        100, 120
+        100, 120, 100, 100
+    };
+    public static readonly string[] PLAYER_NAME = {
+       "Commando", "Sniper", "Pyro", "Healer"
     };
 
     public int type; //The type of player (commando, sniper, etc.) this player is
@@ -22,8 +21,8 @@ public class PlayerInfo {
     public float damageScale; //The damage scale depending on the player's current level
 
     //Sets up a player info for a given type of player
-    public PlayerInfo(int type) {
-        this.type = type;
+    public PlayerInfo(PlayerType type) {
+        this.type = (int)type;
         this.health = GetMaxHealth();
         this.score = 0;
         this.level = 1;
@@ -39,6 +38,11 @@ public class PlayerInfo {
     //Returns the maximum health this player can have according to its type
     public float GetMaxHealth() {
         return PLAYER_MAX_HEALTH[type];
+    }
+
+    //Returns the name this player has according to its type
+    public string GetName() {
+        return PLAYER_NAME[type];
     }
 
     //Adds an amount of points to the player's score

@@ -9,7 +9,7 @@ public class BombExplosionScript : MonoBehaviour {
 
     public void Start() {
         //Play an explosion sound
-        SoundManager.PlaySFX(SoundManager.SFX_EXPLOSION);
+        SoundManager.PlaySFX(SFX.EXPLOSION);
     }
 
     public void DestroyObject() {

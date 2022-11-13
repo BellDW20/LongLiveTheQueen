@@ -20,7 +20,7 @@ public class HighScoreEntry {
     //Returns a string representation of the entry
     public override string ToString()
     {
-        string playerTypeString = (_playerType == PlayerInfo.TYPE_COMMANDO) ? "Commando" : "Sniper";
+        string playerTypeString = PlayerInfo.PLAYER_NAME[_playerType];
         return $"{playerTypeString}: {_score}";
     }
 };

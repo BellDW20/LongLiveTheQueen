@@ -6,6 +6,7 @@ public class EnemyHealthScript : MonoBehaviour {
 
     [SerializeField] private float max_health; //The maximum health of the enemy
     [SerializeField] private GameObject BLOOD_PARTICLES; //Blood particle prefab to spawn when damaged
+    [SerializeField] private GameObject DAMAGE_PARTICLE; //Damage amount particle prefab to spawn when damaged
     private Transform _transform; //Position of the enemy
     private float health; //Current health of the enemy
 
@@ -20,17 +21,27 @@ public class EnemyHealthScript : MonoBehaviour {
         health = Mathf.Min(health + hp, max_health);
     }
 
-    public void Damage(float hp) {
+    //Damages the enemy and returns the actual damage done (cutoff if health < 0)
+    public float Damage(float hp) {
         //Remove the passed health value, and spawn a blood particle at the enemy's position
+        float prevHealth = health;
         health -= hp;
-        Instantiate(BLOOD_PARTICLES, _transform.position, Quaternion.identity);
 
         //If the enemy has no health...
         if (health <= 0) {
+            health = 0;
             //Play a death sound effect and destroy the enemy object
-            SoundManager.PlaySFX(SoundManager.SFX_ENEMY_DEATH);
+            SoundManager.PlaySFX(SFX.ENEMY_DEATH);
             Destroy(gameObject);
         }
+
+        //Create particles (blood and number indicating damage dealt)
+        Instantiate(BLOOD_PARTICLES, _transform.position, Quaternion.identity);
+        GameObject dmgParticle = Instantiate(DAMAGE_PARTICLE, _transform.position, Quaternion.identity);
+        dmgParticle.GetComponent<DamageIndicatorScript>()._damageText.text = "" + (int)(prevHealth - health);
+
+        //return the total 
+        return (prevHealth - health);
     }
 
     public float GetHealth() {
@@ -46,18 +57,18 @@ public class EnemyHealthScript : MonoBehaviour {
 
         //use the player's damage scaling to calculate the actual damage dealt
         PlayerInfo pInfo = LevelManagerScript.pInfos[player];
-        float actualDamage = rawDamage * pInfo.damageScale;
+        float scaledDamage = rawDamage * pInfo.damageScale;
+
+        //Damage the enemy the appropriate amount
+        float actualDamage = enHealth.Damage(scaledDamage);
 
         //Add this damage to the player's score...
-        if(pInfo.AddToScore((int)actualDamage)) {
+        if (pInfo.AddToScore((int)actualDamage)) {
             //And if the player leveled up, update their level in the HUD
             GameHUDScript.UpdatePlayerLevelVisual(player);
         }
         //Update the player's score bar on the HUD
         GameHUDScript.UpdatePlayerScoreVisual(player);
-
-        //Damage the enemy the appropriate amount
-        enHealth.Damage(rawDamage * pInfo.damageScale);
     }
 
 }
