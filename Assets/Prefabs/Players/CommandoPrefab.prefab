@@ -146,14 +146,14 @@ MonoBehaviour:
     _reloadDelay: 1.5
     _magSize: 30
     _spreadAngle: 7
-    _shotVelocity: 0
+    _shotVelocity: 10
     _projectile: {fileID: 2237722464296919006, guid: ee369b8d931d52c46a6e063bb33387ee, type: 3}
   _specialGun:
     _cooldownTime: 0
     _reloadDelay: 5
     _magSize: 1
     _spreadAngle: 0
-    _shotVelocity: 0
+    _shotVelocity: 7
     _projectile: {fileID: 3098583267504684525, guid: fd39a323ce6147d42872ad7147892e80, type: 3}
 --- !u!95 &2517314239140340064
 Animator:
