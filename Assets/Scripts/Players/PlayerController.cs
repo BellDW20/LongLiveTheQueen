@@ -116,7 +116,7 @@ public class PlayerController : MonoBehaviour {
 
         //Check if player is shooting special and if the special cooldown is ready
         if (InputManager.GetSpecialInput(_joystickNumber)) {
-            _specialGun.Shoot(_transform.position, _playerNumber, _lookDirection);
+            HandleSpecial();
         }
 
         //Updates the "Special Ready" text
@@ -128,6 +128,11 @@ public class PlayerController : MonoBehaviour {
         _transform.rotation = Quaternion.Euler(
             new Vector3(0, 0, 180 * Mathf.Atan2(_lookDirection.y, _lookDirection.x) / Mathf.PI - 90)
         );
+    }
+
+    public virtual void HandleSpecial()
+    {
+        _specialGun.Shoot(_transform.position, _playerNumber, _lookDirection);
     }
 
     public Vector2 GetLookDirection() {
