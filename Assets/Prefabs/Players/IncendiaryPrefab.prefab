@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6405395778846135551}
   - component: {fileID: 7963373149143315144}
   - component: {fileID: 2517887672954194976}
+  - component: {fileID: 4002717333011327959}
   m_Layer: 9
   m_Name: IncendiaryPrefab
   m_TagString: Player
@@ -74,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -8888014035734707558, guid: ae2209152b6c0744595ce61ee3255a46, type: 3}
+  m_Sprite: {fileID: -6169224739299064867, guid: ae2209152b6c0744595ce61ee3255a46, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -154,3 +155,22 @@ MonoBehaviour:
     _spreadAngle: 0
     _shotVelocity: 0
     _projectile: {fileID: 0}
+--- !u!95 &4002717333011327959
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8489695029208917239}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 59b24d30fa2167b4d93990bd970e3482, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
