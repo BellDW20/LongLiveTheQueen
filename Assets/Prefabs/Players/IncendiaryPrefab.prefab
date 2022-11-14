@@ -72,8 +72,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1278534193
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: -6169224739299064867, guid: ae2209152b6c0744595ce61ee3255a46, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -147,14 +147,14 @@ MonoBehaviour:
     _magSize: 100
     _spreadAngle: 0
     _shotVelocity: 0
-    _projectile: {fileID: 0}
+    _projectile: {fileID: 7514213102977142388, guid: bc8d33bc8f6f7c24ea6c5910541d5bc8, type: 3}
   _specialGun:
     _cooldownTime: 0
     _reloadDelay: 6
     _magSize: 1
     _spreadAngle: 0
     _shotVelocity: 0
-    _projectile: {fileID: 0}
+    _projectile: {fileID: 7514213102977142388, guid: bc8d33bc8f6f7c24ea6c5910541d5bc8, type: 3}
 --- !u!95 &4002717333011327959
 Animator:
   serializedVersion: 3

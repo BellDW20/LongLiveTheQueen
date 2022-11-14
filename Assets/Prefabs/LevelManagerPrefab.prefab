@@ -45,11 +45,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94fe16d0ae9f0be43a4edacb88ad59d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _p1SpawnPos: {fileID: 0}
-  _p2SpawnPos: {fileID: 0}
+  _pSpawns: []
   _PlayerPrefabs:
   - {fileID: 6765054618615783676, guid: 1264fe1d0b044af419bdef11ee3afae6, type: 3}
   - {fileID: 6909402962086368492, guid: ab81d4b58d2f90949b94732b20ff3bd3, type: 3}
+  - {fileID: 8489695029208917239, guid: afd20e4527b5b6a4d8ef8a2d35e8be3c, type: 3}
 --- !u!1 &3023744731106304774
 GameObject:
   m_ObjectHideFlags: 0

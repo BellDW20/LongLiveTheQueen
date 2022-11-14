@@ -104,7 +104,7 @@ public class PlayerController : MonoBehaviour {
         _rbody.velocity = (input * MOVE_SPEED);
     }
 
-    private void HandleShooting() {
+    public virtual void HandleShooting() {
         if (InputManager.GetFireInput(_joystickNumber)) {
             _primaryGun.Shoot(_transform.position, _playerNumber, _lookDirection);
         } else if (InputManager.GetReloadInput(_joystickNumber)) {
@@ -121,6 +121,11 @@ public class PlayerController : MonoBehaviour {
 
         //Updates the "Special Ready" text
         GameHUDScript.UpdatePlayerSpecialVisual(_playerNumber, !_specialGun.IsReloading());
+    }
+
+    public int GetJoystickNumber()
+    {
+        return _joystickNumber;
     }
 
     private void UpdateLookDirection() {
@@ -141,6 +146,11 @@ public class PlayerController : MonoBehaviour {
 
     public int GetPlayerNumber() {
         return _playerNumber;
+    }
+
+    public Gun GetPrimaryGun()
+    {
+        return _primaryGun;
     }
 
     public bool IsDead() {

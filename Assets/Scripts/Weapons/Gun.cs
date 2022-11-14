@@ -97,6 +97,11 @@ public class Gun : Weapon {
         return !base.CanUse();
     }
 
+    public void SetProjectile(GameObject newProjectile)
+    {
+        _projectile = newProjectile;
+    }
+
     public bool IsReloading() {
         //Actively recalculate the reloading metric based on the time
         //since the last reload
