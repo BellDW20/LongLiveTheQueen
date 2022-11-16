@@ -9,6 +9,7 @@ public class EnemyHealthScript : MonoBehaviour {
     [SerializeField] private GameObject DAMAGE_PARTICLE; //Damage amount particle prefab to spawn when damaged
     private Transform _transform; //Position of the enemy
     private float health; //Current health of the enemy
+    private float damageTaken; //The amount of damage this enemy has taken over time
 
     public void Start() {
         //Set our health to max
@@ -18,10 +19,10 @@ public class EnemyHealthScript : MonoBehaviour {
 
     public void Heal(float hp) {
         //Adjust the health by the passed value, capping health to max_health
-        health = Mathf.Min(health + hp, max_health);
+        health = Mathf.Min(health + hp, 2*max_health);
     }
 
-    //Damages the enemy and returns the actual damage done (cutoff if health < 0)
+    //Damages the enemy and returns the score assigned to the damage value
     public float Damage(float hp) {
         //Remove the passed health value, and spawn a blood particle at the enemy's position
         float prevHealth = health;
@@ -35,13 +36,16 @@ public class EnemyHealthScript : MonoBehaviour {
             Destroy(gameObject);
         }
 
+        damageTaken += (prevHealth - health);
+
         //Create particles (blood and number indicating damage dealt)
         Instantiate(BLOOD_PARTICLES, _transform.position, Quaternion.identity);
+
         GameObject dmgParticle = Instantiate(DAMAGE_PARTICLE, _transform.position, Quaternion.identity);
         dmgParticle.GetComponent<DamageIndicatorScript>()._damageText.text = "" + (int)(prevHealth - health);
 
         //return the total 
-        return (prevHealth - health);
+        return (damageTaken < 1.1f*max_health) ? (prevHealth - health) : 0;
     }
 
     public float GetHealth() {

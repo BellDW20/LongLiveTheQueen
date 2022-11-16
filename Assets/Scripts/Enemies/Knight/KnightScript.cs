@@ -27,7 +27,8 @@ public class KnightScript : MonoBehaviour {
     private float _lastChargeTime, _lastDodgeTime;
     private Vector2 _nearestPlayerPos;
     [SerializeField] private BulletDetector _bulletDetector;
-    [SerializeField] private GameObject _sword;
+    [SerializeField] private SpriteRenderer _swordSpr;
+    [SerializeField] private CircleCollider2D _swordCollider;
 
     //State management variables
     private int _state;
@@ -36,13 +37,14 @@ public class KnightScript : MonoBehaviour {
     void Start() {
         _rbody = GetComponent<Rigidbody2D>();
         _anim = new Animations(GetComponent<Animator>(), "Walk");
-        _lastChargeTime = Time.time;
+        _lastChargeTime = Time.time+UnityEngine.Random.value*2;
 
         stateUpdateFunctions = new Action[] {
             this.CircleUpdate,
             this.ChargeUpdate,
             this.ChargeUpdate
         };
+        SetSwordActivation(false);
     }
 
     void Update() {
@@ -55,7 +57,7 @@ public class KnightScript : MonoBehaviour {
         if (dt > CHARGE_DELAY) {
             _nearestPlayerPos = MSMScript.NearestPlayerPosition(gameObject);
             _lastChargeTime = Time.time;
-            _sword.SetActive(true);
+            SetSwordActivation(true);
             SoundManager.PlaySFX(SFX.KNIGHT_SLASH);
             _state = ST_CHARGING;
         } else {
@@ -88,11 +90,16 @@ public class KnightScript : MonoBehaviour {
                 _bulletDetector.ResetDetector();
                 _lastDodgeTime = Time.time;
             }
-            _sword.SetActive(false);
+            SetSwordActivation(false);
             _state = ST_CIRCLING;
         } else {
             _rbody.velocity = ((1 - progress) * CHARGE_SPEED) * ds.normalized;
         }
+    }
+
+    private void SetSwordActivation(bool activated) {
+        _swordSpr.enabled = activated;
+        _swordCollider.enabled = activated;
     }
 
 }

@@ -11,6 +11,7 @@ TagManager:
   - Bullet
   - Boss
   - LevelEnd
+  - Mage
   layers:
   - Default
   - TransparentFX

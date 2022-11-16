@@ -33,6 +33,7 @@ public class PlayerSelectorScript : MonoBehaviour {
     public void Init(int playerNumber) {
         _joystickNumber = InputManager.GetPlayerAssignedJoystick(playerNumber);
         _playerText.text = "Player "+(playerNumber+1);
+        _playerText.color = PlayerInfo.PLAYER_NUM_COLORS[playerNumber];
         UpdateSelection();
     }
 

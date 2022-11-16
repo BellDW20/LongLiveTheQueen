@@ -86,6 +86,18 @@ TextureImporter:
   - first:
       213: -1701516512293102108
     second: knight_sword
+  - first:
+      213: 8361348813116057790
+    second: mage_body
+  - first:
+      213: -73021200718794013
+    second: mage_left_arm
+  - first:
+      213: -2303989799674052939
+    second: mage_right_arm
+  - first:
+      213: 4162896361121389393
+    second: mage_heal_particle
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -918,7 +930,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -926,6 +938,90 @@ TextureImporter:
       bones: []
       spriteID: 4edde414fbff268e0800000000000000
       internalID: -1701516512293102108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mage_body
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 229
+        width: 12
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb8aae8f17a790470800000000000000
+      internalID: 8361348813116057790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mage_left_arm
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 227
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e27516da939cfef0800000000000000
+      internalID: -73021200718794013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mage_right_arm
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 227
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5befd48fb759600e0800000000000000
+      internalID: -2303989799674052939
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mage_heal_particle
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 208
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15b18693f2495c930800000000000000
+      internalID: 4162896361121389393
       vertices: []
       indices: 
       edges: []

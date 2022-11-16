@@ -262,7 +262,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bulletDetector: {fileID: 247666577}
-  _sword: {fileID: 5583271722415000191}
+  _swordSpr: {fileID: 3887496490189170310}
+  _swordCollider: {fileID: 1952042753071983664}
 --- !u!95 &3041700072776244930
 Animator:
   serializedVersion: 3
@@ -300,7 +301,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7035749206472145622
 Transform:
   m_ObjectHideFlags: 0
@@ -352,8 +353,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1278534193
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: -1701516512293102108, guid: ae2209152b6c0744595ce61ee3255a46, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

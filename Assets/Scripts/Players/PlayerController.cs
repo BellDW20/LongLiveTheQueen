@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Transform))]
@@ -20,6 +21,7 @@ public class PlayerController : MonoBehaviour {
     public GameObject DASH_PARTICLES;
     [SerializeField] private Gun _primaryGun;
     [SerializeField] private Gun _specialGun;
+    [SerializeField] private Text _playerIndicatorText;
 
     private bool _isDashing = false;
     private float _dashStartTime;
@@ -49,6 +51,9 @@ public class PlayerController : MonoBehaviour {
         _primaryGun.Init();
         _specialGun.Init();
         MSMScript.RegisterPlayer(gameObject);
+
+        _playerIndicatorText.color = PlayerInfo.PLAYER_NUM_COLORS[_playerNumber];
+        _playerIndicatorText.text = "P" + (_playerNumber + 1);
     }
 
     public virtual void Update() {
@@ -180,6 +185,7 @@ public class PlayerController : MonoBehaviour {
         _playerInfo.stock--;
         GameHUDScript.UpdatePlayerStockVisual(_playerNumber);
 
+        _playerIndicatorText.enabled = false;
         _spr.enabled = false;
         _rbody.simulated = false;
         _collider.enabled = false;
@@ -192,6 +198,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void Respawn() {
+        _playerIndicatorText.enabled = true;
         _spr.enabled = true;
         _rbody.simulated = true;
         _collider.enabled = true;

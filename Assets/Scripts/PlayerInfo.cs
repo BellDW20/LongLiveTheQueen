@@ -13,6 +13,13 @@ public class PlayerInfo {
        "Commando", "Sniper", "Pyro", "Healer"
     };
 
+    public static readonly Color[] PLAYER_NUM_COLORS = {
+        Color.cyan,
+        Color.magenta,
+        Color.yellow,
+        Color.red
+    };
+
     public int type; //The type of player (commando, sniper, etc.) this player is
     public int score; //This player's current score
     public int level; //The current level of this player
