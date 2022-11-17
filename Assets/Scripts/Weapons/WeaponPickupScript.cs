@@ -7,22 +7,6 @@ using UnityEngine;
 public class WeaponPickupScript : MonoBehaviour
 {
     [SerializeField] private Gun _pickup;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public Gun GetGun()
-    {
-        return _pickup;
-    }
 
     void OnTriggerEnter2D(Collider2D col)
     {
