@@ -4,67 +4,83 @@ using UnityEngine;
 
 public class MageScript : MonoBehaviour {
 
-    private float GROUP_DETECTION_RADIUS = 4;
-    private float GROUP_UPDATE_TIME = 0.2f;
-    private float MOVE_SPEED = 3;
+    private const float GROUP_DETECTION_RADIUS = 4;
+    private const float HEAL_LIKELIHOOD = 0.5f;
 
-    private float _lastGroupUpdateTime;
     private Transform _transform;
-    private Vector3 _vel, _lastVel, _actualVel;
+    private Vector2 _target;
     [SerializeField] private GameObject _healParticles;
     [SerializeField] private LayerMask _enemyMask;
+    private List<GameObject> _enemiesInRange;
+
+    private Animations _animations;
+
 
     void Start() {
         _transform = transform;
-        _lastGroupUpdateTime = Time.time; 
-        _vel = Vector3.zero;
-        _lastVel = Vector3.zero;
+        _enemiesInRange = new List<GameObject>();
+        _animations = new Animations(GetComponent<Animator>(), "TeleportSpinup");
     }
 
-    void Update() {
-        float dt = Time.time - _lastGroupUpdateTime;
-        if (dt > GROUP_UPDATE_TIME) {
-            FollowLocalGroup();
-            _lastGroupUpdateTime = Time.time;
-        } else {
-            _transform.position += _actualVel * Time.deltaTime;
+    public void Teleport() {
+        if (IsGroupNearby()) {
+            _animations.SetAnimation("HealSpell");
+        }
+        else {
+            _animations.SetAnimation("PlayerAttack");
+        }
+        _transform.position = new Vector3(_target.x, _target.y, 0);
+    }
+
+    private void GroupHeal() {
+        foreach (GameObject enemy in _enemiesInRange) {
+            if(Random.value < HEAL_LIKELIHOOD && enemy != null) {
+                enemy.GetComponent<EnemyHealthScript>().Heal(20);
+                Instantiate(_healParticles, enemy.transform.position, Quaternion.identity);
+            }
         }
     }
 
-    private void FollowLocalGroup() {
+    private void TargetPlayer() {
+        _target = MSMScript.NearestPlayerPosition(gameObject);
+    }
+
+    private void AttackPlayer() {
+        Idle();
+    }
+
+    private void Idle() {
+        _animations.SetAnimation("TeleportSpinup");
+    }
+
+    private bool IsGroupNearby() {
+        if(FindEnemiesInRange() == 0) {
+            return false;
+        }
+
+        _target = Vector2.zero;
+        foreach(GameObject _enemy in _enemiesInRange) {
+            _target += (Vector2)_enemy.transform.position;
+        }
+
+        _target *= (1.0f / _enemiesInRange.Count);
+        return true;
+    }
+
+    private int FindEnemiesInRange() {
         Collider2D[] hit = Physics2D.OverlapCircleAll(
             new Vector2(_transform.position.x, _transform.position.y),
             GROUP_DETECTION_RADIUS,
             _enemyMask
         );
-        if(hit == null) { return; }
 
-        int nonMageCount = 0;
-        Vector3 targetPos = Vector3.zero;
-        Vector3 posn;
-        for (int i=0; i<hit.Length; i++) {
-            if(hit[i].CompareTag("Mage")) { continue; }
-            posn = hit[i].transform.position;
-            targetPos += posn;
-            hit[i].GetComponent<EnemyHealthScript>().Heal(5);
-            if (Random.value < 0.2f) {
-                Instantiate(_healParticles, posn, Quaternion.identity);
-            }
-            nonMageCount++;
-        }
-        
-        if(nonMageCount == 0) {
-            targetPos = MSMScript.NearestPlayerPosition(gameObject);
-        } else {
-            targetPos *= (1.0f / nonMageCount);
+        _enemiesInRange.Clear();
+        for (int i = 0; i < hit.Length; i++) {
+            if (hit[i].CompareTag("Mage")) { continue; }
+            _enemiesInRange.Add(hit[i].gameObject);
         }
 
-        _lastVel = _vel;
-        _vel = (targetPos - _transform.position).normalized;
-        _actualVel = (0.9f * MOVE_SPEED) * _vel + (0.1f * MOVE_SPEED) * _lastVel;
-
-        float theta = 180*Mathf.Atan2(_actualVel.y, _actualVel.x)/Mathf.PI-90;
-        _transform.rotation = Quaternion.Euler(0, 0, theta);
+        return _enemiesInRange.Count;
     }
 
 }

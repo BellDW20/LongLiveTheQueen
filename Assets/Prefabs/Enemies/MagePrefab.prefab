@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 4590135783966854037}
   - component: {fileID: 9141573785559633965}
   - component: {fileID: 2107647710928672005}
+  - component: {fileID: 6108088528640993536}
   m_Layer: 8
   m_Name: MagePrefab
   m_TagString: Mage
@@ -165,6 +166,25 @@ MonoBehaviour:
   max_health: 150
   BLOOD_PARTICLES: {fileID: 423819991086098478, guid: 12f1530a4737f974ba5e594a062af0a0, type: 3}
   DAMAGE_PARTICLE: {fileID: 1979408659339054658, guid: a1420778f82e322478bd0a4213574dd6, type: 3}
+--- !u!95 &6108088528640993536
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6533846357170503683}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b1e1a21d05ed5334085e8a61bd115fdb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7114725939938473008
 GameObject:
   m_ObjectHideFlags: 0
