@@ -155,6 +155,7 @@ MonoBehaviour:
     _spreadAngle: 0
     _shotVelocity: 0
     _projectile: {fileID: 7514213102977142388, guid: bc8d33bc8f6f7c24ea6c5910541d5bc8, type: 3}
+  _tempCone: {fileID: 7514213102977142388, guid: bc8d33bc8f6f7c24ea6c5910541d5bc8, type: 3}
 --- !u!95 &4002717333011327959
 Animator:
   serializedVersion: 3

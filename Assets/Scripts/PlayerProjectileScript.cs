@@ -2,12 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(BoxCollider2D))]
+[RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerProjectileScript : MonoBehaviour
 {
-
-    [SerializeField] private float DAMAGE;
+    [SerializeField] protected float DAMAGE;
     protected int _playerCreatedBy;
 
     public virtual void OnEnemyHit(GameObject enemy) {
