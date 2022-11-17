@@ -154,7 +154,7 @@ MonoBehaviour:
     _reloadDelay: 5
     _magSize: 1
     _spreadAngle: 0
-    _shotVelocity: 10
+    _shotVelocity: 20
     _projectile: {fileID: 5874215974149055255, guid: 9b3aac796c937f344ab3eb73a9bbf977, type: 3}
   _playerIndicatorText: {fileID: 6773976548647663979}
 --- !u!95 &5074306447314417217
