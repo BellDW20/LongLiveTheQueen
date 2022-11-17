@@ -20,7 +20,7 @@ public class GameOverScreenScript : MonoBehaviour {
                 _pScoreText[i].text = "P" + (i + 1) + " Score: " + pInfo.score;
 
                 //Log their score to the high score manager
-                int ranking = HighScoreManager.LogScore(pInfo.type, pInfo.score);
+                int ranking = HighScoreManager.LogScore(pInfo.type, pInfo.score, 0);
                 //If they got a high score, make it known!
                 if(ranking != -1) {
                     _pScoreText[i].text = _pScoreText[i].text+" (#"+ranking+" high score)";
