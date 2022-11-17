@@ -104,7 +104,7 @@ public class HighScoreManager : MonoBehaviour {
         {
             tempTimes.Add(new BestTimeEntry(dummyPlayers, TimeSpan.FromSeconds(59 + i*60)));
         }
-        _bestTimes = SetupFile(BestTimeFilePath(), tempTimes);
+        _bestTimes = SetupFile(HordeBestTimeFilePath(), tempTimes);
     }
 
     /// <summary>
