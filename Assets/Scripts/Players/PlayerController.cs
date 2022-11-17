@@ -211,4 +211,9 @@ public class PlayerController : MonoBehaviour {
         SceneTransitioner.BeginTransition(SceneTransitioner.FADE_OUT, 0.5f, "GameOverScene");
     }
 
+    public void SetPrimaryGun(Gun g)
+    {
+        _primaryGun = g;
+    }
+
 }
