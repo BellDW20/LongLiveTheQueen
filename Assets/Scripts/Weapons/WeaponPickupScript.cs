@@ -12,5 +12,6 @@ public class WeaponPickupScript : MonoBehaviour
     {
         _pickup.Init();
         col.gameObject.GetComponent<PlayerController>().SetPrimaryGun(_pickup);
+        Destroy(this.gameObject);
     }
 }
