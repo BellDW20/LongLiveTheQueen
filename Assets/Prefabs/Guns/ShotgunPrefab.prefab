@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: -2053462541833048930}
   - component: {fileID: 4397243741024558839}
   - component: {fileID: -7120074944358929744}
-  - component: {fileID: 5811897896543510061}
   - component: {fileID: 8281816284291470566}
   m_Layer: 11
   m_Name: ShotgunPrefab
@@ -133,22 +132,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!58 &5811897896543510061
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3827136893399858409}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
 --- !u!114 &8281816284291470566
 MonoBehaviour:
   m_ObjectHideFlags: 0
