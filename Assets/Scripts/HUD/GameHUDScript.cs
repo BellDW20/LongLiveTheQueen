@@ -8,6 +8,7 @@ public class GameHUDScript : MonoBehaviour {
     private static GameHUDScript instance;
 
     [SerializeField] private GameObject[] playerHudObjects;
+    [SerializeField] private GameObject bottomBanner;
     private PlayerHUDScript[] playerHuds;
 
     void Awake() {
@@ -15,6 +16,8 @@ public class GameHUDScript : MonoBehaviour {
         instance = this;
     }
     private void Start() {
+        int players = 0;
+
         //For each player that could POSSIBLY be in the game...
         playerHuds = new PlayerHUDScript[playerHudObjects.Length];
         for (int i = 0; i < playerHudObjects.Length; i++) {
@@ -24,7 +27,14 @@ public class GameHUDScript : MonoBehaviour {
             if (playerInGame) {
                 playerHuds[i] = playerHudObjects[i].GetComponent<PlayerHUDScript>();
                 playerHuds[i].Refresh();
+                players++;
             }
+        }
+
+        if(players > 2) {
+            bottomBanner.SetActive(true);
+        } else {
+            bottomBanner.SetActive(false);
         }
     }
 
@@ -57,9 +67,9 @@ public class GameHUDScript : MonoBehaviour {
         instance.playerHuds[player].UpdatePlayerSpecialVisual(available);
     }
 
-    //Updates the ammo text for a specific player.
-    public static void UpdatePlayerAmmoVisual(int player, Gun gun) {
-        instance.playerHuds[player].UpdatePlayerAmmoVisual(gun);
+    //Updates the gun visual (ammo and icon) for a specific player.
+    public static void UpdatePlayerGunVisual(int player, Gun gun) {
+        instance.playerHuds[player].UpdatePlayerGunVisual(gun);
     }
 
 }

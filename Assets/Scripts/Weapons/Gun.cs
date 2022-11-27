@@ -5,20 +5,23 @@ using UnityEngine;
 [System.Serializable]
 public class Gun : Weapon {
 
-    [SerializeField] private float _reloadDelay; //Time it takes to reload
+    [SerializeField] protected float _reloadDelay; //Time it takes to reload
     private float _reloadStartTime = float.NegativeInfinity; //Last time reloading started
     private bool _reloading; //Whether or not this gun is reloading
 
-    [SerializeField] private int _magSize; //The maximum number of bullets in a magazine
+    [SerializeField] protected int _magSize; //The maximum number of bullets in a magazine
     private int _bulletsInMag; //The current number of bullets in the magazine
 
     //The maximum angle at which bullets can deviate from the aiming direction when shooting
-    [SerializeField] private float _spreadAngle;
-    [SerializeField] private float _shotVelocity; // The speed at which projectiles exit the gun
+    [SerializeField] protected float _spreadAngle;
+    [SerializeField] protected float _shotVelocity; // The speed at which projectiles exit the gun
 
-    [SerializeField] private GameObject _projectile; //The projectile this gun shoots
+    [SerializeField] protected GameObject _projectile; //The projectile this gun shoots
 
-    public void Init() {
+    [SerializeField] protected Sprite _icon;
+    [SerializeField] protected SFX _shotSound;
+
+    public virtual void Init() {
         _bulletsInMag = _magSize;
     }
 
@@ -57,7 +60,7 @@ public class Gun : Weapon {
         base.Use();
 
         //Play shot sound effect and create bullet at player's location
-        SoundManager.PlaySFX(SFX.MACHINE_GUN_SHOT);
+        SoundManager.PlaySFX(_shotSound);
         GameObject tempBullet = Object.Instantiate(_projectile, position, Quaternion.identity);
 
         //Determine shot angle from where the player is looking 
@@ -95,6 +98,10 @@ public class Gun : Weapon {
 
     public bool IsShooting() {
         return !base.CanUse();
+    }
+
+    public Sprite GetIcon() {
+        return _icon;
     }
 
     public void SetProjectile(GameObject newProjectile)

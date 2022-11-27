@@ -116,8 +116,8 @@ public class PlayerController : MonoBehaviour {
             _primaryGun.Reload();
         }
 
-        //Updates amount of ammo player has
-        GameHUDScript.UpdatePlayerAmmoVisual(_playerNumber, _primaryGun);
+        //Updates amount of ammo / type of gun the player has
+        GameHUDScript.UpdatePlayerGunVisual(_playerNumber, _primaryGun);
 
         //Check if player is shooting special and if the special cooldown is ready
         if (InputManager.GetSpecialInput(_joystickNumber)) {

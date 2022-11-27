@@ -12,6 +12,7 @@ public class PlayerHUDScript : MonoBehaviour {
     [SerializeField] private Text pLevelText; //Text showing player level
     [SerializeField] private Text pAmmoText; //Text showing how much ammo the player has
     [SerializeField] private Text pSpecialText; //Text showing if special is available
+    [SerializeField] private Image pGunIcon; // Icon of the gun the player is using
     [SerializeField] private int playerNum;
 
     public void Start() {
@@ -72,7 +73,8 @@ public class PlayerHUDScript : MonoBehaviour {
     }
 
     //Updates the ammo text for a specific player.
-    public void UpdatePlayerAmmoVisual(Gun gun) {
+    public void UpdatePlayerGunVisual(Gun gun) {
+        pGunIcon.sprite = gun.GetIcon();
         if (gun.IsReloading()) {
             //If the player is reloading set the text to indicate that
             pAmmoText.text = "RELOADING";

@@ -2,17 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PyroBulletScript : PlayerProjectileScript
-{
-    public GameObject _childSquare;
+public class PyroBulletScript : PlayerProjectileScript {
+
+    [SerializeField] private GameObject FLAMETHROWER_PARTICLES;
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
         Invoke("Die", 0.05f);
-        //Transform childTransform = _childSquare.transform;
-        //PolygonCollider2D pCollide = GetComponent<PolygonCollider2D>();
-        //childTransform.localScale = new Vector3(pCollide.points[2].x - pCollide.points[0].x, pCollide.points[0].y, transform.localScale.z);
+        GameObject particles = Instantiate(FLAMETHROWER_PARTICLES, transform.position, transform.rotation);
+        particles.transform.Rotate(new Vector3(-90, 0, 0));
+        particles.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
     }
 
     public override void OnEnemyHit(GameObject enemy)

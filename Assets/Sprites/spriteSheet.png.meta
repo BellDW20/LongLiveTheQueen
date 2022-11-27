@@ -98,6 +98,24 @@ TextureImporter:
   - first:
       213: 4162896361121389393
     second: mage_heal_particle
+  - first:
+      213: -1300662844092570723
+    second: flamethrower_icon
+  - first:
+      213: 389131557301024806
+    second: machine_gun_icon
+  - first:
+      213: -7884769200628893367
+    second: sniper_rifle_icon
+  - first:
+      213: -4420106802112561011
+    second: bfg_icon
+  - first:
+      213: 2290769151633152189
+    second: shotgun_icon
+  - first:
+      213: 8014653880119248344
+    second: lmg_icon
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -1014,7 +1032,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1022,6 +1040,132 @@ TextureImporter:
       bones: []
       spriteID: 15b18693f2495c930800000000000000
       internalID: 4162896361121389393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flamethrower_icon
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 181
+        width: 16
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d932055d80e13fde0800000000000000
+      internalID: -1300662844092570723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: machine_gun_icon
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 203
+        width: 16
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62872d3f619766500800000000000000
+      internalID: 389131557301024806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_rifle_icon
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 197
+        width: 22
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 949f294ff2ca39290800000000000000
+      internalID: -7884769200628893367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bfg_icon
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 176
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d800bce3840a8a2c0800000000000000
+      internalID: -4420106802112561011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shotgun_icon
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 176
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db8548908627acf10800000000000000
+      internalID: 2290769151633152189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lmg_icon
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 180
+        width: 24
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d5c6329d35c93f60800000000000000
+      internalID: 8014653880119248344
       vertices: []
       indices: 
       edges: []
