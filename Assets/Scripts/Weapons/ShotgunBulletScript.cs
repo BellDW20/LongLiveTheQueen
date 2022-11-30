@@ -35,6 +35,7 @@ public class ShotgunBulletScript : PlayerProjectileScript
                 Vector2 shotDirection = new Vector2(Mathf.Cos(shotAngle), Mathf.Sin(shotAngle));
 
                 tempBullet.transform.up = shotDirection;
+
                 //Set velocity and the player who created the shot
                 tempBullet.GetComponent<Rigidbody2D>().velocity = 8 * shotDirection;
             }

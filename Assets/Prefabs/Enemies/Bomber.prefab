@@ -119,7 +119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SHOT_COOLDOWN: 2.5
-  SHOT_SPEED: 9
+  SHOT_SPEED: 8
   BOMBER_RANGE: 8
   MUZZLE_POS: {fileID: 1743696466953296888}
   BOMB_PREFAB: {fileID: 6804890081495684258, guid: e6454487ba6ce0a468afe96ab58a0c01, type: 3}
