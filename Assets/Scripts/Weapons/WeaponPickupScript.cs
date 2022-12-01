@@ -8,10 +8,13 @@ public class WeaponPickupScript : MonoBehaviour
 {
     [SerializeField] private Gun _pickup;
 
-    void OnTriggerEnter2D(Collider2D col)
+    public Gun GetGun()
     {
-        _pickup.Init();
-        col.gameObject.GetComponent<PlayerController>().SetPrimaryGun(_pickup);
-        Destroy(this.gameObject);
+        return _pickup;
+    }
+
+    public void SetGun(Gun g)
+    {
+        _pickup = g;
     }
 }

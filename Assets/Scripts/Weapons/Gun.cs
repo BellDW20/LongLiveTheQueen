@@ -8,6 +8,7 @@ public class Gun : Weapon {
     [SerializeField] protected float _reloadDelay; //Time it takes to reload
     private float _reloadStartTime = float.NegativeInfinity; //Last time reloading started
     private bool _reloading; //Whether or not this gun is reloading
+    private bool _wasInited = false;
 
     [SerializeField] protected int _magSize; //The maximum number of bullets in a magazine
     private int _bulletsInMag; //The current number of bullets in the magazine
@@ -21,8 +22,15 @@ public class Gun : Weapon {
     [SerializeField] protected Sprite _icon;
     [SerializeField] protected SFX _shotSound;
 
+    [SerializeField] private GunType _type;
+
     public virtual void Init() {
+        if (_wasInited)
+        {
+            return;
+        }
         _bulletsInMag = _magSize;
+        _wasInited = true;
     }
 
     public void Reload()
@@ -120,4 +128,8 @@ public class Gun : Weapon {
         return _projectile;
     }
 
+    public GunType GetGunType()
+    {
+        return _type;
+    }
 }

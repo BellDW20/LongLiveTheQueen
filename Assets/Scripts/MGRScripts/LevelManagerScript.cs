@@ -11,6 +11,7 @@ public class LevelManagerScript : MonoBehaviour {
     public const int LEVEL_3_1 = 2;
     public const int LEVEL_DEBUG = 3;
 
+
     //Names of the level/sublevel scenes corresponding to level codes
     private static readonly string[] LEVEL_SCENE_NAMES = {
         "Level1Scene", "Level2Scene", "BossRoom", "EnemyTestScene"
@@ -29,12 +30,16 @@ public class LevelManagerScript : MonoBehaviour {
 
     [SerializeField] private Transform[] _pSpawns; //The positions at which players spawn
     [SerializeField] private GameObject[] _PlayerPrefabs; //The prefabs for all types of players
+    [SerializeField] private GameObject[] _gunPrefabs;
     private static GameObject[] players = new GameObject[4]; //References to each player in the active level
     public static PlayerInfo[] pInfos = new PlayerInfo[4]; //The data for each player saved globally to carry across levels
     private static int _playerCount; //The number of players that were setup to play this game
     private static bool _gameWon; //Whether or not the game was won upon the game ending (false=game over)
 
+    private static LevelManagerScript instance;
+
     void Awake() {
+        instance = this;
         //If we are doing a full level transition
         if (_levelTransitionType == LEVEL_TRANSITION) {
             //for every POSSIBLE player (P1, P2, etc.)
@@ -136,4 +141,8 @@ public class LevelManagerScript : MonoBehaviour {
         return LEVEL_SCENE_NAMES[_levelToTransitionTo];
     }
 
+    public static GameObject GetGun(GunType type)
+    {
+        return instance._gunPrefabs[(int)type];
+    }
 }

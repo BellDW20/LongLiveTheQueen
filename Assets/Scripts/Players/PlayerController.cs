@@ -20,8 +20,12 @@ public class PlayerController : MonoBehaviour {
     public float DEATH_INVULN_TIME;
     public GameObject DASH_PARTICLES;
     [SerializeField] private Gun _primaryGun;
+    private Gun _secondaryGun;
     [SerializeField] private Gun _specialGun;
     [SerializeField] private Text _playerIndicatorText;
+
+    private Gun _currentGun;
+    private bool _canPickup;
 
     private bool _isDashing = false;
     private float _dashStartTime;
@@ -50,6 +54,8 @@ public class PlayerController : MonoBehaviour {
         _cam = Camera.main;
         _primaryGun.Init();
         _specialGun.Init();
+        _currentGun = _primaryGun;
+        _canPickup = false;
         MSMScript.RegisterPlayer(gameObject);
 
         _playerIndicatorText.color = PlayerInfo.PLAYER_NUM_COLORS[_playerNumber];
@@ -68,6 +74,29 @@ public class PlayerController : MonoBehaviour {
 
         if (InputManager.GetBackInput(_joystickNumber)) {
             SceneTransitioner.BeginTransition(SceneTransitioner.FADE_OUT, 0.5f, "MainMenu");
+        }
+
+        if (InputManager.GetDropInput(_joystickNumber))
+        {
+            DropGun();
+        }
+
+        if (InputManager.GetSwapInput(_joystickNumber))
+        {
+            SwapGun();
+        }
+
+        if (InputManager.GetPickupInput(_joystickNumber))
+        {
+            Collider2D col = Physics2D.OverlapCircle(_rbody.position, 0.25f, 1 << LayerMask.NameToLayer("Pickups"));
+            if (col)
+            {
+                DropGun();
+                _secondaryGun = col.gameObject.GetComponent<WeaponPickupScript>().GetGun();
+                _secondaryGun.Init();
+                Destroy(col.gameObject);
+                _currentGun = _secondaryGun;
+            }
         }
 
         if (!_isDashing && InputManager.GetDashInput(_joystickNumber) && _rbody.velocity.magnitude > 0.1f) {
@@ -111,13 +140,13 @@ public class PlayerController : MonoBehaviour {
 
     public virtual void HandleShooting() {
         if (InputManager.GetFireInput(_joystickNumber)) {
-            _primaryGun.Shoot(_transform.position, _playerNumber, _lookDirection);
+            _currentGun.Shoot(_transform.position, _playerNumber, _lookDirection);
         } else if (InputManager.GetReloadInput(_joystickNumber)) {
-            _primaryGun.Reload();
+            _currentGun.Reload();
         }
 
         //Updates amount of ammo / type of gun the player has
-        GameHUDScript.UpdatePlayerGunVisual(_playerNumber, _primaryGun);
+        GameHUDScript.UpdatePlayerGunVisual(_playerNumber, _currentGun);
 
         //Check if player is shooting special and if the special cooldown is ready
         if (InputManager.GetSpecialInput(_joystickNumber)) {
@@ -210,10 +239,27 @@ public class PlayerController : MonoBehaviour {
     private void GameOver() {
         SceneTransitioner.BeginTransition(SceneTransitioner.FADE_OUT, 0.5f, "GameOverScene");
     }
-
-    public void SetPrimaryGun(Gun g)
+    private void DropGun()
     {
-        _primaryGun = g;
+        if (_secondaryGun != null)
+        {
+            GameObject temp = Instantiate(LevelManagerScript.GetGun(_secondaryGun.GetGunType()), _transform.position, Quaternion.identity);
+            temp.GetComponent<WeaponPickupScript>().SetGun(_secondaryGun);
+            _secondaryGun = null;
+            _currentGun = _primaryGun;
+        }
+    }
+
+    private void SwapGun()
+    {
+        if (_currentGun == _secondaryGun)
+        {
+            _currentGun = _primaryGun;
+        }
+        else if (_currentGun == _primaryGun && _secondaryGun != null)
+        {
+            _currentGun = _secondaryGun;
+        }
     }
 
 }

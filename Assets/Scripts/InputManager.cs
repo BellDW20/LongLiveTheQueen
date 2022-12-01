@@ -109,7 +109,49 @@ public class InputManager {
         }
         else if (joyNum == 1)
         {
+            return Input.GetKeyDown(KeyCode.Joystick1Button7);
+        }
+
+        return false;
+    }
+
+    public static bool GetPickupInput(int joyNum)
+    {
+        if (joyNum == 0)
+        {
+            return Input.GetKeyDown(KeyCode.E);
+        }
+        else if (joyNum == 1)
+        {
+            return Input.GetKeyDown(KeyCode.Joystick1Button0);
+        }
+
+        return false;
+    }
+
+    public static bool GetDropInput(int joyNum)
+    {
+        if (joyNum == 0)
+        {
+            return Input.GetKeyDown(KeyCode.T);
+        }
+        else if (joyNum == 1)
+        {
             return Input.GetKeyDown(KeyCode.Joystick1Button1);
+        }
+
+        return false;
+    }
+
+    public static bool GetSwapInput(int joyNum)
+    {
+        if (joyNum == 0)
+        {
+            return Input.GetKeyDown(KeyCode.Tab);
+        }
+        else if (joyNum == 1)
+        {
+            return Input.GetKeyDown(KeyCode.Joystick1Button3);
         }
 
         return false;

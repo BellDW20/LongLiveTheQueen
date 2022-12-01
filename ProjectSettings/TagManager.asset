@@ -12,6 +12,7 @@ TagManager:
   - Boss
   - LevelEnd
   - Mage
+  - Pickup
   layers:
   - Default
   - TransparentFX

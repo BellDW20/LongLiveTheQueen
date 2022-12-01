@@ -50,7 +50,11 @@ MonoBehaviour:
   - {fileID: 6765054618615783676, guid: 1264fe1d0b044af419bdef11ee3afae6, type: 3}
   - {fileID: 6909402962086368492, guid: ab81d4b58d2f90949b94732b20ff3bd3, type: 3}
   - {fileID: 8489695029208917239, guid: afd20e4527b5b6a4d8ef8a2d35e8be3c, type: 3}
-  _playerDropShadow: {fileID: 6022714914039599713, guid: c702f8d80238d264dbb24c52c8632bb0, type: 3}
+  _gunPrefabs:
+  - {fileID: 3514486696771729246, guid: 9a9a76694d3406d4d9d22e875028dc27, type: 3}
+  - {fileID: 0}
+  - {fileID: 124247650658699306, guid: 44348c5e49d141d4c86e39ab84a52443, type: 3}
+  - {fileID: 3827136893399858409, guid: 94bbd0749be7fa54ba1233c4447f3601, type: 3}
 --- !u!1 &3023744731106304774
 GameObject:
   m_ObjectHideFlags: 0

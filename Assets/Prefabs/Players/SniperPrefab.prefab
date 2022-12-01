@@ -151,6 +151,7 @@ MonoBehaviour:
     _projectile: {fileID: 6554014128000149010, guid: 0b7d82d6c4a33a44ba93aa8f29b2793a, type: 3}
     _icon: {fileID: -7884769200628893367, guid: ae2209152b6c0744595ce61ee3255a46, type: 3}
     _shotSound: 1
+    _type: 0
   _specialGun:
     _cooldownTime: 0
     _reloadDelay: 5
@@ -160,6 +161,7 @@ MonoBehaviour:
     _projectile: {fileID: 5874215974149055255, guid: 9b3aac796c937f344ab3eb73a9bbf977, type: 3}
     _icon: {fileID: 0}
     _shotSound: 1
+    _type: 4
   _playerIndicatorText: {fileID: 6773976548647663979}
 --- !u!95 &5074306447314417217
 Animator:
