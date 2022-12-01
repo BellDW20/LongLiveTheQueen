@@ -116,6 +116,18 @@ TextureImporter:
   - first:
       213: 8014653880119248344
     second: lmg_icon
+  - first:
+      213: 984127241670599124
+    second: queen_0
+  - first:
+      213: 4595266460073768495
+    second: queen_1
+  - first:
+      213: -2611857192056655836
+    second: queen_2
+  - first:
+      213: 4374028833568981305
+    second: rpg_icon
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -1158,7 +1170,7 @@ TextureImporter:
         width: 24
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1166,6 +1178,90 @@ TextureImporter:
       bones: []
       spriteID: 8d5c6329d35c93f60800000000000000
       internalID: 8014653880119248344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: queen_0
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 96
+        width: 18
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d1af8d138258ad00800000000000000
+      internalID: 984127241670599124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: queen_1
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 99
+        width: 21
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f26b6f8af7aa5cf30800000000000000
+      internalID: 4595266460073768495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: queen_2
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 97
+        width: 19
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 420f967d8b1d0cbd0800000000000000
+      internalID: -2611857192056655836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rpg_icon
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 162
+        width: 32
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 931023eac0ca3bc30800000000000000
+      internalID: 4374028833568981305
       vertices: []
       indices: 
       edges: []
