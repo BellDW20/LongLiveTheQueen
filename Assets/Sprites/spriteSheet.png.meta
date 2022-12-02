@@ -128,6 +128,9 @@ TextureImporter:
   - first:
       213: 4374028833568981305
     second: rpg_icon
+  - first:
+      213: -4993752710177977614
+    second: weapon_purchase_sign
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -1191,7 +1194,7 @@ TextureImporter:
         width: 18
         height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1212,7 +1215,7 @@ TextureImporter:
         width: 21
         height: 44
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1233,7 +1236,7 @@ TextureImporter:
         width: 19
         height: 45
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1254,7 +1257,7 @@ TextureImporter:
         width: 32
         height: 12
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1262,6 +1265,27 @@ TextureImporter:
       bones: []
       spriteID: 931023eac0ca3bc30800000000000000
       internalID: 4374028833568981305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon_purchase_sign
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 136
+        width: 32
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2fa82bd3e50a2bab0800000000000000
+      internalID: -4993752710177977614
       vertices: []
       indices: 
       edges: []
