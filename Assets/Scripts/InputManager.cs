@@ -4,7 +4,44 @@ using UnityEngine;
 
 public class InputManager {
 
-    private static int[] pNumToJoyNum = new int[] {0,1,2,3};
+    private static int[] pNumToJoyNum = new int[] { 0, 1, 2, 3 };
+
+    private static KeyCode[] dashJoyCodes = new KeyCode[] {
+        KeyCode.LeftShift,
+        KeyCode.Joystick1Button4,
+        KeyCode.Joystick2Button4,
+        KeyCode.Joystick3Button4
+    };
+    private static KeyCode[] backJoyCodes = new KeyCode[] {
+        KeyCode.Escape,
+        KeyCode.Joystick1Button6,
+        KeyCode.Joystick2Button6,
+        KeyCode.Joystick3Button6,
+    };
+    private static KeyCode[] reloadJoyCodes = new KeyCode[] {
+        KeyCode.R,
+        KeyCode.Joystick1Button2,
+        KeyCode.Joystick2Button2,
+        KeyCode.Joystick3Button2,
+    };
+    private static KeyCode[] pickupJoyCodes = new KeyCode[] {
+        KeyCode.E,
+        KeyCode.Joystick1Button0,
+        KeyCode.Joystick2Button0,
+        KeyCode.Joystick3Button0
+    };
+    private static KeyCode[] dropJoyCodes = new KeyCode[] {
+        KeyCode.T,
+        KeyCode.Joystick1Button1,
+        KeyCode.Joystick2Button1,
+        KeyCode.Joystick3Button1
+    };
+    private static KeyCode[] swapJoyCodes = new KeyCode[] {
+        KeyCode.Tab,
+        KeyCode.Joystick1Button3,
+        KeyCode.Joystick2Button3,
+        KeyCode.Joystick3Button3
+    };
 
     public static void AssignPlayerToJoystick(int playerNum, int joyNum) {
         pNumToJoyNum[playerNum] = joyNum;
@@ -34,46 +71,24 @@ public class InputManager {
         }
     }
 
-    public static bool GetDashInput(int joyNum)
-    {
-        if (joyNum == 0) 
-        {
-            return Input.GetKeyDown(KeyCode.LeftShift);
-        }
-        else if (joyNum == 1)
-        {
-            return Input.GetKeyDown(KeyCode.Joystick1Button4);
-        }
-
-        return false;
+    public static bool GetDashInput(int joyNum) {
+        return Input.GetKeyDown(dashJoyCodes[joyNum]);
     }
 
-    public static bool GetSpecialInput(int joyNum)
-    {
-        if (joyNum == 0)
-        {
+    public static bool GetSpecialInput(int joyNum) {
+        if (joyNum == 0) {
             return Input.GetMouseButtonDown(1);
-        }
-        else if (joyNum == 1)
-        {
+        } else {
             return Input.GetAxis("J " + (joyNum + 1) + " Special") > 0.1;
         }
-
-        return false;
     }
 
-    public static bool GetFireInput(int joyNum)
-    {
-        if (joyNum == 0)
-        {
+    public static bool GetFireInput(int joyNum) {
+        if (joyNum == 0) {
             return Input.GetMouseButton(0);
-        }
-        else if (joyNum == 1)
-        {
+        } else {
             return Input.GetAxis("J " + (joyNum + 1) + " Fire") > 0.1;
         }
-
-        return false;
     }
 
     public static Vector2 GetAimInput(Camera cam, Vector2 pos, int joyNum) {
@@ -87,73 +102,24 @@ public class InputManager {
         }
     }
 
-    public static bool GetReloadInput(int joyNum)
-    {
-        if (joyNum == 0)
-        {
-            return Input.GetKeyDown(KeyCode.R);
-        }
-        else if (joyNum == 1)
-        {
-            return Input.GetKeyDown(KeyCode.Joystick1Button2);
-        }
-
-        return false;
+    public static bool GetReloadInput(int joyNum) {
+        return Input.GetKeyDown(reloadJoyCodes[joyNum]);
     }
 
-    public static bool GetBackInput(int joyNum)
-    {
-        if (joyNum == 0)
-        {
-            return Input.GetKeyDown(KeyCode.Escape);
-        }
-        else if (joyNum == 1)
-        {
-            return Input.GetKeyDown(KeyCode.Joystick1Button7);
-        }
-
-        return false;
+    public static bool GetBackInput(int joyNum) {
+        return Input.GetKeyDown(backJoyCodes[joyNum]);
     }
 
-    public static bool GetPickupInput(int joyNum)
-    {
-        if (joyNum == 0)
-        {
-            return Input.GetKeyDown(KeyCode.E);
-        }
-        else if (joyNum == 1)
-        {
-            return Input.GetKeyDown(KeyCode.Joystick1Button0);
-        }
-
-        return false;
+    public static bool GetPickupInput(int joyNum) {
+        return Input.GetKeyDown(pickupJoyCodes[joyNum]);
     }
 
-    public static bool GetDropInput(int joyNum)
-    {
-        if (joyNum == 0)
-        {
-            return Input.GetKeyDown(KeyCode.T);
-        }
-        else if (joyNum == 1)
-        {
-            return Input.GetKeyDown(KeyCode.Joystick1Button1);
-        }
-
-        return false;
+    public static bool GetDropInput(int joyNum) {
+        return Input.GetKeyDown(dropJoyCodes[joyNum]);
     }
 
-    public static bool GetSwapInput(int joyNum)
-    {
-        if (joyNum == 0)
-        {
-            return Input.GetKeyDown(KeyCode.Tab);
-        }
-        else if (joyNum == 1)
-        {
-            return Input.GetKeyDown(KeyCode.Joystick1Button3);
-        }
-
-        return false;
+    public static bool GetSwapInput(int joyNum) {
+        return Input.GetKeyDown(swapJoyCodes[joyNum]);
     }
+
 }

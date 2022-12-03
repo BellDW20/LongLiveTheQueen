@@ -124,6 +124,10 @@ public class Gun : Weapon {
         return _reloading;
     }
 
+    public float ReloadProgress() {
+        return (Time.time - _reloadStartTime) / _reloadDelay;
+    }
+
     public GameObject GetProjectile() {
         return _projectile;
     }

@@ -61,18 +61,16 @@ public class EnemyHealthScript : MonoBehaviour {
 
         //use the player's damage scaling to calculate the actual damage dealt
         PlayerInfo pInfo = LevelManagerScript.pInfos[player];
-        float scaledDamage = rawDamage * pInfo.damageScale;
+        float scaledDamage = rawDamage * pInfo.GetDamageScale();
 
         //Damage the enemy the appropriate amount
         float actualDamage = enHealth.Damage(scaledDamage);
 
         //Add this damage to the player's score...
-        if (pInfo.AddToScore((int)actualDamage)) {
-            //And if the player leveled up, update their level in the HUD
-            GameHUDScript.UpdatePlayerLevelVisual(player);
-        }
+        pInfo.AddToScore((int)actualDamage);
+
         //Update the player's score bar on the HUD
-        GameHUDScript.UpdatePlayerScoreVisual(player);
+        NewGameHUD.UpdatePlayerScoreVisual(player);
     }
 
 }

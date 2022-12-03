@@ -157,7 +157,7 @@ public class PlayerController : MonoBehaviour {
         }
 
         //Updates amount of ammo / type of gun the player has
-        GameHUDScript.UpdatePlayerGunVisual(_playerNumber, _currentGun);
+        NewGameHUD.UpdatePlayerGunVisual(_playerNumber, _currentGun);
 
         //Check if player is shooting special and if the special cooldown is ready
         if (InputManager.GetSpecialInput(_joystickNumber)) {
@@ -165,7 +165,7 @@ public class PlayerController : MonoBehaviour {
         }
 
         //Updates the "Special Ready" text
-        GameHUDScript.UpdatePlayerSpecialVisual(_playerNumber, !_specialGun.IsReloading());
+        NewGameHUD.UpdatePlayerSpecialVisual(_playerNumber, _specialGun);
     }
 
     public int GetJoystickNumber()
@@ -214,7 +214,7 @@ public class PlayerController : MonoBehaviour {
                 _timeLastDamaged = Time.time;
             }
             SoundManager.PlaySFX(SFX.PLAYER_GRUNT);
-            GameHUDScript.UpdatePlayerHealthVisual(_playerNumber);
+            NewGameHUD.UpdatePlayerHealthVisual(_playerNumber);
             return true;
         } else {
             return false;
@@ -223,7 +223,7 @@ public class PlayerController : MonoBehaviour {
 
     private void Die() {
         _playerInfo.stock--;
-        GameHUDScript.UpdatePlayerStockVisual(_playerNumber);
+        NewGameHUD.UpdatePlayerStockVisual(_playerNumber);
 
         _playerIndicatorText.enabled = false;
         _spr.enabled = false;
@@ -244,7 +244,7 @@ public class PlayerController : MonoBehaviour {
         _collider.enabled = true;
         _timeLastRespawned = Time.time;
         _playerInfo.health = _playerInfo.GetMaxHealth();
-        GameHUDScript.UpdatePlayerHealthVisual(_playerNumber);
+        NewGameHUD.UpdatePlayerHealthVisual(_playerNumber);
     }
 
     private void GameOver() {

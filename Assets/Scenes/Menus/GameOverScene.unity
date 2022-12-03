@@ -859,7 +859,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Press Escape or b to return to the main menu
+  m_Text: Press escape (keyboard) or back (gamepad) to return to the main menu
 --- !u!222 &2066702713
 CanvasRenderer:
   m_ObjectHideFlags: 0
