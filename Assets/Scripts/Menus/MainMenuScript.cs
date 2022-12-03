@@ -13,7 +13,7 @@ public class MainMenuScript : MonoBehaviour {
     public void Update() {
         if (Input.GetKey(KeyCode.Q) && Input.GetKey(KeyCode.P) && Input.GetKey(KeyCode.Comma)) {
             LevelManagerScript.SetupGame(PlayerType.COMMANDO);
-            LevelManagerScript.BeginLevel(LevelManagerScript.LEVEL_DEBUG, LevelManagerScript.LEVEL_TRANSITION);
+            LevelManagerScript.BeginLevel(LevelManagerScript.HORDE_MODE, LevelManagerScript.LEVEL_TRANSITION);
         }
     }
 

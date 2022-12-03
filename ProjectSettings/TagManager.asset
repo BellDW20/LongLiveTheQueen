@@ -26,7 +26,7 @@ TagManager:
   - Players
   - TilemapOnly
   - Pickups
-  - 
+  - WeaponSales
   - 
   - 
   - 
@@ -55,4 +55,10 @@ TagManager:
     locked: 0
   - name: DamageIndicators
     uniqueID: 3645788683
+    locked: 0
+  - name: Foliage
+    uniqueID: 2800024041
+    locked: 0
+  - name: Tooltips
+    uniqueID: 600366665
     locked: 0

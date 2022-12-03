@@ -15,5 +15,10 @@ public class Weapon {
     public virtual void Use() {
         _lastUseTime = Time.time;
     }
+    public void CopyInto(Weapon weapon) {
+        weapon._cooldownTime = _cooldownTime;
+        weapon._lastUseTime = _lastUseTime;
+        weapon._coolingDown = _coolingDown;
+    }
 
 }

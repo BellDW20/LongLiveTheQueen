@@ -9,16 +9,17 @@ public class LevelManagerScript : MonoBehaviour {
     public const int LEVEL_1_1 = 0;
     public const int LEVEL_2_1 = 1;
     public const int LEVEL_3_1 = 2;
-    public const int LEVEL_DEBUG = 3;
+    public const int HORDE_MODE = 3;
+    public const int LEVEL_DEBUG = 4;
 
 
     //Names of the level/sublevel scenes corresponding to level codes
     private static readonly string[] LEVEL_SCENE_NAMES = {
-        "Level1Scene", "Level2Scene", "BossRoom", "EnemyTestScene"
+        "Level1Scene", "Level2Scene", "BossRoom", "HordeMode", "EnemyTestScene"
     };
     //Names of the levels/sublevels to be displayed corresponding to level codes
     private static readonly string[] LEVEL_DISPLAY_NAMES = {
-        "Level 1", "Level 2", "Final Boss", "Debug"
+        "Level 1", "Level 2", "Final Boss", "Horde Mode", "Debug"
     };
 
     //Constants representing how to transition between level scenes

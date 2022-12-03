@@ -89,14 +89,25 @@ public class PlayerController : MonoBehaviour {
         if (InputManager.GetPickupInput(_joystickNumber))
         {
             Collider2D col = Physics2D.OverlapCircle(_rbody.position, 0.25f, 1 << LayerMask.NameToLayer("Pickups"));
-            if (col)
-            {
+            if (col) {
                 DropGun();
                 _secondaryGun = col.gameObject.GetComponent<WeaponPickupScript>().GetGun();
                 _secondaryGun.Init();
                 Destroy(col.gameObject);
                 _currentGun = _secondaryGun;
+            } else { }
+
+            col = Physics2D.OverlapCircle(_rbody.position, 1f, 1 << LayerMask.NameToLayer("WeaponSales"));
+            if(col) {
+                WeaponSaleSign sale = col.GetComponent<WeaponSaleSign>();
+                //if(_playerInfo.score >= sale.GetPrice()) {
+                //    _playerInfo.AddToScore(-sale.GetPrice());
+                    _secondaryGun = sale.GetGun();
+                    _secondaryGun.Init();
+                    _currentGun = _secondaryGun;
+                //}
             }
+
         }
 
         if (!_isDashing && InputManager.GetDashInput(_joystickNumber) && _rbody.velocity.magnitude > 0.1f) {

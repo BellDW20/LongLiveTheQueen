@@ -128,8 +128,26 @@ public class Gun : Weapon {
         return _projectile;
     }
 
-    public GunType GetGunType()
-    {
+    public GunType GetGunType() {
         return _type;
     }
+
+    public Gun GetCopy() {
+        Gun copy = new Gun();
+        this.CopyInto(copy);
+        copy._reloadDelay = _reloadDelay;
+        copy._reloadStartTime = _reloadStartTime;
+        copy._reloading = _reloading;
+        copy._wasInited = _wasInited;
+        copy._magSize = _magSize;
+        copy._bulletsInMag = _bulletsInMag;
+        copy._spreadAngle = _spreadAngle;
+        copy._shotVelocity = _shotVelocity;
+        copy._projectile = _projectile;
+        copy._icon = _icon;
+        copy._shotSound = _shotSound;
+        copy._type = _type;
+        return copy;
+    }
+
 }
