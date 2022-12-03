@@ -51,6 +51,13 @@ public class InputManager {
         return pNumToJoyNum[playerNum];
     }
 
+    public static void ResetJoystickAssignment() {
+        pNumToJoyNum[0] = 0;
+        pNumToJoyNum[1] = 1;
+        pNumToJoyNum[2] = 2;
+        pNumToJoyNum[3] = 3;
+    }
+
     /*
      * These methods get input according to joystick number, NOT player number!
      */

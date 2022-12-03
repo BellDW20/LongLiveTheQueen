@@ -10,26 +10,21 @@ public class MenuSelection : MonoBehaviour {
     [SerializeField] UnityEvent _onClick;
     private int _index;
 
-    private Vector3 _position;
+    private BoxCollider2D _collider;
 
     public void Start() {
-        BoxCollider2D collider = GetComponent<BoxCollider2D>();
-        _position = transform.position - 0.75f * new Vector3(collider.bounds.size.x, 0, 0);
+        _collider = GetComponent<BoxCollider2D>();
     }
 
-    public void Select() {
-        _text.color = 0.75f*Color.black;
-    }
-
-    public void Deselect() {
-        _text.color = Color.black;
+    public void SetColor(Color color) {
+        _text.color = color;
     }
 
     public void DoOnClick() {
         _onClick.Invoke();
     }
     public Vector3 GetPosition() {
-        return _position;
+        return transform.position - 0.75f * new Vector3(_collider.bounds.size.x, 0, 0);
     }
     public void SetIndex(int index) {
         _index = index;

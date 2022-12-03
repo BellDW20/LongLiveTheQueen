@@ -146,6 +146,21 @@ TextureImporter:
   - first:
       213: -89994814921556401
     second: menu_selector
+  - first:
+      213: -711097594415327666
+    second: health_skill
+  - first:
+      213: -8501058008102969812
+    second: cooldown_skill
+  - first:
+      213: -7958029584013955420
+    second: damage_skill
+  - first:
+      213: -6065070115364684192
+    second: spread_skill
+  - first:
+      213: -6775637677089088890
+    second: shop
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -1398,7 +1413,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1406,6 +1421,111 @@ TextureImporter:
       bones: []
       spriteID: f4e39f0513640cef0800000000000000
       internalID: -89994814921556401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: health_skill
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 112
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e465d34618ca126f0800000000000000
+      internalID: -711097594415327666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cooldown_skill
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 112
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2e580c38cc260a80800000000000000
+      internalID: -8501058008102969812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: damage_skill
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 112
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ae6cccb1466f8190800000000000000
+      internalID: -7958029584013955420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spread_skill
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 112
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06eb9db3dda84dba0800000000000000
+      internalID: -6065070115364684192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shop
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 96
+        width: 41
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68a1a5a7e6918f1a0800000000000000
+      internalID: -6775637677089088890
       vertices: []
       indices: 
       edges: []

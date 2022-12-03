@@ -63,7 +63,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     public virtual void Update() {
-        if (IsDead()) { return; }
+        if (IsDead() || Time.timeScale == 0) { return; }
 
         if (IsInvulnerable()) {
             _spr.color = INVULN_COLOR;
@@ -151,7 +151,7 @@ public class PlayerController : MonoBehaviour {
 
     public virtual void HandleShooting() {
         if (InputManager.GetFireInput(_joystickNumber)) {
-            _currentGun.Shoot(_transform.position, _playerNumber, _lookDirection);
+            _currentGun.Shoot(_transform.position, _playerNumber, _lookDirection, _playerInfo.spreadLevel+1);
         } else if (InputManager.GetReloadInput(_joystickNumber)) {
             _currentGun.Reload();
         }
@@ -160,6 +160,7 @@ public class PlayerController : MonoBehaviour {
         NewGameHUD.UpdatePlayerGunVisual(_playerNumber, _currentGun);
 
         //Check if player is shooting special and if the special cooldown is ready
+        _specialGun.SetReloadDelayScale(_playerInfo.GetSpecialCooldownScale());
         if (InputManager.GetSpecialInput(_joystickNumber)) {
             HandleSpecial();
         }
@@ -182,7 +183,7 @@ public class PlayerController : MonoBehaviour {
 
     public virtual void HandleSpecial()
     {
-        _specialGun.Shoot(_transform.position, _playerNumber, _lookDirection);
+        _specialGun.Shoot(_transform.position, _playerNumber, _lookDirection, 1);
     }
 
     public Vector2 GetLookDirection() {

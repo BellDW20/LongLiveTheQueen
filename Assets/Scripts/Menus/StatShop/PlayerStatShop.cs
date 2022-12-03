@@ -1,0 +1,97 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class PlayerStatShop : MonoBehaviour {
+
+    [SerializeField] Text _playerText;
+    [SerializeField] Text _lpText;
+    [SerializeField] int _playerNum;
+    private PlayerInfo _pInfo;
+    private bool _confirmed;
+
+    [SerializeField] Text _healthCostText;
+    [SerializeField] Text _damageCostText;
+    [SerializeField] Text _cooldownCostText;
+    [SerializeField] Text _spreadCostText;
+
+    [SerializeField] MenuSelector _statsMenu;
+
+    void Start() {
+        _playerText.color = PlayerInfo.PLAYER_NUM_COLORS[_playerNum];
+        _playerText.text = "PLAYER " + (_playerNum + 1);
+        _pInfo = LevelManagerScript.pInfos[_playerNum];
+
+        _statsMenu.SetPlayersControlling(_playerNum);
+    }
+
+    void Update() {
+        if(_confirmed) { return; }
+
+        _lpText.text = "LVL PTS: " + _pInfo.spendableLevels;
+
+        if (_pInfo.maxHealthLevel != PlayerInfo.MAX_HEALTH_LEVELS) {
+            _healthCostText.text = PlayerInfo.MAX_HEALTH_COST[_pInfo.maxHealthLevel + 1] + " LP";
+        } else {
+            _healthCostText.text = "MAX!";
+        }
+
+        if (_pInfo.damageLevel != PlayerInfo.DAMAGE_LEVELS) {
+            _damageCostText.text = PlayerInfo.DAMAGE_COST[_pInfo.damageLevel + 1] + " LP";
+        }
+        else {
+
+            _damageCostText.text = "MAX!";
+        }
+
+        if (_pInfo.specialCooldownLevel != PlayerInfo.SPECIAL_COOLDOWN_LEVELS) {
+            _cooldownCostText.text = PlayerInfo.SPECIAL_COOLDOWN_COST[_pInfo.specialCooldownLevel + 1] + " LP";
+        }
+        else {
+            _cooldownCostText.text = "MAX!";
+        }
+
+        if (_pInfo.spreadLevel != PlayerInfo.SPREAD_LEVELS) {
+            _spreadCostText.text = PlayerInfo.SPREAD_COST[_pInfo.spreadLevel + 1] + " LP";
+        }
+        else {
+            _spreadCostText.text = "MAX!";
+        }
+    }
+    public void Reset() {
+        _confirmed = false;
+        _statsMenu.Enable();
+    }
+
+    public void UpgradeHealth() {
+        if(_pInfo.TryToPurchaseSkill(PlayerSkill.MAX_HEALTH_SCALE)) {
+            _pInfo.ResetHealth();
+            NewGameHUD.UpdatePlayerScoreVisual(_playerNum);
+            NewGameHUD.UpdatePlayerHealthVisual(_playerNum);
+        }
+    }
+
+    public void UpgradeDamage() {
+        _pInfo.TryToPurchaseSkill(PlayerSkill.DAMAGE_SCALE);
+        NewGameHUD.UpdatePlayerScoreVisual(_playerNum);
+    }
+
+    public void UpgradeCooldown() {
+        _pInfo.TryToPurchaseSkill(PlayerSkill.SPECIAL_COOLDOWN_SCALE);
+        NewGameHUD.UpdatePlayerScoreVisual(_playerNum);
+    }
+
+    public void UpgradeSpread() {
+        _pInfo.TryToPurchaseSkill(PlayerSkill.SPREAD);
+        NewGameHUD.UpdatePlayerScoreVisual(_playerNum);
+    }
+    public void Confirm() {
+        _confirmed = true;
+        _statsMenu.Disable();
+    }
+    public bool IsConfirmed() {
+        return _confirmed;
+    }
+
+}

@@ -44,7 +44,7 @@ public class PlayerInfo {
 
     public const int SPECIAL_COOLDOWN_LEVELS = 3;
     public static readonly float[] SPECIAL_COOLDOWN_SCALE = {
-        1, 0.7f, 0.6f, 0.5f
+        1, 0.75f, 0.6f, 0.5f
     };
     public static readonly int[] SPECIAL_COOLDOWN_COST = {
         0, 1, 2, 2
@@ -83,10 +83,15 @@ public class PlayerInfo {
         this.maxHealthLevel = 0;
         this.damageLevel = 0;
         this.specialCooldownLevel = 0;
+        this.spreadLevel = 0;
     }
 
     //Resets the player's health for the next level
     public void ClearForNextLevel() {
+        ResetHealth();
+    }
+
+    public void ResetHealth() {
         health = GetMaxHealth();
     }
 
@@ -121,17 +126,17 @@ public class PlayerInfo {
         }
         else if (skill == PlayerSkill.MAX_HEALTH_SCALE && maxHealthLevel != MAX_HEALTH_LEVELS && MAX_HEALTH_COST[damageLevel + 1] <= spendableLevels) {
             maxHealthLevel++;
-            spendableLevels -= MAX_HEALTH_COST[damageLevel];
+            spendableLevels -= MAX_HEALTH_COST[maxHealthLevel];
             bought = true;
         }
         else if (skill == PlayerSkill.SPECIAL_COOLDOWN_SCALE && specialCooldownLevel != SPECIAL_COOLDOWN_LEVELS && SPECIAL_COOLDOWN_COST[damageLevel + 1] <= spendableLevels) {
             specialCooldownLevel++;
-            spendableLevels -= SPECIAL_COOLDOWN_COST[damageLevel];
+            spendableLevels -= SPECIAL_COOLDOWN_COST[specialCooldownLevel];
             bought = true;
         }
         else if (skill == PlayerSkill.SPREAD && spreadLevel != SPREAD_LEVELS && SPREAD_COST[damageLevel + 1] <= spendableLevels) {
             spreadLevel++;
-            spendableLevels -= SPREAD_COST[damageLevel];
+            spendableLevels -= SPREAD_COST[spreadLevel];
             bought = true;
         }
         return bought;

@@ -13,6 +13,7 @@ TagManager:
   - LevelEnd
   - Mage
   - Pickup
+  - StatShop
   layers:
   - Default
   - TransparentFX

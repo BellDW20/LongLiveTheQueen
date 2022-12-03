@@ -24,6 +24,8 @@ public class Gun : Weapon {
 
     [SerializeField] private GunType _type;
 
+    private float _reloadDelayScale = 1;
+
     public virtual void Init() {
         if (_wasInited)
         {
@@ -44,7 +46,7 @@ public class Gun : Weapon {
 
     public override bool CanUse() {
         //If the time since the last reload started is past the reload delay, we are no longer reloading
-        _reloading = (Time.time - _reloadStartTime) < _reloadDelay;
+        _reloading = (Time.time - _reloadStartTime) < _reloadDelay * _reloadDelayScale;
 
         //If we are either still shooting or reloading...
         if (IsShooting() || _reloading) {
@@ -55,8 +57,9 @@ public class Gun : Weapon {
             return true;
         }
     }
-    public void Shoot(Vector3 position, int playerNumber, Vector2 direction) {
-        if(!CanUse()) { return; }
+
+    public void Shoot(Vector3 position, int playerNumber, Vector2 direction, int bullets) {
+        if (!CanUse()) { return; }
 
         //Otherwise, the shot was successful
         _bulletsInMag--; //Remove a bullet from the magazine
@@ -69,22 +72,29 @@ public class Gun : Weapon {
 
         //Play shot sound effect and create bullet at player's location
         SoundManager.PlaySFX(_shotSound);
-        GameObject tempBullet = Object.Instantiate(_projectile, position, Quaternion.identity);
 
-        //Determine shot angle from where the player is looking 
-        float shotAngle = Mathf.Atan2(
-            direction.y,
-            direction.x
-        ) + GetSpreadAngle();
 
-        //Determine shot direction
-        Vector2 shotDirection = new Vector2(Mathf.Cos(shotAngle), Mathf.Sin(shotAngle));
+        float dt = Mathf.Deg2Rad * 10 / bullets;
+        float st = (bullets - 1) * -0.5f * dt;
 
-        //Make sure that the bullet is facing in the direction it gets shot
-        tempBullet.transform.up = shotDirection;
-        //Set velocity and the player who created the shot
-        tempBullet.GetComponent<Rigidbody2D>().velocity = _shotVelocity * shotDirection;
-        tempBullet.GetComponent<PlayerProjectileScript>().SetPlayerCreatedBy(playerNumber);
+        for (int i = 0; i < bullets; i++) {
+            GameObject tempBullet = Object.Instantiate(_projectile, position, Quaternion.identity);
+
+            //Determine shot angle from where the player is looking 
+            float shotAngle = Mathf.Atan2(
+                direction.y,
+                direction.x
+            ) + GetSpreadAngle() + st+ i*dt;
+
+            //Determine shot direction
+            Vector2 shotDirection = new Vector2(Mathf.Cos(shotAngle), Mathf.Sin(shotAngle));
+
+            //Make sure that the bullet is facing in the direction it gets shot
+            tempBullet.transform.up = shotDirection;
+            //Set velocity and the player who created the shot
+            tempBullet.GetComponent<Rigidbody2D>().velocity = _shotVelocity * shotDirection;
+            tempBullet.GetComponent<PlayerProjectileScript>().SetPlayerCreatedBy(playerNumber);
+        }
     }
 
     //Returns a random angle deviation within this gun's spread range (-spreadAngle to +spreadAngle)
@@ -112,20 +122,23 @@ public class Gun : Weapon {
         return _icon;
     }
 
-    public void SetProjectile(GameObject newProjectile)
-    {
+    public void SetProjectile(GameObject newProjectile) {
         _projectile = newProjectile;
+    }
+
+    public void SetReloadDelayScale(float reloadDelayScale) {
+        _reloadDelayScale = reloadDelayScale;
     }
 
     public bool IsReloading() {
         //Actively recalculate the reloading metric based on the time
         //since the last reload
-        _reloading = (Time.time - _reloadStartTime) < _reloadDelay;
+        _reloading = (Time.time - _reloadStartTime) < _reloadDelay * _reloadDelayScale;
         return _reloading;
     }
 
     public float ReloadProgress() {
-        return (Time.time - _reloadStartTime) / _reloadDelay;
+        return (Time.time - _reloadStartTime) / (_reloadDelay * _reloadDelayScale);
     }
 
     public GameObject GetProjectile() {

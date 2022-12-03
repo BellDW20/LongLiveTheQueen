@@ -10,6 +10,10 @@ public class MainMenuScript : MonoBehaviour {
     [SerializeField] private GameObject _helpCanvas; //Canvas full of help menu UI objects
     [SerializeField] private GameObject _highscoreCanvas; //Canvas full of highscore menu UI objects
 
+    public void Awake() {
+        InputManager.ResetJoystickAssignment();
+    }
+
     public void Update() {
         if (Input.GetKey(KeyCode.Q) && Input.GetKey(KeyCode.P) && Input.GetKey(KeyCode.Comma)) {
             LevelManagerScript.SetupGame(PlayerType.COMMANDO);
