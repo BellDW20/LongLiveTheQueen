@@ -100,12 +100,12 @@ public class PlayerController : MonoBehaviour {
             col = Physics2D.OverlapCircle(_rbody.position, 1f, 1 << LayerMask.NameToLayer("WeaponSales"));
             if(col) {
                 WeaponSaleSign sale = col.GetComponent<WeaponSaleSign>();
-                //if(_playerInfo.score >= sale.GetPrice()) {
-                //    _playerInfo.AddToScore(-sale.GetPrice());
+                if (_playerInfo.TryToPurchase(sale.GetPrice())) {
                     _secondaryGun = sale.GetGun();
                     _secondaryGun.Init();
                     _currentGun = _secondaryGun;
-                //}
+                    NewGameHUD.UpdatePlayerScoreVisual(_playerNumber);
+                }
             }
 
         }

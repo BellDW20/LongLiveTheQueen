@@ -14,6 +14,8 @@ public class HordeModeMGR : MonoBehaviour {
     private int _enemiesCreated;
     private int _enemiesDestroyed;
 
+    private bool _init;
+
     //Unity Methods
 
     void Awake() {
@@ -21,11 +23,17 @@ public class HordeModeMGR : MonoBehaviour {
     }
 
     private void Start() {
-        _roundNumber = 0;
-        StartNextRound();
+        _init = false;
     }
 
     private void Update() {
+        if (!_init) {
+            _roundNumber = 0;
+            StartNextRound();
+            NewGameHUD.SetAsHordeMode();
+            _init = true;
+        }
+
         _currentRound.TryToSpawnHorde();
     }
 

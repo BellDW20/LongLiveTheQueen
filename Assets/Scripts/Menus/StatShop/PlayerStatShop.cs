@@ -64,28 +64,33 @@ public class PlayerStatShop : MonoBehaviour {
         _statsMenu.Enable();
     }
 
-    public void UpgradeHealth() {
-        if(_pInfo.TryToPurchaseSkill(PlayerSkill.MAX_HEALTH_SCALE)) {
-            _pInfo.ResetHealth();
+    private void UpgradeSkill(PlayerSkill skill) {
+        if (_pInfo.TryToPurchaseSkill(skill)) {
+            SoundManager.PlaySFX(SFX.MENU_CONFIRM);
             NewGameHUD.UpdatePlayerScoreVisual(_playerNum);
-            NewGameHUD.UpdatePlayerHealthVisual(_playerNum);
+        }
+        else {
+            SoundManager.PlaySFX(SFX.MENU_ERROR);
         }
     }
 
+    public void UpgradeHealth() {
+        UpgradeSkill(PlayerSkill.MAX_HEALTH_SCALE);
+        NewGameHUD.UpdatePlayerHealthVisual(_playerNum);
+    }
+
     public void UpgradeDamage() {
-        _pInfo.TryToPurchaseSkill(PlayerSkill.DAMAGE_SCALE);
-        NewGameHUD.UpdatePlayerScoreVisual(_playerNum);
+        UpgradeSkill(PlayerSkill.DAMAGE_SCALE);
     }
 
     public void UpgradeCooldown() {
-        _pInfo.TryToPurchaseSkill(PlayerSkill.SPECIAL_COOLDOWN_SCALE);
-        NewGameHUD.UpdatePlayerScoreVisual(_playerNum);
+        UpgradeSkill(PlayerSkill.SPECIAL_COOLDOWN_SCALE);
     }
 
     public void UpgradeSpread() {
-        _pInfo.TryToPurchaseSkill(PlayerSkill.SPREAD);
-        NewGameHUD.UpdatePlayerScoreVisual(_playerNum);
+        UpgradeSkill(PlayerSkill.SPREAD);
     }
+
     public void Confirm() {
         _confirmed = true;
         _statsMenu.Disable();

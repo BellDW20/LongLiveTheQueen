@@ -54,7 +54,7 @@ MonoBehaviour:
     _shotVelocity: 12
     _projectile: {fileID: 2237722464296919006, guid: ae2d35ee2ade850469a54cf929d9c670, type: 3}
     _icon: {fileID: 8014653880119248344, guid: ae2209152b6c0744595ce61ee3255a46, type: 3}
-    _shotSound: 0
+    _shotSound: 11
     _type: 0
 --- !u!61 &381022205381961202
 BoxCollider2D:

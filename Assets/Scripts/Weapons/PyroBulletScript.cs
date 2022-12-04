@@ -17,7 +17,6 @@ public class PyroBulletScript : PlayerProjectileScript {
     public override void OnEnemyHit(GameObject enemy)
     {
         EnemyHealthScript.DamageAndScore(enemy, DAMAGE, _playerCreatedBy);
-        SoundManager.PlaySFX(SFX.ENEMY_HIT);
     }
 
     void Die()

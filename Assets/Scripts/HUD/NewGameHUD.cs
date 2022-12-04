@@ -31,13 +31,13 @@ public class NewGameHUD : MonoBehaviour {
                 players++;
             }
         }
+    }
 
-        /*if (players > 2) {
-            bottomBanner.SetActive(true);
+    public static void SetAsHordeMode() {
+        for(int i=0; i<LevelManagerScript.GetPlayerCount(); i++) {
+            instance.playerHuds[i].SetHordeMode(true);
+            instance.playerHuds[i].Refresh();
         }
-        else {
-            bottomBanner.SetActive(false);
-        }*/
     }
 
     //Updates the health bar for a specific player. Called only when

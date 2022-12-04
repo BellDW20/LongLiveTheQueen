@@ -156,6 +156,7 @@ public class PlayerInfo {
     //returning true if the player leveled up as a result
     public bool AddToScore(int points) {
         score += points;
+        spendableScore += points;
         int lastLevel = level;
         
         //While we still have enough points to level up...

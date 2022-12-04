@@ -31,22 +31,26 @@ public class MainMenuScript : MonoBehaviour {
 
     //When the multiplayer button is pressed on the main menu...
     public void OnCoOpPressed() {
+        SoundManager.PlaySFX(SFX.MENU_CONFIRM);
         SceneTransitioner.BeginTransition(SceneTransitioner.FADE_OUT, 0.5f, "CharacterSelectMenu");
     }
 
     //When the help button is pressed on the main menu...
     public void OnHelpPressed() {
+        SoundManager.PlaySFX(SFX.MENU_CONFIRM);
         _mainCanvas.SetActive(false); //Make the main menu invisible
         _helpCanvas.SetActive(true); //Make the help menu visible
     }
 
     //When the quit button is pressed on the main menu...
     public void OnQuitPressed() {
+        SoundManager.PlaySFX(SFX.MENU_CONFIRM);
         //Quit the game
         Application.Quit();
     }
 
     public void OnHighscorePressed() {
+        SoundManager.PlaySFX(SFX.MENU_CONFIRM);
         _mainCanvas.SetActive(false);
         _highscoreCanvas.SetActive(true);
     }

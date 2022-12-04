@@ -67,6 +67,7 @@ public class MenuSelector : MonoBehaviour {
         _selected = Mathf.Clamp(_selected, 0, _selections.Length - 1);
 
         if (_selected != _lastSelected) {
+            SoundManager.PlaySFX(SFX.MENU_SELECT);
             UpdateSelection();
         }
 

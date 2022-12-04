@@ -152,5 +152,5 @@ MonoBehaviour:
     _shotVelocity: 11
     _projectile: {fileID: 5638416308201801926, guid: 1046af7083e72e145b11b1adbbc9b2b4, type: 3}
     _icon: {fileID: 4374028833568981305, guid: ae2209152b6c0744595ce61ee3255a46, type: 3}
-    _shotSound: 0
+    _shotSound: 13
     _type: 1

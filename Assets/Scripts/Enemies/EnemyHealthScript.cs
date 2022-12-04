@@ -39,7 +39,9 @@ public class EnemyHealthScript : MonoBehaviour {
         damageTaken += (prevHealth - health);
 
         //Create particles (blood and number indicating damage dealt)
-        Instantiate(BLOOD_PARTICLES, _transform.position, Quaternion.identity);
+        if (Random.value > 0.7f) {
+            Instantiate(BLOOD_PARTICLES, _transform.position, Quaternion.identity);
+        }
 
         GameObject dmgParticle = Instantiate(DAMAGE_PARTICLE, _transform.position, Quaternion.identity);
         dmgParticle.GetComponent<DamageIndicatorScript>()._damageText.text = "" + (int)(prevHealth - health);
