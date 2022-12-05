@@ -14,24 +14,16 @@ public class MainMenuScript : MonoBehaviour {
         InputManager.ResetJoystickAssignment();
     }
 
-    public void Update() {
-        if (Input.GetKey(KeyCode.Q) && Input.GetKey(KeyCode.P) && Input.GetKey(KeyCode.Comma)) {
-            LevelManagerScript.SetupGame(PlayerType.COMMANDO);
-            LevelManagerScript.BeginLevel(LevelManagerScript.HORDE_MODE, LevelManagerScript.LEVEL_TRANSITION);
-        }
-    }
-
-    //When the singleplayer button is pressed on the main menu...
-    public void OnSinglePlayerPressed() {
-        //Setup variables in the level manager for a singleplayer game
-        LevelManagerScript.SetupGame(PlayerType.COMMANDO);
-        //Then tell the level manager to start the first level using a full level transition
-        LevelManagerScript.BeginLevel(LevelManagerScript.LEVEL_1_1, LevelManagerScript.LEVEL_TRANSITION);
-    }
-
     //When the multiplayer button is pressed on the main menu...
-    public void OnCoOpPressed() {
+    public void OnArcadeModePressed() {
         SoundManager.PlaySFX(SFX.MENU_CONFIRM);
+        LevelManagerScript.SetMode(GameMode.ARCADE_MODE);
+        SceneTransitioner.BeginTransition(SceneTransitioner.FADE_OUT, 0.5f, "CharacterSelectMenu");
+    }
+
+    public void OnHordeModePressed() {
+        SoundManager.PlaySFX(SFX.MENU_CONFIRM);
+        LevelManagerScript.SetMode(GameMode.HORDE_MODE);
         SceneTransitioner.BeginTransition(SceneTransitioner.FADE_OUT, 0.5f, "CharacterSelectMenu");
     }
 

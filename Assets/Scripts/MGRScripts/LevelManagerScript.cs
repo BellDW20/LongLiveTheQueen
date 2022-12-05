@@ -28,6 +28,7 @@ public class LevelManagerScript : MonoBehaviour {
 
     private static int _levelToTransitionTo; //Level to transition to
     private static int _levelTransitionType; //How the level should be transitioned to (constants above are used)
+    private static GameMode _mode; //Current game mode
 
     [SerializeField] private Transform[] _pSpawns; //The positions at which players spawn
     [SerializeField] private GameObject[] _PlayerPrefabs; //The prefabs for all types of players
@@ -52,6 +53,10 @@ public class LevelManagerScript : MonoBehaviour {
                 if (pInfos[i] != null) {
                     //Reset important player info like health/ammo
                     pInfos[i].ClearForNextLevel();
+                    //If it is horde mode, players only have one life!
+                    if (LevelManagerScript.GetMode() == GameMode.HORDE_MODE) {
+                        pInfos[i].stock = 0;
+                    }
                 }
             }
         }
@@ -131,6 +136,13 @@ public class LevelManagerScript : MonoBehaviour {
         //matches the number who have used up all of their continues,
         //a game over has occurred
         return (playersInGame == playersDead);
+    }
+
+    public static void SetMode(GameMode mode) {
+        _mode = mode;
+    }
+    public static GameMode GetMode() {
+        return _mode;
     }
 
     public static void WinGame() {

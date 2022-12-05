@@ -21,6 +21,11 @@ public class EnemyHealthScript : MonoBehaviour {
         _transform = transform;
     }
 
+    public void ScaleHealth(float scale) {
+        health *= scale;
+        max_health *= scale;
+    }
+
     public void Heal(float hp) {
         //Adjust the health by the passed value, capping health to max_health
         health = Mathf.Min(health + hp, 2*max_health);

@@ -50,6 +50,10 @@ public class PlayerController : MonoBehaviour {
 
     private Vector2 _lookDirection;
 
+    //Horde mode stuff
+    private const float TIME_BEFORE_HEAL = 4f;
+    private const float HEAL_AMT_PER_SEC = 20;
+
     public virtual void Start() {
         _rbody = GetComponent<Rigidbody2D>();
         _collider = GetComponent<CircleCollider2D>();
@@ -77,6 +81,16 @@ public class PlayerController : MonoBehaviour {
 
     public virtual void Update() {
         if (IsDead() || Time.timeScale == 0) { return; }
+
+        if(LevelManagerScript.GetMode() == GameMode.HORDE_MODE) {
+            if(Time.time - _timeLastDamaged > TIME_BEFORE_HEAL) {
+                float _lastHealth = _playerInfo.health;
+                _playerInfo.health = Mathf.Clamp(_playerInfo.health + Time.deltaTime * HEAL_AMT_PER_SEC, 0, _playerInfo.GetMaxHealth());
+                if (_playerInfo.health != _lastHealth) {
+                    NewGameHUD.UpdatePlayerHealthVisual(_playerNumber);
+                }
+            }
+        }
 
         if (IsInvulnerable()) {
             _spr.color = INVULN_COLOR;

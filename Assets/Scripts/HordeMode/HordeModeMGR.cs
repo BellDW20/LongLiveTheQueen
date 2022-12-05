@@ -9,7 +9,7 @@ public class HordeModeMGR : MonoBehaviour {
     [SerializeField] private List<HordeModeArea> _areasUnlocked;
     [SerializeField] private GameObject[] _enemyPrefabs;
 
-    private int _roundNumber;
+    private int _roundNumber, _playerCount;
     private HordeModeRound _currentRound;
     private int _enemiesCreated;
     private int _enemiesDestroyed;
@@ -20,6 +20,7 @@ public class HordeModeMGR : MonoBehaviour {
 
     void Awake() {
         instance = this;
+        _playerCount = LevelManagerScript.GetPlayerCount();
     }
 
     private void Start() {
@@ -56,26 +57,40 @@ public class HordeModeMGR : MonoBehaviour {
     private void CreateEnemy(GameObject prefab, Vector3 spawnpoint) {
         GameObject enemy = Instantiate(prefab, spawnpoint, Quaternion.identity);
         enemy.AddComponent<HordeEnemyScript>();
+        enemy.GetComponent<EnemyHealthScript>().ScaleHealth(_currentRound.ENEMY_HEALTH_SCALE);
+
+        Enemy pathingScript = enemy.GetComponent<Enemy>();
+        if (pathingScript != null) {
+            pathingScript.SPEED *= _currentRound.ENEMY_SPEED_SCALE;
+            pathingScript.RANGE = 1000;
+        }
+
         _enemiesCreated++;
     }
 
     private void i_SpawnEnemy(EnemyType enemy) {
-        CreateEnemy(_enemyPrefabs[(int)enemy], GetAvailableSpawnpoint());
+        for (int i = 0; i < _playerCount; i++) {
+            CreateEnemy(_enemyPrefabs[(int)enemy], GetAvailableSpawnpoint());
+        }
     }
 
     private void i_SpawnHorde(EnemyType enemy, int count) {
-        Vector3 spawnpoint = GetAvailableSpawnpoint();
-        for(int i=0; i<count; i++) {
-            CreateEnemy(_enemyPrefabs[(int)enemy], spawnpoint);
+        for (int p = 0; p < _playerCount; p++) {
+            Vector3 spawnpoint = GetAvailableSpawnpoint();
+            for (int i = 0; i < count; i++) {
+                CreateEnemy(_enemyPrefabs[(int)enemy], spawnpoint);
+            }
         }
     }
 
     private void i_SpawnHorde(Horde horde) {
-        Vector3 spawnpoint = GetAvailableSpawnpoint();
-        for(int i=0; i<horde._enemyCounts.Length; i++) {
-            GameObject enemyPrefab = _enemyPrefabs[(int)horde._enemyTypes[i]];
-            for (int j=0; j<horde._enemyCounts[i]; j++) {
-                CreateEnemy(enemyPrefab, spawnpoint);
+        for (int p = 0; p < _playerCount; p++) {
+            Vector3 spawnpoint = GetAvailableSpawnpoint();
+            for (int i = 0; i < horde._enemyCounts.Length; i++) {
+                GameObject enemyPrefab = _enemyPrefabs[(int)horde._enemyTypes[i]];
+                for (int j = 0; j < horde._enemyCounts[i]; j++) {
+                    CreateEnemy(enemyPrefab, spawnpoint);
+                }
             }
         }
     }
