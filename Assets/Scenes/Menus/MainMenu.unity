@@ -1226,7 +1226,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &739103067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1329,6 +1329,7 @@ MonoBehaviour:
   - {fileID: 1038613881}
   - {fileID: 1132491188}
   - {fileID: 481195173}
+  _timeTexts: []
 --- !u!114 &761517575 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4957617971284929357, guid: cdf804c9ecdc9fe42b466d009c501f57, type: 3}
@@ -1438,12 +1439,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7224318835231235752, guid: cdf804c9ecdc9fe42b466d009c501f57, type: 3}
   m_PrefabInstance: {fileID: 771442060}
   m_PrefabAsset: {fileID: 0}
-  _timeTexts:
-  - {fileID: 2145605335}
-  - {fileID: 1163112421}
-  - {fileID: 2081301961}
-  - {fileID: 521109159}
-  - {fileID: 10530895}
 --- !u!1 &798962045
 GameObject:
   m_ObjectHideFlags: 0
@@ -2903,7 +2898,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1690536723
 Transform:
   m_ObjectHideFlags: 0
