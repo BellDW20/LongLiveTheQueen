@@ -55,7 +55,7 @@ public class BestTimeEntry
         char[] charsToTrim = {' ', ','};
         playerTypeString.TrimEnd(charsToTrim);
 
-        return $"{playerTypeString}: {_time}";
+        return $"{playerTypeString}: {_time.ToString("mm':'ss")}";
     }
 };
 
@@ -86,7 +86,7 @@ public class HighScoreManager : MonoBehaviour {
             };
         for (int i = 0; i < HIGH_SCORE_TABLE_SIZE; i++)
         {
-            tempTimes.Add(new BestTimeEntry(dummyPlayers, TimeSpan.FromSeconds(3599 - i*60)));
+            tempTimes.Add(new BestTimeEntry(dummyPlayers, TimeSpan.FromSeconds(599 + i*60)));
         }
         _bestTimes = SetupFile(BestTimeFilePath(), tempTimes);
 
@@ -98,13 +98,13 @@ public class HighScoreManager : MonoBehaviour {
         }
         _hordeHighScores = SetupFile(HordeHighScoreFilePath(), tempScores);
 
-        //Set up regular mode best times file
+        //Set up horde mode best times file
         tempTimes = new List<BestTimeEntry>();
         for (int i = 0; i < HIGH_SCORE_TABLE_SIZE; i++)
         {
-            tempTimes.Add(new BestTimeEntry(dummyPlayers, TimeSpan.FromSeconds(59 + i*60)));
+            tempTimes.Add(new BestTimeEntry(dummyPlayers, TimeSpan.FromSeconds(599 + i*60)));
         }
-        _bestTimes = SetupFile(HordeBestTimeFilePath(), tempTimes);
+        _hordeBestTimes = SetupFile(HordeBestTimeFilePath(), tempTimes);
     }
 
     /// <summary>
@@ -209,15 +209,15 @@ public class HighScoreManager : MonoBehaviour {
                     break;
                 }
             }
-            //If not, we didn't get a high score
+            //If not, we didn't get a best time
             if (timePos == -1) { return -1; }
 
-            //swap all lower values down to make room for high score
+            //swap all higher values down to make room for best time
             for (int i = 0; i < timePos; i++)
             {
                 _bestTimes[i] = _bestTimes[i + 1];
             }
-            //place the new high score in the correct position
+            //place the new best time in the correct position
             _bestTimes[timePos] = new BestTimeEntry(playerTypes, time);
             SaveToFile(BestTimeFilePath(), _bestTimes); //save our changes
         }
