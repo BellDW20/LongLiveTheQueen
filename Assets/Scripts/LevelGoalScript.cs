@@ -15,6 +15,7 @@ public class LevelGoalScript : MonoBehaviour {
 
     private bool _triggered; //Whether or not this goal has been triggered by a player
     private float _timeTriggered; //The time at which this goal was triggered by a player
+    private static float _timeTakenOnGame = 0;
 
     private void Update() {
         //If the goal has been triggered and it has been a sufficient amount
@@ -40,6 +41,7 @@ public class LevelGoalScript : MonoBehaviour {
             //Remember that a player has touched the goal (and the time it occurred)
             _triggered = true;
             _timeTriggered = Time.realtimeSinceStartup;
+            _timeTakenOnGame += LevelManagerScript.GetTimeTakenOnLevel();
 
             //Stop all sounds, and play the level clear sound
             SoundManager.StopAllSounds();
@@ -48,6 +50,16 @@ public class LevelGoalScript : MonoBehaviour {
             //Pause all other game activities temporarily
             Time.timeScale = 0;
         }
+    }
+
+    public static float GetGameTime()
+    {
+        return _timeTakenOnGame;
+    }
+
+    public static void SetGameTime(float time)
+    {
+        _timeTakenOnGame += time;
     }
 
 }
