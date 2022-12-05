@@ -32,10 +32,13 @@ public class LevelManagerScript : MonoBehaviour {
     [SerializeField] private Transform[] _pSpawns; //The positions at which players spawn
     [SerializeField] private GameObject[] _PlayerPrefabs; //The prefabs for all types of players
     [SerializeField] private GameObject[] _gunPrefabs;
+    private float _timeLevelStarted;
+
     private static GameObject[] players = new GameObject[4]; //References to each player in the active level
     public static PlayerInfo[] pInfos = new PlayerInfo[4]; //The data for each player saved globally to carry across levels
     private static int _playerCount; //The number of players that were setup to play this game
     private static bool _gameWon; //Whether or not the game was won upon the game ending (false=game over)
+    private static float _timeTakenOnLevel;
 
     private static LevelManagerScript instance;
 
@@ -68,6 +71,12 @@ public class LevelManagerScript : MonoBehaviour {
                 );
             }
         }
+        _timeLevelStarted = Time.time;
+        _timeTakenOnLevel = 0;
+    }
+
+    private void Update() {
+        _timeTakenOnLevel = Time.time - _timeLevelStarted;
     }
 
     //Sets up a transition to a given level / sublevel
@@ -130,6 +139,10 @@ public class LevelManagerScript : MonoBehaviour {
 
     public static bool WasGameWon() {
         return _gameWon;
+    }
+
+    public static float GetTimeTakenOnLevel() {
+        return _timeTakenOnLevel;
     }
 
     //Gives the display name of the currently loaded level

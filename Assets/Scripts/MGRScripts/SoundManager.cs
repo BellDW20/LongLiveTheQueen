@@ -27,8 +27,10 @@ public class SoundManager : MonoBehaviour {
         //Play music corresponding to the scene we are in, if applicable
         switch(SceneManager.GetActiveScene().name) {
             case "Level1Scene":
-            case "Level2Scene":
                 I_PlayMusic(Music.LEVEL_1);
+                break;
+            case "Level2Scene":
+                I_PlayMusic(Music.LEVEL_2);
                 break;
             case "BossRoom":
                 I_PlayMusic(Music.BOSS_THEME);

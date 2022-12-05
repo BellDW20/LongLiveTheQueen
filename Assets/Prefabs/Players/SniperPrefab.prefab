@@ -163,6 +163,9 @@ MonoBehaviour:
     _shotSound: 1
     _type: 4
   _playerIndicatorText: {fileID: 6773976548647663979}
+  LEVEL_UP_INDICATOR: {fileID: 4770237785805527721, guid: 1d6ea39bf633f1d4eb407b66907787e3, type: 3}
+  SPECIAL_READY_INDICATOR: {fileID: 7606579692388456188, guid: a8c8059e38a5ea74b86f9bd52ca5b7fb, type: 3}
+  GRAVESTONE: {fileID: 407477775594851025, guid: 58fa779f11c6d7e4abf4addff2b25523, type: 3}
 --- !u!95 &5074306447314417217
 Animator:
   serializedVersion: 3

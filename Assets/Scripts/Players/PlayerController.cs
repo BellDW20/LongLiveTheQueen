@@ -24,6 +24,14 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private Gun _specialGun;
     [SerializeField] private Text _playerIndicatorText;
 
+    [SerializeField] private GameObject LEVEL_UP_INDICATOR;
+    [SerializeField] private GameObject SPECIAL_READY_INDICATOR;
+    private bool _lastSpecialReady, _specialReady;
+    private int _lastLevel, _thisLevel;
+
+    [SerializeField] private GameObject GRAVESTONE;
+    private GameObject _gravestoneInstance;
+
     private Gun _currentGun;
     private bool _canPickup;
 
@@ -60,6 +68,11 @@ public class PlayerController : MonoBehaviour {
 
         _playerIndicatorText.color = PlayerInfo.PLAYER_NUM_COLORS[_playerNumber];
         _playerIndicatorText.text = "P" + (_playerNumber + 1);
+
+        _specialReady = true;
+        _lastSpecialReady = true;
+        _thisLevel = _playerInfo.level;
+        _lastLevel = _playerInfo.level;
     }
 
     public virtual void Update() {
@@ -99,13 +112,8 @@ public class PlayerController : MonoBehaviour {
 
             col = Physics2D.OverlapCircle(_rbody.position, 1f, 1 << LayerMask.NameToLayer("WeaponSales"));
             if(col) {
-                WeaponSaleSign sale = col.GetComponent<WeaponSaleSign>();
-                if (_playerInfo.TryToPurchase(sale.GetPrice())) {
-                    _secondaryGun = sale.GetGun();
-                    _secondaryGun.Init();
-                    _currentGun = _secondaryGun;
-                    NewGameHUD.UpdatePlayerScoreVisual(_playerNumber);
-                }
+                SaleSignScript sale = col.GetComponent<SaleSignScript>();
+                sale.AttemptPurchase(this, _playerInfo);
             }
 
         }
@@ -142,6 +150,13 @@ public class PlayerController : MonoBehaviour {
             UpdateLookDirection();
         }
 
+        _lastLevel = _thisLevel;
+        _thisLevel = _playerInfo.level;
+        if(_lastLevel != _thisLevel) {
+            GameObject lvUp = Instantiate(LEVEL_UP_INDICATOR, transform.position, Quaternion.identity);
+            lvUp.GetComponent<FloatingTextScript>().SetTrackingWith(_transform);
+        }
+
         HandleShooting();
 
         if (_isDashing) return;
@@ -166,6 +181,12 @@ public class PlayerController : MonoBehaviour {
         }
 
         //Updates the "Special Ready" text
+        _lastSpecialReady = _specialReady;
+        _specialReady = _specialGun.CanUse();
+        if(!_lastSpecialReady && _specialReady) {
+            GameObject spReady = Instantiate(SPECIAL_READY_INDICATOR, transform.position, Quaternion.identity);
+            spReady.GetComponent<FloatingTextScript>().SetTrackingWith(_transform);
+        }
         NewGameHUD.UpdatePlayerSpecialVisual(_playerNumber, _specialGun);
     }
 
@@ -231,6 +252,8 @@ public class PlayerController : MonoBehaviour {
         _rbody.simulated = false;
         _collider.enabled = false;
 
+        _gravestoneInstance = Instantiate(GRAVESTONE, _transform.position, Quaternion.identity);
+
         if (_playerInfo.stock>=0) {
             Invoke("Respawn", 3);
         } else if (LevelManagerScript.IsGameOver()) {
@@ -245,6 +268,7 @@ public class PlayerController : MonoBehaviour {
         _collider.enabled = true;
         _timeLastRespawned = Time.time;
         _playerInfo.health = _playerInfo.GetMaxHealth();
+        if (_gravestoneInstance != null) { Destroy(_gravestoneInstance); }
         NewGameHUD.UpdatePlayerHealthVisual(_playerNumber);
     }
 
@@ -272,6 +296,12 @@ public class PlayerController : MonoBehaviour {
         {
             _currentGun = _secondaryGun;
         }
+    }
+
+    public void GiveSecondary(Gun gun) {
+        _secondaryGun = gun;
+        _secondaryGun.Init();
+        _currentGun = _secondaryGun;
     }
 
 }

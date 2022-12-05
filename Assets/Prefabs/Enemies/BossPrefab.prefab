@@ -62,6 +62,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   max_health: 3000
+  isBoss: 1
   BLOOD_PARTICLES: {fileID: 423819991086098478, guid: 12f1530a4737f974ba5e594a062af0a0, type: 3}
   DAMAGE_PARTICLE: {fileID: 1979408659339054658, guid: a1420778f82e322478bd0a4213574dd6, type: 3}
 --- !u!114 &3728783564659439336

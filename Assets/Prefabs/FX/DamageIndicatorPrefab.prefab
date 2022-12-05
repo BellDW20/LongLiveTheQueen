@@ -44,7 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52b782fda058eb54b9425bc617cba572, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damageText: {fileID: 6868325245050661137}
+  TIME_TO_LIVE: 0.5
+  _text: {fileID: 6868325245050661137}
+  _direction: {x: 0, y: 0}
 --- !u!1 &3037665241193430279
 GameObject:
   m_ObjectHideFlags: 0

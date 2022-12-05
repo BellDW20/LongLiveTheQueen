@@ -99,9 +99,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tooltipText: {fileID: 5451550390544989035}
-  _gunIcon: {fileID: 599528837599934682}
-  _gunTypeToSell: 0
-  _gunPrice: 2000
+  _icon: {fileID: 2290769151633152189, guid: ae2209152b6c0744595ce61ee3255a46, type: 3}
+  _price: 0
+  _iconRenderer: {fileID: 599528837599934682}
+  _gunTypeToSell: 3
 --- !u!58 &7703533637771022694
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -11,10 +11,19 @@ public class NewGameHUD : MonoBehaviour {
     [SerializeField] private Image[] playerHudBackdrops;
     private NewPlayerHUD[] playerHuds;
 
+    [SerializeField] private GameObject bossHud;
+    [SerializeField] private Transform bossHealthBar;
+    private EnemyHealthScript bossHealthScript;
+    private bool isBossActive;
+
+    [SerializeField] GameObject timerHud;
+    [SerializeField] Text timerText;
+
     void Awake() {
         //make the current scene's HUD instance the current instance
         instance = this;
     }
+
     private void Start() {
         int players = 0;
 
@@ -33,7 +42,39 @@ public class NewGameHUD : MonoBehaviour {
         }
     }
 
+    public void Update() {
+        if(isBossActive) { UpdateBossHealthBar(); }
+
+        float time = LevelManagerScript.GetTimeTakenOnLevel();
+        int minutes = (int)Mathf.Floor(time / 60);
+        time -= 60 * minutes;
+        int seconds = (int)time;
+
+        timerText.text = minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+    }
+
+    private void UpdateBossHealthBar() {
+        if(bossHealthScript == null) {
+            isBossActive = false;
+            bossHud.SetActive(false);
+            return;
+        }
+        bossHealthBar.localScale = Vector3.Lerp(
+            bossHealthBar.localScale, 
+            new Vector3(Mathf.Clamp01(bossHealthScript.GetHealth() / bossHealthScript.GetMaxHealth()), 1, 1),
+            0.5f
+        );
+    }
+
+    private void i_BeginBossFight(EnemyHealthScript boss) {
+        bossHealthScript = boss;
+        isBossActive = true;
+        bossHud.SetActive(true);
+        bossHealthBar.localScale = new Vector3(1, 1, 1);
+    }
+
     public static void SetAsHordeMode() {
+        instance.timerHud.SetActive(false);
         for(int i=0; i<LevelManagerScript.GetPlayerCount(); i++) {
             instance.playerHuds[i].SetHordeMode(true);
             instance.playerHuds[i].Refresh();
@@ -65,6 +106,10 @@ public class NewGameHUD : MonoBehaviour {
 
     public static void UpdatePlayerSpecialVisual(int player, Gun special) {
         instance.playerHuds[player].UpdateSpecialVisual(special);
+    }
+
+    public static void BeginBossFight(EnemyHealthScript boss) {
+        instance.i_BeginBossFight(boss);
     }
 
 }

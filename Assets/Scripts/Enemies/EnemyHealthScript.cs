@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyHealthScript : MonoBehaviour {
 
     [SerializeField] private float max_health; //The maximum health of the enemy
+    [SerializeField] private bool isBoss; //Whether or not this enemy is a boss
     [SerializeField] private GameObject BLOOD_PARTICLES; //Blood particle prefab to spawn when damaged
     [SerializeField] private GameObject DAMAGE_PARTICLE; //Damage amount particle prefab to spawn when damaged
     private Transform _transform; //Position of the enemy
@@ -12,6 +13,9 @@ public class EnemyHealthScript : MonoBehaviour {
     private float damageTaken; //The amount of damage this enemy has taken over time
 
     public void Start() {
+        if(isBoss) {
+            NewGameHUD.BeginBossFight(this);
+        }
         //Set our health to max
         health = max_health;
         _transform = transform;
@@ -44,7 +48,7 @@ public class EnemyHealthScript : MonoBehaviour {
         }
 
         GameObject dmgParticle = Instantiate(DAMAGE_PARTICLE, _transform.position, Quaternion.identity);
-        dmgParticle.GetComponent<DamageIndicatorScript>()._damageText.text = "" + (int)(prevHealth - health);
+        dmgParticle.GetComponent<DamageIndicatorScript>().SetText("" + (int)(prevHealth - health));
 
         //return the total 
         return (damageTaken < 1.1f*max_health) ? (prevHealth - health) : 0;
@@ -52,6 +56,10 @@ public class EnemyHealthScript : MonoBehaviour {
 
     public float GetHealth() {
         return health;
+    }
+
+    public float GetMaxHealth() {
+        return max_health;
     }
 
     //Used to both damage an enemy which has an EnemyHealthScript while taking into account
