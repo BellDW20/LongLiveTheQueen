@@ -86,7 +86,7 @@ public class HighScoreManager : MonoBehaviour {
             };
         for (int i = 0; i < HIGH_SCORE_TABLE_SIZE; i++)
         {
-            tempTimes.Add(new BestTimeEntry(dummyPlayers, TimeSpan.FromSeconds(599 + i*60)));
+            tempTimes.Add(new BestTimeEntry(dummyPlayers, TimeSpan.FromSeconds(599 + (HIGH_SCORE_TABLE_SIZE - i)*60)));
         }
         _bestTimes = SetupFile(BestTimeFilePath(), tempTimes);
 

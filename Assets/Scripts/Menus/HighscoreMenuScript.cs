@@ -7,22 +7,31 @@ public class HighscoreMenuScript : MonoBehaviour
 {
 
     [SerializeField] private GameObject _mainCanvas; //Canvas full of main menu UI objects
-    [SerializeField] private List<Text> _highscoreTexts;
-    [SerializeField] private List<Text> _timeTexts;
+    [SerializeField] private List<Text> _storyHighscoreTexts;
+    [SerializeField] private List<Text> _storyTimeTexts;
+    [SerializeField] private List<Text> _arcadeHighscoreTexts;
+    [SerializeField] private List<Text> _arcadeTimeTexts;
+    [SerializeField] private GameObject _storyMode;
+    [SerializeField] private GameObject _hordeMode;
+    [SerializeField] private Text _changeModeText;
 
     // Start is called before the first frame update
     void Start()
     {
-        List<HighScoreEntry> highScores = HighScoreManager.GetScores();
-        for (int i = 0; i < highScores.Count; i++)
-        {
-            _highscoreTexts[highScores.Count - (i + 1)].text = $"{highScores.Count - i}. {highScores[i]}";
-        }
+        _storyMode.SetActive(true);
+        _changeModeText.text = "Arcade Mode Scores";
 
-        List<BestTimeEntry> bestTimes = HighScoreManager.GetTimes();
-        for (int i = 0; i < bestTimes.Count; i++)
+        List<HighScoreEntry> storyHighScores = HighScoreManager.GetScores();
+        List<BestTimeEntry> storyBestTimes = HighScoreManager.GetTimes();
+        List<HighScoreEntry> arcadeHighScores = HighScoreManager.GetHordeScores();
+        List<BestTimeEntry> arcadeBestTimes = HighScoreManager.GetHordeTimes();
+
+        for (int i = 0; i < storyHighScores.Count; i++)
         {
-            _timeTexts[bestTimes.Count - (i + 1)].text = $"{bestTimes.Count - i}. {bestTimes[i]}";
+            _storyHighscoreTexts[storyHighScores.Count - (i + 1)].text = $"{storyHighScores.Count - i}. {storyHighScores[i]}";
+            _storyTimeTexts[storyBestTimes.Count - (i + 1)].text = $"{storyBestTimes.Count - i}. {storyBestTimes[i]}";
+            _arcadeHighscoreTexts[arcadeHighScores.Count - (i + 1)].text = $"{arcadeHighScores.Count - i}. {arcadeHighScores[i]}";
+            _arcadeTimeTexts[arcadeBestTimes.Count - (i + 1)].text = $"{arcadeBestTimes.Count - i}. {arcadeBestTimes[i]}";
         }
     }
 
@@ -33,6 +42,22 @@ public class HighscoreMenuScript : MonoBehaviour
         {
             _mainCanvas.SetActive(true);
             this.gameObject.SetActive(false);
+        }
+    }
+
+    public void OnChangeScorePressed()
+    {
+        if(_storyMode.activeSelf)
+        {
+            _storyMode.SetActive(false);
+            _hordeMode.SetActive(true);
+            _changeModeText.text = "Story Mode Scores";
+        }
+        else
+        {
+            _storyMode.SetActive(true);
+            _hordeMode.SetActive(false);
+            _changeModeText.text = "Arcade Mode Scores";
         }
     }
 }
