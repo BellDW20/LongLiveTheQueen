@@ -58,6 +58,7 @@ public class PlayerInfo {
 
     public int level; //The current level of this player
     public int spendableLevels; //The player's current level less how much they have spent
+    public float time; //The time the player has taken for the game
 
     public int stock; //How many stocks this player has left
     public float health; //The player's current health
@@ -78,6 +79,7 @@ public class PlayerInfo {
         this.spendableScore = 0;
         this.level = 1;
         this.spendableLevels = 0;
+        this.time = 0;
         this.stock = 3;
 
         this.maxHealthLevel = 0;
