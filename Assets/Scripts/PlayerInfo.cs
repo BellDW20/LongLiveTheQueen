@@ -154,6 +154,17 @@ public class PlayerInfo {
         return false;
     }
 
+
+    //Attempts to complete a purchase using spendable levels if there is enough.
+    //Returns true if the purchase is successful and false if not.
+    public bool TryToPurchaseLevel(int lvlPoints) {
+        if(spendableLevels >= lvlPoints) {
+            spendableLevels -= lvlPoints;
+            return true;
+        }
+        return false;
+    }
+
     //Adds an amount of points to the player's score
     //returning true if the player leveled up as a result
     public bool AddToScore(int points) {

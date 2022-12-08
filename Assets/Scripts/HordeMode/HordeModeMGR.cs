@@ -31,7 +31,6 @@ public class HordeModeMGR : MonoBehaviour {
         if (!_init) {
             _roundNumber = 0;
             StartNextRound();
-            NewGameHUD.SetAsHordeMode();
             _init = true;
         }
 
@@ -42,11 +41,18 @@ public class HordeModeMGR : MonoBehaviour {
 
     private void StartNextRound() {
         _roundNumber++;
+
+        int actualRound = ((_roundNumber-1)%10)+1;
+        int roundScale = ((_roundNumber-1)/10)+1;
+            
         _currentRound = HordeModeRound.FromString(
-            Resources.Load<TextAsset>("HordeModeRounds/round"+_roundNumber).text
+            Resources.Load<TextAsset>("HordeModeRounds/round"+actualRound).text
         );
+        _currentRound.ScaleDifficulty(roundScale);
         _enemiesCreated = 0;
         _enemiesDestroyed = 0;
+
+        NewGameHUD.UpdateRoundVisual(_roundNumber);
     }
 
     private Vector3 GetAvailableSpawnpoint() {

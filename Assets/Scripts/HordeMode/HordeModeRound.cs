@@ -2,8 +2,8 @@
 
 public class HordeModeRound {
 
-    public readonly float ENEMY_HEALTH_SCALE;
-    public readonly float ENEMY_SPEED_SCALE;
+    public float ENEMY_HEALTH_SCALE;
+    public float ENEMY_SPEED_SCALE;
 
     private Horde[] _hordes;
     private float[] _hordeSpawnDelays;
@@ -18,6 +18,14 @@ public class HordeModeRound {
         ENEMY_SPEED_SCALE = enemySpeedScale;
 
         _lastTimeHordeSpawned = Time.time;
+    }
+
+    public void ScaleDifficulty(int scale) {
+        ENEMY_HEALTH_SCALE *= scale;
+        ENEMY_SPEED_SCALE *= Mathf.Sqrt(scale);
+        foreach(Horde horde in _hordes) {
+            horde.ScaleDifficulty(scale);
+        }
     }
 
     public void TryToSpawnHorde() {

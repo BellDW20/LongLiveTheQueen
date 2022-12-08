@@ -13,13 +13,11 @@ public class HighscoreMenuScript : MonoBehaviour
     [SerializeField] private List<Text> _arcadeTimeTexts;
     [SerializeField] private GameObject _storyMode;
     [SerializeField] private GameObject _hordeMode;
-    [SerializeField] private Text _changeModeText;
 
     // Start is called before the first frame update
     void Start()
     {
         _storyMode.SetActive(true);
-        _changeModeText.text = "Arcade Mode Scores";
 
         List<HighScoreEntry> storyHighScores = HighScoreManager.GetScores();
         List<BestTimeEntry> storyBestTimes = HighScoreManager.GetTimes();
@@ -45,19 +43,14 @@ public class HighscoreMenuScript : MonoBehaviour
         }
     }
 
-    public void OnChangeScorePressed()
-    {
-        if(_storyMode.activeSelf)
-        {
-            _storyMode.SetActive(false);
-            _hordeMode.SetActive(true);
-            _changeModeText.text = "Story Mode Scores";
-        }
-        else
-        {
-            _storyMode.SetActive(true);
-            _hordeMode.SetActive(false);
-            _changeModeText.text = "Arcade Mode Scores";
-        }
+    public void OnArcadeModePressed() {
+        _storyMode.SetActive(true);
+        _hordeMode.SetActive(false);
     }
+
+    public void OnHordeModePressed() {
+        _storyMode.SetActive(false);
+        _hordeMode.SetActive(true);
+    }
+
 }

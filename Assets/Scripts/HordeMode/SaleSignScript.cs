@@ -19,15 +19,26 @@ public class SaleSignScript : MonoBehaviour {
         _tooltipText.enabled = Physics2D.OverlapCircle((Vector2)_transform.position, 1f, 1 << (LayerMask.NameToLayer("Players")));
     }
 
-    public void AttemptPurchase(PlayerController pController, PlayerInfo pInfo) {
+    public virtual void AttemptPurchase(PlayerController pController, PlayerInfo pInfo) {
         if (pInfo.TryToPurchase(_price)) {
             CompletePurchase(pController, pInfo);
             NewGameHUD.UpdatePlayerScoreVisual(pController.GetPlayerNumber());
+            OnPurchaseSuccess();
+        } else {
+            OnPurchaseFailure();
         }
     }
 
     protected virtual void CompletePurchase(PlayerController pController, PlayerInfo player) {
         
+    }
+
+    protected void OnPurchaseSuccess() {
+        SoundManager.PlaySFX(SFX.MENU_CONFIRM);
+    }
+
+    protected void OnPurchaseFailure() {
+        SoundManager.PlaySFX(SFX.MENU_ERROR);
     }
 
     public static string GetDefaultText() {

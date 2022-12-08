@@ -19,6 +19,9 @@ public class NewGameHUD : MonoBehaviour {
     [SerializeField] GameObject timerHud;
     [SerializeField] Text timerText;
 
+    [SerializeField] private GameObject roundHud;
+    [SerializeField] private Text roundText;
+
     void Awake() {
         //make the current scene's HUD instance the current instance
         instance = this;
@@ -39,6 +42,12 @@ public class NewGameHUD : MonoBehaviour {
                 playerHuds[i].Refresh();
                 players++;
             }
+        }
+
+        if(LevelManagerScript.GetMode() == GameMode.ARCADE_MODE) {
+            SetAsArcadeMode();
+        }  else {
+            SetAsHordeMode();
         }
     }
 
@@ -73,11 +82,17 @@ public class NewGameHUD : MonoBehaviour {
         bossHealthBar.localScale = new Vector3(1, 1, 1);
     }
 
-    public static void SetAsHordeMode() {
-        instance.timerHud.SetActive(false);
+    private void SetAsArcadeMode() {
+        timerHud.SetActive(true);
+        roundHud.SetActive(false);
+    }
+
+    private void SetAsHordeMode() {
+        timerHud.SetActive(false);
+        roundHud.SetActive(true);
         for(int i=0; i<LevelManagerScript.GetPlayerCount(); i++) {
-            instance.playerHuds[i].SetHordeMode(true);
-            instance.playerHuds[i].Refresh();
+            playerHuds[i].SetHordeMode(true);
+            playerHuds[i].Refresh();
         }
     }
 
@@ -110,6 +125,10 @@ public class NewGameHUD : MonoBehaviour {
 
     public static void BeginBossFight(EnemyHealthScript boss) {
         instance.i_BeginBossFight(boss);
+    }
+
+    public static void UpdateRoundVisual(int round) {
+        instance.roundText.text = "" + round;
     }
 
 }

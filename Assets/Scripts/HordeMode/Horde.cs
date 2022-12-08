@@ -2,11 +2,17 @@
 public class Horde {
 
     public readonly EnemyType[] _enemyTypes;
-    public readonly int[] _enemyCounts;
+    public int[] _enemyCounts;
 
     public Horde(EnemyType[] enemyTypes, int[] enemyCounts) {
         _enemyTypes = enemyTypes;
         _enemyCounts = enemyCounts;
+    }
+
+    public void ScaleDifficulty(int scale) {
+        for (int i = 0; i < _enemyCounts.Length; i++) {
+            _enemyCounts[i] += (scale - 1);
+        }
     }
 
     public static Horde FromString(string str) {
