@@ -7,7 +7,12 @@ public class CameraScript : MonoBehaviour
 {
 
     private Transform _transform; //Focus position of the camera
-    
+
+    [SerializeField] Transform _leftBound; //The left bound of the screen
+    [SerializeField] Transform _rightBound; //The right bound of the screen
+    [SerializeField] Transform _topBound; //The top bound of the screen
+    [SerializeField] Transform _bottomBound; //The bottom bound of the screen
+
     //flags indicating whether the camera is allowed to move in each direction
     private bool _canMoveLeft = false;
     private bool _canMoveRight = false;
@@ -21,12 +26,38 @@ public class CameraScript : MonoBehaviour
     private float _rightTargetX, _upTargetY;
     private float _leftTargetX, _downTargetY;
 
+    private bool _forceablyLocked; //Whether or not the camera is forceably locked (for mini fight rooms)
+    private Vector2 _forceLockPos; //Where the camera is forced to look at if forceably locked
+
     void Start()
     {
         _transform = transform;
+        Vector2 bottomLeft = Camera.main.ViewportToWorldPoint(new Vector3(0, 0));
+        Vector2 topRight = Camera.main.ViewportToWorldPoint(new Vector3(1, 1));
+        float sh = Mathf.Abs(bottomLeft.y - topRight.y);
+        float sw = Mathf.Abs(bottomLeft.x - topRight.x);
+
+        _leftBound.position = new Vector3(bottomLeft.x-0.5f, 0, 0);
+        _leftBound.localScale = new Vector3(1, sh+1, 1);
+
+        _rightBound.position = new Vector3(topRight.x + 0.5f, 0, 0);
+        _rightBound.localScale = new Vector3(1, sh+1, 1);
+
+        _topBound.position = new Vector3(0, topRight.y + 0.5f, 0);
+        _topBound.localScale = new Vector3(sw+1, 1, 1);
+
+        _bottomBound.position = new Vector3(0, bottomLeft.y - 0.5f, 0);
+        _bottomBound.localScale = new Vector3(sw+1, 1, 1);
+
+        _forceablyLocked = false;
+        _forceLockPos = Vector2.zero;
     }
 
     private void FixedUpdate() {
+        if(_forceablyLocked) {
+            _target = _forceLockPos;
+        }
+
         //Set the new x & y positions of the camera so that
         //It moves 1/10th of the way from where it is now to the target position
         float nx = _transform.position.x + (_target.x - _transform.position.x) * 0.1f;
@@ -39,6 +70,9 @@ public class CameraScript : MonoBehaviour
     //We use late update to sync camera panning with finalized player movement
     private void LateUpdate()
     {
+        //If the camera is locked, ignore logic
+        if(_forceablyLocked) { return; }
+
         //Assume initially that we can move the camera in any direction we'd like
         _canMoveLeft = _canMoveRight = _canMoveUp = _canMoveDown = true;
         _anyPlayers = false;
@@ -54,7 +88,7 @@ public class CameraScript : MonoBehaviour
         //For every player's position
         foreach (GameObject player in MSMScript.GetPlayers())
         {
-            if (player.GetComponent<PlayerController>().IsDead()) {
+            if (player.GetComponent<PlayerController>().IsGameOver()) {
                 continue;
             } else {
                 _anyPlayers = true;
@@ -118,4 +152,17 @@ public class CameraScript : MonoBehaviour
         //Update the target position
         _target = new Vector2(targetX, targetY);
     }
+
+    //Locks the camera to a point until further notice
+    public void LockCameraTo(Vector2 pos) {
+        _forceablyLocked = true;
+        _forceLockPos = pos;
+    }
+
+    //Unlocks the camera from the locked position
+    public void UnlockCamera() {
+        _forceablyLocked = false;
+        _forceLockPos = Vector2.zero;
+    }
+
 }

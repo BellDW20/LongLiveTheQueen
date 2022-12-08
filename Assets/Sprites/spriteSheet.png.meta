@@ -191,6 +191,15 @@ TextureImporter:
   - first:
       213: -6541445117329056216
     second: gravestone
+  - first:
+      213: -5214550310080531880
+    second: bfg_bullet0
+  - first:
+      213: -5442178214358356426
+    second: bfg_bullet1
+  - first:
+      213: 4267904419940743421
+    second: rpg_rocket
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -1419,7 +1428,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 48
-        width: 80
+        width: 88
         height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -1758,7 +1767,7 @@ TextureImporter:
         width: 16
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1766,6 +1775,69 @@ TextureImporter:
       bones: []
       spriteID: 82e53e7e25e1835a0800000000000000
       internalID: -6541445117329056216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bfg_bullet0
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 80
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8523f30fe1232a7b0800000000000000
+      internalID: -5214550310080531880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bfg_bullet1
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 80
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63eecc87fbf7974b0800000000000000
+      internalID: -5442178214358356426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rpg_rocket
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 161
+        width: 5
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df833e52574aa3b30800000000000000
+      internalID: 4267904419940743421
       vertices: []
       indices: 
       edges: []

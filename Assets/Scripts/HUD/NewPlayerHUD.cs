@@ -43,7 +43,11 @@ public class NewPlayerHUD : MonoBehaviour {
     }
 
     public void UpdateStockVisual() {
-        _pText.text = "P"+(_playerNum+1)+": " + ((_pInfo.stock >= 0) ? (""+_pInfo.stock) : "DEAD");
+        if(_pInfo.stock >= 0) {
+            _pText.text = "P" + (_playerNum + 1) + ": " + _pInfo.stock;
+        } else {
+            _pText.text = "DEAD";
+        }
     }
 
     public void UpdateSpecialVisual(Gun special) {

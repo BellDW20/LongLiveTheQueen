@@ -2276,7 +2276,6 @@ MonoBehaviour:
   - {fileID: 930172351}
   _storyMode: {fileID: 707463387}
   _hordeMode: {fileID: 1191382807}
-  _changeModeText: {fileID: 0}
 --- !u!4 &865410345
 Transform:
   m_ObjectHideFlags: 0
@@ -3633,7 +3632,6 @@ MonoBehaviour:
   - {fileID: 930172351}
   _storyMode: {fileID: 707463387}
   _hordeMode: {fileID: 1191382807}
-  _changeModeText: {fileID: 0}
 --- !u!114 &1505797169
 MonoBehaviour:
   m_ObjectHideFlags: 0

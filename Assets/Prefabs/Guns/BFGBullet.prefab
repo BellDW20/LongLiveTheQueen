@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -1231829400779794007}
   - component: {fileID: 2938259893682576236}
   - component: {fileID: 4824472691077869260}
+  - component: {fileID: 3972222594370955439}
   m_Layer: 7
   m_Name: BFGBullet
   m_TagString: Untagged
@@ -75,8 +76,8 @@ SpriteRenderer:
   m_SortingLayerID: 1278534193
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: f26b1ee0888c9154586f2b9f07bb8079, type: 3}
-  m_Color: {r: 0.08856952, g: 1, b: 0, a: 1}
+  m_Sprite: {fileID: -5214550310080531880, guid: ae2209152b6c0744595ce61ee3255a46, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -235,3 +236,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DAMAGE: 100
   _lineMaterial: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+--- !u!95 &3972222594370955439
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8914114961300342779}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f52f9ecf5148ff842844c4bb42e69311, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

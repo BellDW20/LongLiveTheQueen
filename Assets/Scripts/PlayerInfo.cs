@@ -126,17 +126,17 @@ public class PlayerInfo {
             spendableLevels -= DAMAGE_COST[damageLevel];
             bought = true;
         }
-        else if (skill == PlayerSkill.MAX_HEALTH_SCALE && maxHealthLevel != MAX_HEALTH_LEVELS && MAX_HEALTH_COST[damageLevel + 1] <= spendableLevels) {
+        else if (skill == PlayerSkill.MAX_HEALTH_SCALE && maxHealthLevel != MAX_HEALTH_LEVELS && MAX_HEALTH_COST[maxHealthLevel + 1] <= spendableLevels) {
             maxHealthLevel++;
             spendableLevels -= MAX_HEALTH_COST[maxHealthLevel];
             bought = true;
         }
-        else if (skill == PlayerSkill.SPECIAL_COOLDOWN_SCALE && specialCooldownLevel != SPECIAL_COOLDOWN_LEVELS && SPECIAL_COOLDOWN_COST[damageLevel + 1] <= spendableLevels) {
+        else if (skill == PlayerSkill.SPECIAL_COOLDOWN_SCALE && specialCooldownLevel != SPECIAL_COOLDOWN_LEVELS && SPECIAL_COOLDOWN_COST[specialCooldownLevel + 1] <= spendableLevels) {
             specialCooldownLevel++;
             spendableLevels -= SPECIAL_COOLDOWN_COST[specialCooldownLevel];
             bought = true;
         }
-        else if (skill == PlayerSkill.SPREAD && spreadLevel != SPREAD_LEVELS && SPREAD_COST[damageLevel + 1] <= spendableLevels) {
+        else if (skill == PlayerSkill.SPREAD && spreadLevel != SPREAD_LEVELS && SPREAD_COST[spreadLevel + 1] <= spendableLevels) {
             spreadLevel++;
             spendableLevels -= SPREAD_COST[spreadLevel];
             bought = true;

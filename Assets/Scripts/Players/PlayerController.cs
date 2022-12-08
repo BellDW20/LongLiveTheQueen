@@ -237,6 +237,11 @@ public class PlayerController : MonoBehaviour {
     public bool IsDead() {
         return _playerInfo.health <= 0;
     }
+
+    public bool IsGameOver() {
+        return IsDead() && _playerInfo.stock < 0;
+    }
+
     public bool IsInvulnerable() {
         return (Time.time - _timeLastDamaged) < INVULN_TIME || (Time.time - _timeLastRespawned) < DEATH_INVULN_TIME;
     }

@@ -16,7 +16,7 @@ public class TextFlasher : MonoBehaviour {
     }
 
     void Update() {
-        _time += Time.deltaTime; //Update how long this text has existed
+        _time += Time.unscaledDeltaTime; //Update how long this text has existed
 
         //Calculate a factor between 0 and 1 depending on how long the
         //text has existed, following a sinusoidal pattern with the given period
