@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour {
     public float INVULN_TIME;
     public float DEATH_INVULN_TIME;
     public GameObject DASH_PARTICLES;
-    [SerializeField] private Gun _primaryGun;
+    [SerializeField] protected Gun _primaryGun;
     private Gun _secondaryGun;
     [SerializeField] private Gun _specialGun;
     [SerializeField] private Text _playerIndicatorText;
@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour {
 
     private Rigidbody2D _rbody;
     private CircleCollider2D _collider;
-    private Transform _transform;
+    protected Transform _transform;
     private Animations _animations;
     private SpriteRenderer _spr;
     private int _playerNumber, _joystickNumber;

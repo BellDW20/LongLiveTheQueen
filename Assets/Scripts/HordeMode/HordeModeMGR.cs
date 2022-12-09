@@ -16,6 +16,8 @@ public class HordeModeMGR : MonoBehaviour {
 
     private bool _init;
 
+    private float _lastTimeAmbientPlayed;
+
     //Unity Methods
 
     void Awake() {
@@ -25,6 +27,7 @@ public class HordeModeMGR : MonoBehaviour {
 
     private void Start() {
         _init = false;
+        _lastTimeAmbientPlayed = -64f;
     }
 
     private void Update() {
@@ -34,7 +37,15 @@ public class HordeModeMGR : MonoBehaviour {
             _init = true;
         }
 
+        if(Time.time - _lastTimeAmbientPlayed > 64f) {
+            if(Random.value > 0.35f) {
+                SoundManager.PlaySFX(SFX.AMBIENT_0);
+            }
+            _lastTimeAmbientPlayed = Time.time;
+        }
+
         _currentRound.TryToSpawnHorde();
+        NewGameHUD.EditBossBar("ENEMIES LEFT: ", 1.0f - (float)_enemiesDestroyed / (_playerCount * _currentRound.totalEnemies));
     }
 
     //Helper Methods
@@ -108,8 +119,8 @@ public class HordeModeMGR : MonoBehaviour {
     private void i_ReportEnemyDeath() {
         _enemiesDestroyed++;
         if(_currentRound.IsFinishedSpawning() && _enemiesCreated == _enemiesDestroyed) {
-            print("Round Over!");
             StartNextRound();
+            SoundManager.PlaySFX(SFX.ROUND_CLEAR);
         }
     }
 

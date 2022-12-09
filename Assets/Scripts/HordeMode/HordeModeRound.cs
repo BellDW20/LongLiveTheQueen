@@ -4,6 +4,7 @@ public class HordeModeRound {
 
     public float ENEMY_HEALTH_SCALE;
     public float ENEMY_SPEED_SCALE;
+    public int totalEnemies;
 
     private Horde[] _hordes;
     private float[] _hordeSpawnDelays;
@@ -16,6 +17,10 @@ public class HordeModeRound {
         _hordeSpawnDelays = hordeSpawnDelays;
         ENEMY_HEALTH_SCALE = enemyHealthScale;
         ENEMY_SPEED_SCALE = enemySpeedScale;
+
+        foreach(Horde horde in hordes) {
+            totalEnemies += horde.GetEnemyCount();
+        }
 
         _lastTimeHordeSpawned = Time.time;
     }

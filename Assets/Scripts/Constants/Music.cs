@@ -6,5 +6,7 @@ public enum Music {
     INTRO,
     BOSS_THEME,
     TITLE_THEME,
-    LEVEL_2
+    LEVEL_2,
+    LEVEL_3,
+    GAME_CLEAR
 }

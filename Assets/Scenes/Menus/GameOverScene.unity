@@ -556,6 +556,9 @@ MonoBehaviour:
   - {fileID: 1725931864}
   - {fileID: 1260806593}
   _pTimeText: {fileID: 1048263463}
+  _background: {fileID: 331932094}
+  _gameOverBkg: {fileID: 21300000, guid: 030a449bdfcbe7a4a96828a402277281, type: 3}
+  _gameClearBkg: {fileID: 21300000, guid: 7a6a393554b286c41a7573197d5018f5, type: 3}
 --- !u!4 &1100284086
 Transform:
   m_ObjectHideFlags: 0

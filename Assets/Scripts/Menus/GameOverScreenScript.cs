@@ -11,6 +11,9 @@ public class GameOverScreenScript : MonoBehaviour {
     [SerializeField] private Text[] _pScoreText; //Texts displaying the active players scores in game
     [SerializeField] private Text _pTimeText; //Text displaying how long the players took
 
+    [SerializeField] private Image _background; //Background on canvas
+    [SerializeField] private Sprite _gameOverBkg; //Background to display on game over
+    [SerializeField] private Sprite _gameClearBkg; //Background to display on game clear
     void Start() {
 
         List<int> playerTypes = new List<int>();
@@ -41,7 +44,10 @@ public class GameOverScreenScript : MonoBehaviour {
         //If the game was not won then we need to add the additional time left over before the level was completed
         if (!LevelManagerScript.WasGameWon())
         {
+            _background.sprite = _gameOverBkg;
             LevelGoalScript.SetGameTime(LevelManagerScript.GetTimeTakenOnLevel());
+        } else {
+            _background.sprite = _gameClearBkg;
         }
 
         //Log the group's time to the high score manager

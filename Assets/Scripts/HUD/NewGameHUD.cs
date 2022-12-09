@@ -12,6 +12,7 @@ public class NewGameHUD : MonoBehaviour {
     private NewPlayerHUD[] playerHuds;
 
     [SerializeField] private GameObject bossHud;
+    [SerializeField] private Text bossName;
     [SerializeField] private Transform bossHealthBar;
     private EnemyHealthScript bossHealthScript;
     private bool isBossActive;
@@ -125,6 +126,17 @@ public class NewGameHUD : MonoBehaviour {
 
     public static void BeginBossFight(EnemyHealthScript boss) {
         instance.i_BeginBossFight(boss);
+        instance.bossName.text = "BOSS HEALTH";
+    }
+
+    public static void EditBossBar(string bossName, float health) {
+        instance.bossHud.SetActive(true);
+        instance.bossName.text = bossName;
+        instance.bossHealthBar.localScale = Vector3.Lerp(
+            instance.bossHealthBar.localScale,
+            new Vector3(Mathf.Clamp01(health), 1, 1),
+            0.5f
+        );
     }
 
     public static void UpdateRoundVisual(int round) {

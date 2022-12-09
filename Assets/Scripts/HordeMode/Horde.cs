@@ -15,6 +15,14 @@ public class Horde {
         }
     }
 
+    public int GetEnemyCount() {
+        int enemies = 0;
+        foreach(int count in _enemyCounts) {
+            enemies += count;
+        }
+        return enemies;
+    }
+
     public static Horde FromString(string str) {
         string[] parts = str.Split(' ');
 

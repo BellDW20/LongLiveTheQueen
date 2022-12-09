@@ -82,7 +82,10 @@ public class MenuSelector : MonoBehaviour {
         }
         //Mouse confirm
         if(_canMouseControl && !confirmed && Input.GetMouseButtonDown(0)) {
-            _selections[_selected].DoOnClick();
+            Collider2D selection = Physics2D.OverlapPoint(_cam.ScreenToWorldPoint(Input.mousePosition), UI_LAYER);
+            if (selection && _selections[_selected].gameObject == selection.gameObject) {
+                _selections[_selected].DoOnClick();
+            }
         }
 
     }

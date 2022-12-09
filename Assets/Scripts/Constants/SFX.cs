@@ -18,5 +18,7 @@ public enum SFX {
     BFG_SHOT,
     MENU_SELECT,
     MENU_CONFIRM,
-    MENU_ERROR
+    MENU_ERROR,
+    AMBIENT_0,
+    ROUND_CLEAR
 }

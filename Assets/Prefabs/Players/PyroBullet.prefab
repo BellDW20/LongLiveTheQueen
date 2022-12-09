@@ -59,9 +59,9 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -5, y: 7}
+    - - {x: -2.4935455, y: 15.145977}
       - {x: 0, y: 0.25}
-      - {x: 5, y: 7}
+      - {x: 2.4935455, y: 15.145977}
 --- !u!114 &877042948278936691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75,7 +75,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DAMAGE: 1
-  FLAMETHROWER_PARTICLES: {fileID: 6256785352948646640, guid: e61f47cdf335abc40907e6c31f4539dc, type: 3}
 --- !u!50 &-1093415866376578128
 Rigidbody2D:
   serializedVersion: 4

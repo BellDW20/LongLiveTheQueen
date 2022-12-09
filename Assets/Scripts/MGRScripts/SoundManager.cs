@@ -37,7 +37,7 @@ public class SoundManager : MonoBehaviour {
                 break;
             case "GameOverScene":
                 if(LevelManagerScript.WasGameWon()) {
-                    I_PlayMusic(Music.INTRO);
+                    I_PlayMusic(Music.GAME_CLEAR);
                 } else {
                     I_PlayMusic(Music.GAME_OVER);
                 }
