@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -8536794735457009874}
   - component: {fileID: 7543617118546343546}
   - component: {fileID: 396743409088491266}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: FirePrefab
   m_TagString: Environment
   m_Icon: {fileID: 0}
@@ -154,3 +154,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8807ecf7e7718b241865935d6b2c4bb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DAMAGE: 1
+  _timeToLive: 3

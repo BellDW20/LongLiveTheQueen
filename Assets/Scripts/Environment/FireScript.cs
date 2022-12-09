@@ -2,10 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireScript : MonoBehaviour
+public class FireScript : PlayerProjectileScript
 {
     [SerializeField] float _timeToLive;
-    [SerializeField] float _damage;
     float _lifeTimer;
     int _playerNum;
     
@@ -18,22 +17,27 @@ public class FireScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Time.time - _lifeTimer > _timeToLive)
+        if (Time.time - _lifeTimer >= _timeToLive)
         {
             Destroy(gameObject);
         }
     }
 
-    public void SetPlayerNUm(int pNum)
+    public void SetPlayerNum(int pNum)
     {
         _playerNum = pNum;
     }
 
     private void OnTriggerStay2D(Collider2D collision)
-    {        
-        if (collision.CompareTag("Enemy"))
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Enemies"))
         {
-            EnemyHealthScript.DamageAndScore(collision.gameObject, _damage, _playerNum);
+            EnemyHealthScript.DamageAndScore(collision.gameObject, DAMAGE, _playerNum);
         }
+    }
+
+    public override void OnEnemyHit(GameObject enemy)
+    {
+        // :(
     }
 }

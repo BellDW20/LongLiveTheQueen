@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class PyroSpecialScript : PlayerProjectileScript
 {
+    [SerializeField] GameObject _tempBullet;
     [SerializeField] GameObject _fire;
     Rigidbody2D _rbody;
 
-    float _lifeTime = 1;
+    Transform _transform;
+
+    float _lifeTime = 0.75f;
     float _start;
 
     Vector2 _vel;
@@ -15,6 +18,7 @@ public class PyroSpecialScript : PlayerProjectileScript
     void Start()
     {
         _rbody = GetComponent<Rigidbody2D>();
+        _transform = transform;
         _start = Time.time;
         _vel = _rbody.velocity;
     }
@@ -38,5 +42,13 @@ public class PyroSpecialScript : PlayerProjectileScript
     private void Detonate()
     {
         Vector2 fireLine = Vector2.Perpendicular(_vel);
+        Instantiate(_fire, _transform.position, Quaternion.identity);
+        GameObject temp1 = Instantiate(_tempBullet, _transform.position, Quaternion.Euler(0, 0, 90));
+        GameObject temp2 = Instantiate(_tempBullet, _transform.position, Quaternion.Euler(0, 0, 270));
+        temp1.GetComponent<Rigidbody2D>().velocity = fireLine;
+        temp2.GetComponent<Rigidbody2D>().velocity = fireLine * -1;
+        temp1.GetComponent<FireSpawnScript>().SetPNum(_playerCreatedBy);
+        temp2.GetComponent<FireSpawnScript>().SetPNum(_playerCreatedBy);
+        Destroy(gameObject);
     }
 }

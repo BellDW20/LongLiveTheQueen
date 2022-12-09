@@ -156,11 +156,11 @@ MonoBehaviour:
     _type: 6
   _specialGun:
     _cooldownTime: 0
-    _reloadDelay: 6
+    _reloadDelay: 10
     _magSize: 1
     _spreadAngle: 0
-    _shotVelocity: 0
-    _projectile: {fileID: 7514213102977142388, guid: bc8d33bc8f6f7c24ea6c5910541d5bc8, type: 3}
+    _shotVelocity: 5
+    _projectile: {fileID: 240265249814754696, guid: 1965016cbd3c24f4da78edb3ed8c719f, type: 3}
     _icon: {fileID: 0}
     _shotSound: 5
     _type: 0

@@ -145,3 +145,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DAMAGE: 15
+  _tempBullet: {fileID: 2867170175815212087, guid: 1f04fbb4404ef0648861f20bcbc1d16c, type: 3}
+  _fire: {fileID: 3914462436640953531, guid: 5a8f47dd3c422bd498c4ff693f8ce06a, type: 3}
