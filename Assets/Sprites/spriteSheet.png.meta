@@ -200,6 +200,12 @@ TextureImporter:
   - first:
       213: 4267904419940743421
     second: rpg_rocket
+  - first:
+      213: -5881707322863971211
+    second: crosshair
+  - first:
+      213: -5494200588885841061
+    second: explosive_barrel
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -1838,6 +1844,48 @@ TextureImporter:
       bones: []
       spriteID: df833e52574aa3b30800000000000000
       internalID: 4267904419940743421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crosshair
+      rect:
+        serializedVersion: 2
+        x: 243
+        y: 115
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57411eb3a5aff5ea0800000000000000
+      internalID: -5881707322863971211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: explosive_barrel
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 81
+        width: 11
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5ba7b68cada0c3b0800000000000000
+      internalID: -5494200588885841061
       vertices: []
       indices: 
       edges: []
