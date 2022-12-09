@@ -73,15 +73,16 @@
       "dependencies": {}
     },
     "com.unity.2d.tilemap.extras": {
-      "version": "file:C:/GameDev/Unity/UnityExtras/2d-extras-2020.3",
+      "version": "https://github.com/BellDW20/2DTilemapExtrasOLD.git",
       "depth": 0,
-      "source": "local",
+      "source": "git",
       "dependencies": {
         "com.unity.modules.tilemap": "1.0.0",
         "com.unity.2d.tilemap": "1.0.0",
         "com.unity.ugui": "1.0.0",
         "com.unity.modules.jsonserialize": "1.0.0"
-      }
+      },
+      "hash": "47555d87f35b5048298617b11c886bd64ec0540b"
     },
     "com.unity.collab-proxy": {
       "version": "1.9.0",
