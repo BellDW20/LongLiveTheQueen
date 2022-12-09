@@ -16,6 +16,7 @@ public class LevelGoalScript : MonoBehaviour {
     private bool _triggered; //Whether or not this goal has been triggered by a player
     private float _timeTriggered; //The time at which this goal was triggered by a player
     private static float _timeTakenOnGame = 0;
+    private float _timeCap = 150; //Amount of time (in seconds) player must finish level in to receive bonus XP 
 
     private void Update() {
         //If the goal has been triggered and it has been a sufficient amount
@@ -39,9 +40,22 @@ public class LevelGoalScript : MonoBehaviour {
         //by any other players yet (triggered)...
         if(other.CompareTag("Player") && !_triggered) {
             //Remember that a player has touched the goal (and the time it occurred)
+            float timeTaken = LevelManagerScript.GetTimeTakenOnLevel();
+
             _triggered = true;
             _timeTriggered = Time.realtimeSinceStartup;
-            _timeTakenOnGame += LevelManagerScript.GetTimeTakenOnLevel();
+            _timeTakenOnGame += timeTaken;
+
+            if(timeTaken < _timeCap)
+            {
+                foreach (PlayerInfo pInfo in LevelManagerScript.pInfos)
+                {
+                    if(pInfo != null)
+                    {
+                        pInfo.AddToScore((int)(scoreMultiplier(timeTaken) * pInfo.score - pInfo.score));
+                    }
+                }
+            }
 
             //Stop all sounds, and play the level clear sound
             SoundManager.StopAllSounds();
@@ -50,6 +64,11 @@ public class LevelGoalScript : MonoBehaviour {
             //Pause all other game activities temporarily
             Time.timeScale = 0;
         }
+    }
+
+    private float scoreMultiplier(float timeTaken)
+    {
+        return (3 - (timeTaken*2) / _timeCap);
     }
 
     public static float GetGameTime()
