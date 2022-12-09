@@ -184,6 +184,8 @@ public class PlayerInfo {
         return level > lastLevel;
     }
 
+
+
     //Returns a factor from 0 to 1 indicating how far
     //this player is from leveling up
     public float ProgressToNextLevel() {
