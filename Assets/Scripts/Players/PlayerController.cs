@@ -35,11 +35,11 @@ public class PlayerController : MonoBehaviour {
     private Gun _currentGun;
     private bool _canPickup;
 
-    private bool _isDashing = false;
+    protected bool _isDashing = false;
     private float _dashStartTime;
     private float _timeLastDamaged, _timeLastRespawned;
 
-    private Rigidbody2D _rbody;
+    protected Rigidbody2D _rbody;
     private CircleCollider2D _collider;
     protected Transform _transform;
     private Animations _animations;

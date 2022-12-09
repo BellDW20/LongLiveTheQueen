@@ -11,6 +11,10 @@ public class PyroScript : PlayerController {
     private PolygonCollider2D temp;
     private float _shootTimer = 0;
 
+    private float _specialStartTime;
+
+    [SerializeField] float _specialDashTime;
+
     [SerializeField] private GameObject _flameParticle;
     private ObjectPool _flamethrowerParticles;
 
