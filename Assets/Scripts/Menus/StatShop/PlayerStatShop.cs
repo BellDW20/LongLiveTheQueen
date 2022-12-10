@@ -59,7 +59,6 @@ public class PlayerStatShop : MonoBehaviour {
     }
     public void Reset() {
         _confirmed = false;
-        _statsMenu.SetPlayersControlling(_playerNum);
         _statsMenu.Enable();
     }
 

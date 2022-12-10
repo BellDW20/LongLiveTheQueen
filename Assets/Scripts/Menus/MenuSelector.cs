@@ -7,6 +7,7 @@ public class MenuSelector : MonoBehaviour {
     [SerializeField] private MenuSelection[] _selections;
     [SerializeField] private Transform _selectionIndicator;
     [SerializeField] private int[] _playersControlledBy;
+    private int[] _joysticksControlledBy;
 
     [SerializeField] private Color _selectedColor;
     [SerializeField] private Color _deselectedColor;
@@ -49,7 +50,7 @@ public class MenuSelector : MonoBehaviour {
         //Gamepad selection
         for (int i = 0; i < _playersControlledBy.Length; i++) {
             _lastVertInput[i] = _vertInput[i];
-            _vertInput[i] = InputManager.GetVerticalInput(_playersControlledBy[i]);
+            _vertInput[i] = InputManager.GetVerticalInput(_joysticksControlledBy[i]);
             if (_lastVertInput[i] == 0 && _vertInput[i] != 0) {
                 if(_vertInput[i] < 0) { _selected++; }
                 else { _selected--; }
@@ -74,7 +75,7 @@ public class MenuSelector : MonoBehaviour {
         //Gamepad confirm
         bool confirmed = false;
         for(int i=0; i<_playersControlledBy.Length; i++) {
-            if (InputManager.GetPickupInput(_playersControlledBy[i])) {
+            if (InputManager.GetPickupInput(_joysticksControlledBy[i])) {
                 _selections[_selected].DoOnClick();
                 confirmed = true;
                 break;
@@ -97,13 +98,18 @@ public class MenuSelector : MonoBehaviour {
     }
 
     public void SetPlayersControlling(params int[] playersControlling) {
-        _playersControlledBy = new int[playersControlling.Length];
+        print("I was called n shiet "+playersControlling[0]);
+        System.Diagnostics.StackTrace t = new System.Diagnostics.StackTrace(true);
+        print(t.ToString());
+
+
+        _joysticksControlledBy = new int[playersControlling.Length];
         _lastVertInput = new float[playersControlling.Length];
         _vertInput = new float[playersControlling.Length];
         _canMouseControl = false;
         for (int i = 0; i < playersControlling.Length; i++) {
-            _playersControlledBy[i] = InputManager.GetPlayerAssignedJoystick(playersControlling[i]);
-            if (_playersControlledBy[i] == 0) { _canMouseControl = true; }
+            _joysticksControlledBy[i] = InputManager.GetPlayerAssignedJoystick(playersControlling[i]);
+            if (_joysticksControlledBy[i] == 0) { _canMouseControl = true; }
         }
     }
 
