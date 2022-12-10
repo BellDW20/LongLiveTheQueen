@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 8537952114424405608}
   - component: {fileID: 8047532391669743387}
   - component: {fileID: -3809486228116923049}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PyroSpecial
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

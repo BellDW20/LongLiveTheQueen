@@ -7,7 +7,7 @@ public class PlayerInfo {
     //The maximum health that each type of player has,
     //indexed by the type constants above
     public static readonly int[] PLAYER_MAX_HEALTH = {
-        100, 120, 100, 100
+        100, 90, 120, 100
     };
     public static readonly string[] PLAYER_NAME = {
        "Commando", "Sniper", "Pyro", "Healer"

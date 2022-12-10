@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4359179647900604943}
   - component: {fileID: 616800787200528930}
   - component: {fileID: 2183726742029501058}
-  m_Layer: 8
+  m_Layer: 14
   m_Name: ExplosiveBarrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 2557941505982993293}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -74,8 +74,8 @@ SpriteRenderer:
   m_SortingLayerID: 1278534193
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: bc2f7c742779fd845bf693fe63ef29c8, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: -5494200588885841061, guid: ae2209152b6c0744595ce61ee3255a46, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -102,14 +102,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.34375, y: 0.46875}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.35, y: 0.47}
   m_EdgeRadius: 0
 --- !u!50 &616800787200528930
 Rigidbody2D:
@@ -144,3 +144,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 114ec43a775d9c543aaab91ae2bf9c80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EXPLOSION_ANIM: {fileID: 6826603460242443129, guid: ba2d370538adec54aaee65f85bedb334, type: 3}
+  EXPLOSION_PARTICLES: {fileID: 7567879441793471200, guid: 6afb1b1489da3b64798a93bbb500dc52, type: 3}

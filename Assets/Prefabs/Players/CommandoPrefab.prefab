@@ -164,7 +164,7 @@ MonoBehaviour:
     _shotSound: 5
     _type: 0
   _playerIndicatorText: {fileID: 1691854207229588390}
-  _crosshair: {fileID: 0}
+  _crosshair: {fileID: 3023446051765380533}
   LEVEL_UP_INDICATOR: {fileID: 4770237785805527721, guid: 1d6ea39bf633f1d4eb407b66907787e3, type: 3}
   SPECIAL_READY_INDICATOR: {fileID: 7606579692388456188, guid: a8c8059e38a5ea74b86f9bd52ca5b7fb, type: 3}
   GRAVESTONE: {fileID: 407477775594851025, guid: 58fa779f11c6d7e4abf4addff2b25523, type: 3}
@@ -244,6 +244,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6da06c88a4c97ae49b3bb5860ab7107c, type: 3}
+--- !u!1 &3023446051765380533 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3869038047968753175, guid: 6da06c88a4c97ae49b3bb5860ab7107c, type: 3}
+  m_PrefabInstance: {fileID: 2037005481170277282}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6590744272961990671 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5130694326631490477, guid: 6da06c88a4c97ae49b3bb5860ab7107c, type: 3}

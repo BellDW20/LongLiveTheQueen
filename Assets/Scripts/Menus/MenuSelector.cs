@@ -97,12 +97,12 @@ public class MenuSelector : MonoBehaviour {
     }
 
     public void SetPlayersControlling(params int[] playersControlling) {
-        _playersControlledBy = playersControlling;
-        _lastVertInput = new float[_playersControlledBy.Length];
-        _vertInput = new float[_playersControlledBy.Length];
+        _playersControlledBy = new int[playersControlling.Length];
+        _lastVertInput = new float[playersControlling.Length];
+        _vertInput = new float[playersControlling.Length];
         _canMouseControl = false;
-        for (int i = 0; i < _playersControlledBy.Length; i++) {
-            _playersControlledBy[i] = InputManager.GetPlayerAssignedJoystick(_playersControlledBy[i]);
+        for (int i = 0; i < playersControlling.Length; i++) {
+            _playersControlledBy[i] = InputManager.GetPlayerAssignedJoystick(playersControlling[i]);
             if (_playersControlledBy[i] == 0) { _canMouseControl = true; }
         }
     }

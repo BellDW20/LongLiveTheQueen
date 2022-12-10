@@ -22,8 +22,6 @@ public class PlayerStatShop : MonoBehaviour {
         _playerText.color = PlayerInfo.PLAYER_NUM_COLORS[_playerNum];
         _playerText.text = "PLAYER " + (_playerNum + 1);
         _pInfo = LevelManagerScript.pInfos[_playerNum];
-
-        _statsMenu.SetPlayersControlling(_playerNum);
     }
 
     void Update() {
@@ -61,6 +59,7 @@ public class PlayerStatShop : MonoBehaviour {
     }
     public void Reset() {
         _confirmed = false;
+        _statsMenu.SetPlayersControlling(_playerNum);
         _statsMenu.Enable();
     }
 

@@ -29,4 +29,9 @@ public class PlayerProjectileScript : MonoBehaviour
         this._playerCreatedBy = _playerCreatedBy;
     }
 
+    public int GetPlayerCreatedBy()
+    {
+        return _playerCreatedBy;
+    }
+
 }

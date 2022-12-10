@@ -146,7 +146,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pickup:
     _cooldownTime: 1
-    _reloadDelay: 1
+    _reloadDelay: 20
     _magSize: 1
     _spreadAngle: 0
     _shotVelocity: 5
