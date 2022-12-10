@@ -62,6 +62,6 @@ public class BarrelScript : MonoBehaviour
             }
         }
 
-        //Destroy(gameObject);
+        Destroy(gameObject);
     }
 }
