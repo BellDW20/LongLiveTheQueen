@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private Gun _specialGun;
     [SerializeField] private Text _playerIndicatorText;
 
+    [SerializeField] private GameObject _crosshair;
     [SerializeField] private GameObject LEVEL_UP_INDICATOR;
     [SerializeField] private GameObject SPECIAL_READY_INDICATOR;
     private bool _lastSpecialReady, _specialReady;
@@ -77,6 +78,13 @@ public class PlayerController : MonoBehaviour {
         _lastSpecialReady = true;
         _thisLevel = _playerInfo.level;
         _lastLevel = _playerInfo.level;
+
+        if (_joystickNumber > 0) {
+            _crosshair.SetActive(true);
+            _crosshair.GetComponent<SpriteRenderer>().color = PlayerInfo.PLAYER_NUM_COLORS[_playerNumber];
+        } else {
+            _crosshair.SetActive(false);
+        } 
     }
 
     public virtual void Update() {
