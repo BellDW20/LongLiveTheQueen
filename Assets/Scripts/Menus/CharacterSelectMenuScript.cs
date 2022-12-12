@@ -44,11 +44,13 @@ public class CharacterSelectMenuScript : MonoBehaviour {
         for (int i = 0; i < _playersJoined.Count; i++) {
             pTypes[i] = _playersJoined[i].GetSelection();
         }
+
+        pTypes = new PlayerType[] { PlayerType.COMMANDO, PlayerType.COMMANDO, PlayerType.SNIPER, PlayerType.PRYO };
         LevelManagerScript.SetupGame(pTypes);
 
         //Then tell the level manager to start the first level using a full level transition
         if (LevelManagerScript.GetMode() == GameMode.ARCADE_MODE) {
-            LevelManagerScript.BeginLevel(Level.LEVEL_1, LevelManagerScript.LEVEL_TRANSITION);
+            LevelManagerScript.BeginLevel(Level.LEVEL_3, LevelManagerScript.LEVEL_TRANSITION);
         } else {
             LevelManagerScript.BeginLevel(Level.HORDE_MODE, LevelManagerScript.LEVEL_TRANSITION);
         }
