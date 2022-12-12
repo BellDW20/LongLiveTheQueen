@@ -144,7 +144,7 @@ MonoBehaviour:
   DEATH_INVULN_TIME: 3
   DASH_PARTICLES: {fileID: 2765344471174570845, guid: 71acb65cd21b3a141be5ba33fb875951, type: 3}
   _primaryGun:
-    _cooldownTime: 0.5
+    _cooldownTime: 0.35
     _reloadDelay: 1
     _magSize: 8
     _spreadAngle: 0
@@ -152,7 +152,7 @@ MonoBehaviour:
     _projectile: {fileID: 6554014128000149010, guid: 0b7d82d6c4a33a44ba93aa8f29b2793a, type: 3}
     _icon: {fileID: -7884769200628893367, guid: ae2209152b6c0744595ce61ee3255a46, type: 3}
     _shotSound: 1
-    _type: 0
+    _type: 4
   _specialGun:
     _cooldownTime: 0
     _reloadDelay: 5
@@ -201,18 +201,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5130694326631490477, guid: 6da06c88a4c97ae49b3bb5860ab7107c, type: 3}
       propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5130694326631490477, guid: 6da06c88a4c97ae49b3bb5860ab7107c, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5130694326631490477, guid: 6da06c88a4c97ae49b3bb5860ab7107c, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 4.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5130694326631490477, guid: 6da06c88a4c97ae49b3bb5860ab7107c, type: 3}
-      propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5130694326631490477, guid: 6da06c88a4c97ae49b3bb5860ab7107c, type: 3}
