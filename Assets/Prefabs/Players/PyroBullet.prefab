@@ -59,9 +59,9 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -1.3593744, y: 18.832033}
+    - - {x: -3.9376614, y: 10.4526005}
       - {x: 0, y: 0.25}
-      - {x: 1.3593744, y: 18.832033}
+      - {x: 3.9376614, y: 10.4526005}
 --- !u!114 &877042948278936691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74,7 +74,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2054b33acc0ebc649b1aaae5481f9fb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DAMAGE: 1
+  DAMAGE: 2
 --- !u!50 &-1093415866376578128
 Rigidbody2D:
   serializedVersion: 4

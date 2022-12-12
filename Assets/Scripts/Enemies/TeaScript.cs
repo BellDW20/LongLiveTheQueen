@@ -56,7 +56,10 @@ public class TeaScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.GetComponent<PlayerController>().Damage(_damage);
+            if (collision.GetComponent<PlayerController>() != null)
+            {
+                collision.GetComponent<PlayerController>().Damage(_damage);
+            }
         }
     }
 }

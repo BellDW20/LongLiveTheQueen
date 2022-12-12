@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4940511761641165940}
   - component: {fileID: 1131385441826374133}
   - component: {fileID: 178407912735914700}
+  - component: {fileID: -5987137803706570840}
   m_Layer: 8
   m_Name: Boss2Prefab
   m_TagString: Boss
@@ -30,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 7339947629949063828}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -76,7 +77,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 984127241670599124, guid: ae2209152b6c0744595ce61ee3255a46, type: 3}
-  m_Color: {r: 0.75986147, g: 0.5707102, b: 0.8962264, a: 0.6313726}
+  m_Color: {r: 0.7607843, g: 0.57254905, b: 0.8980392, a: 0.627451}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -119,12 +120,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ce26a5690b4a494c8828f927296070d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _minionPrefab: {fileID: 0}
-  _corgiPrefab: {fileID: 0}
-  _teaPrefab: {fileID: 0}
-  _targetPrefab: {fileID: 0}
-  _enhancement: {fileID: 0}
-  _gameClearBox: {fileID: 0}
+  _minionPrefab: {fileID: 2694610254395500011, guid: 2bb064d864c6e414c8dd46885050944c, type: 3}
+  _corgiPrefab: {fileID: 8590520392937199029, guid: 5b68a17557da8ed4d87e6e0134a95ad2, type: 3}
+  _teaPrefab: {fileID: 2808874700637113055, guid: 297b852cdf9cc4241ba79c4a583c4f13, type: 3}
+  _cupPrefab: {fileID: 2127452278839364638, guid: bf0d7209e7aa493459cbd08e542ab385, type: 3}
+  _targetPrefab: {fileID: 712910110554803538, guid: e5def7a8ff4075343979727261cbad1d, type: 3}
+  _levelGoal: {fileID: 0}
+  _starPrefab: {fileID: 720734813229420213, guid: 557aec5219d7713438c6e64c1fcb661b, type: 3}
 --- !u!95 &1131385441826374133
 Animator:
   serializedVersion: 3
@@ -154,7 +156,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -170,3 +172,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5625, y: 1.5}
   m_EdgeRadius: 0
+--- !u!114 &-5987137803706570840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7339947629949063828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a907fcea70d80484bbfd471d95b49597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  max_health: 8000
+  isBoss: 1
+  bossName: Ghost of Lizzy
+  BLOOD_PARTICLES: {fileID: 423819991086098478, guid: 12f1530a4737f974ba5e594a062af0a0, type: 3}
+  DAMAGE_PARTICLE: {fileID: 1979408659339054658, guid: a1420778f82e322478bd0a4213574dd6, type: 3}
+  loot:
+    _lootChance: 0

@@ -25,6 +25,7 @@ public class BFGBulletScript : PlayerProjectileScript
         EnemyHealthScript.DamageAndScore(enemy, DAMAGE, _playerCreatedBy);
         SoundManager.PlaySFX(SFX.ENEMY_HIT);
         GameObject temp = new GameObject();
+        temp.transform.parent = _transform;
         LineRenderer _lRender = temp.AddComponent<LineRenderer>();
         _lRender.sortingLayerName = "Entities";
         _lRender.material = _lineMaterial;
@@ -41,5 +42,17 @@ public class BFGBulletScript : PlayerProjectileScript
     {
         yield return new WaitForSeconds(0.1f);
         Destroy(o);
+    }
+
+    private void OnDestroy()
+    {
+        if (GetComponentsInChildren<LineRenderer>() != null)
+        {
+            LineRenderer[] list = GetComponentsInChildren<LineRenderer>();
+            for(int i = 0; i < list.Length; i++)
+            {
+                Destroy(list[i].gameObject);
+            }
+        }
     }
 }

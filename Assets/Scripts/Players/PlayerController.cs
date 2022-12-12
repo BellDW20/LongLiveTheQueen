@@ -57,6 +57,8 @@ public class PlayerController : MonoBehaviour {
     private const float TIME_BEFORE_HEAL = 4f;
     private const float HEAL_AMT_PER_SEC = 20;
 
+    private bool _dead;
+
     public virtual void Start() {
         _rbody = GetComponent<Rigidbody2D>();
         _collider = GetComponent<CircleCollider2D>();
@@ -274,7 +276,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     public bool IsInvulnerable() {
-        return (Time.time - _timeLastDamaged) < INVULN_TIME || (Time.time - _timeLastRespawned) < DEATH_INVULN_TIME;
+        return _dead | (Time.time - _timeLastDamaged) < INVULN_TIME || (Time.time - _timeLastRespawned) < DEATH_INVULN_TIME;
     }
 
     public bool Damage(float amt) {
@@ -294,6 +296,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void Die() {
+        _dead = true;
         _playerInfo.stock--;
         NewGameHUD.UpdatePlayerStockVisual(_playerNumber);
 
@@ -313,6 +316,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void Respawn() {
+        _dead = false;
         _playerIndicatorText.enabled = true;
         _spr.enabled = true;
         _rbody.simulated = true;
