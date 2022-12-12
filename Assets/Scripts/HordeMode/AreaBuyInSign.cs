@@ -8,7 +8,7 @@ public class AreaBuyInSign : SaleSignScript {
 
     protected override void Start() {
         base.Start();
-        _tooltipText.text = SaleSignScript.GetDefaultText() + "\nACCESS TO " + _areaName + ":\n" + _price + " PTS";
+        _tooltipText.text = CommonText.GetInteractPrefix() + "\nACCESS TO " + _areaName + ":\n" + _price + " PTS";
     }
 
     protected override void CompletePurchase(PlayerController pController, PlayerInfo player) {

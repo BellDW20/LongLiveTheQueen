@@ -206,6 +206,12 @@ TextureImporter:
   - first:
       213: -5494200588885841061
     second: explosive_barrel
+  - first:
+      213: 6804854080523328548
+    second: corgie
+  - first:
+      213: 7450303300945242301
+    second: teacup
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -1878,7 +1884,7 @@ TextureImporter:
         width: 11
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1886,6 +1892,48 @@ TextureImporter:
       bones: []
       spriteID: b5ba7b68cada0c3b0800000000000000
       internalID: -5494200588885841061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: corgie
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 48
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42cd5f98bb2bf6e50800000000000000
+      internalID: 6804854080523328548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teacup
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 7
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db8e2c9f06bc46760800000000000000
+      internalID: 7450303300945242301
       vertices: []
       indices: 
       edges: []

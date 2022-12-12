@@ -123,7 +123,7 @@ public class PlayerController : MonoBehaviour {
 
         if (InputManager.GetPickupInput(_joystickNumber))
         {
-            Collider2D col = Physics2D.OverlapCircle(_rbody.position, 0.25f, 1 << LayerMask.NameToLayer("Pickups"));
+            Collider2D col = Physics2D.OverlapCircle(_rbody.position, WeaponPickupScript.ACTIVATION_RANGE, 1 << LayerMask.NameToLayer("Pickups"));
             if (col) {
                 DropGun();
                 _secondaryGun = col.gameObject.GetComponent<WeaponPickupScript>().GetGun();
@@ -132,10 +132,16 @@ public class PlayerController : MonoBehaviour {
                 _currentGun = _secondaryGun;
             } else { }
 
-            col = Physics2D.OverlapCircle(_rbody.position, 1f, 1 << LayerMask.NameToLayer("WeaponSales"));
+            col = Physics2D.OverlapCircle(_rbody.position, SaleSignScript.ACTIVATION_RANGE, 1 << LayerMask.NameToLayer("WeaponSales"));
             if(col) {
                 SaleSignScript sale = col.GetComponent<SaleSignScript>();
                 sale.AttemptPurchase(this, _playerInfo);
+            }
+
+            col = Physics2D.OverlapCircle(_rbody.position, StatShopObjectScript.ACTIVATION_RANGE, 1 << LayerMask.NameToLayer("Shops"));
+            if(col) {
+                StatShopObjectScript shop = col.GetComponent<StatShopObjectScript>();
+                shop.OpenShop();
             }
 
         }

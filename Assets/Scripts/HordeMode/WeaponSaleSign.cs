@@ -11,7 +11,7 @@ public class WeaponSaleSign : SaleSignScript {
     protected override void Start() {
         GameObject gun = LevelManagerScript.GetGun(_gunTypeToSell);
         _gunToSell = gun.GetComponent<WeaponPickupScript>().GetGun();
-        _tooltipText.text = SaleSignScript.GetDefaultText()+"\nPURCHASE GUN / REFILL AMMO:\n" + _price + " PTS";
+        _tooltipText.text = CommonText.GetInteractPrefix()+"\nPURCHASE GUN / REFILL AMMO:\n" + _price + " PTS";
         _icon = (gun.GetComponent<SpriteRenderer>()).sprite;
         base.Start();
     }

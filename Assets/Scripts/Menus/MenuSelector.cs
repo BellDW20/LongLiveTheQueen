@@ -98,11 +98,6 @@ public class MenuSelector : MonoBehaviour {
     }
 
     public void SetPlayersControlling(params int[] playersControlling) {
-        print("I was called n shiet "+playersControlling[0]);
-        System.Diagnostics.StackTrace t = new System.Diagnostics.StackTrace(true);
-        print(t.ToString());
-
-
         _joysticksControlledBy = new int[playersControlling.Length];
         _lastVertInput = new float[playersControlling.Length];
         _vertInput = new float[playersControlling.Length];
