@@ -125,6 +125,7 @@ MonoBehaviour:
   _teaPrefab: {fileID: 2808874700637113055, guid: 297b852cdf9cc4241ba79c4a583c4f13, type: 3}
   _cupPrefab: {fileID: 2127452278839364638, guid: bf0d7209e7aa493459cbd08e542ab385, type: 3}
   _targetPrefab: {fileID: 712910110554803538, guid: e5def7a8ff4075343979727261cbad1d, type: 3}
+  _knightPrefab: {fileID: 1849181372480423292, guid: 6b26339a49cce814f918ab3fda577d9c, type: 3}
   _levelGoal: {fileID: 0}
   _starPrefab: {fileID: 720734813229420213, guid: 557aec5219d7713438c6e64c1fcb661b, type: 3}
 --- !u!95 &1131385441826374133
