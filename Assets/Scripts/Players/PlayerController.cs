@@ -20,7 +20,6 @@ public class PlayerController : MonoBehaviour {
     public float DEATH_INVULN_TIME;
     public GameObject DASH_PARTICLES;
     [SerializeField] protected Gun _primaryGun;
-    private Gun _secondaryGun;
     [SerializeField] private Gun _specialGun;
     [SerializeField] private Text _playerIndicatorText;
 
@@ -130,10 +129,10 @@ public class PlayerController : MonoBehaviour {
             Collider2D col = Physics2D.OverlapCircle(_rbody.position, WeaponPickupScript.ACTIVATION_RANGE, 1 << LayerMask.NameToLayer("Pickups"));
             if (col) {
                 DropGun();
-                _secondaryGun = col.gameObject.GetComponent<WeaponPickupScript>().GetGun();
-                _secondaryGun.Init();
+                _playerInfo.secondaryGun = col.gameObject.GetComponent<WeaponPickupScript>().GetGun();
+                _playerInfo.secondaryGun.Init();
                 Destroy(col.gameObject);
-                _currentGun = _secondaryGun;
+                _currentGun = _playerInfo.secondaryGun;
                 SoundManager.PlaySFX(SFX.WEAPON_PICKUP);
             } else { }
 
@@ -334,11 +333,11 @@ public class PlayerController : MonoBehaviour {
     }
     private void DropGun()
     {
-        if (_secondaryGun != null)
+        if (_playerInfo.secondaryGun != null)
         {
-            GameObject temp = Instantiate(LevelManagerScript.GetGun(_secondaryGun.GetGunType()), _transform.position, Quaternion.identity);
-            temp.GetComponent<WeaponPickupScript>().SetGun(_secondaryGun);
-            _secondaryGun = null;
+            GameObject temp = Instantiate(LevelManagerScript.GetGun(_playerInfo.secondaryGun.GetGunType()), _transform.position, Quaternion.identity);
+            temp.GetComponent<WeaponPickupScript>().SetGun(_playerInfo.secondaryGun);
+            _playerInfo.secondaryGun = null;
             _currentGun = _primaryGun;
             SoundManager.PlaySFX(SFX.WEAPON_THROW);
         }
@@ -346,20 +345,20 @@ public class PlayerController : MonoBehaviour {
 
     private void SwapGun()
     {
-        if (_currentGun == _secondaryGun)
+        if (_currentGun == _playerInfo.secondaryGun)
         {
             _currentGun = _primaryGun;
         }
-        else if (_currentGun == _primaryGun && _secondaryGun != null)
+        else if (_currentGun == _primaryGun && _playerInfo.secondaryGun != null)
         {
-            _currentGun = _secondaryGun;
+            _currentGun = _playerInfo.secondaryGun;
         }
     }
 
     public void GiveSecondary(Gun gun) {
-        _secondaryGun = gun;
-        _secondaryGun.Init();
-        _currentGun = _secondaryGun;
+        _playerInfo.secondaryGun = gun;
+        _playerInfo.secondaryGun.Init();
+        _currentGun = _playerInfo.secondaryGun;
     }
 
 }

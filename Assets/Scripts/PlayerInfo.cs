@@ -69,6 +69,8 @@ public class PlayerInfo {
     public int spreadLevel; //The level to which the player's spread shot has been upgraded
     public int specialCooldownLevel; //The level to which the player's special cooldown has been upgraded
 
+    public Gun secondaryGun;
+
     //public float damageScale; //The damage scale depending on the player's current level
 
     //Sets up a player info for a given type of player
