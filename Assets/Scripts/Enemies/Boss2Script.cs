@@ -10,6 +10,7 @@ public class Boss2Script : MonoBehaviour
     public GameObject _teaPrefab;
     public GameObject _cupPrefab;
     public GameObject _targetPrefab;
+    public GameObject _knightPrefab;
 
     public GameObject _levelGoal;
 
@@ -259,6 +260,7 @@ public class Boss2Script : MonoBehaviour
             {
                 if (_isPhaseTwo)
                 {
+                    Instantiate(_knightPrefab, _transform.position, Quaternion.identity);
                     _currentAttack = RandomizeAttack();
                 }
                 else
@@ -334,7 +336,7 @@ public class Boss2Script : MonoBehaviour
             _currentAttack = -1;
             StartCoroutine(ColorChange(_phase2Color));
             _isPhaseTwo = true;
-            _spawnMax = 15;
+            _spawnMax = 8;
             _spawnCooldown = 0.3f;
             _corgiWaves = 6;
             _corgiDelay = 0.4f;
@@ -359,6 +361,23 @@ public class Boss2Script : MonoBehaviour
 
     int RandomizeAttack()
     {
-        return Random.Range(0, 4);
+        float rand = Random.Range(0, 100);
+
+        if (rand < 35)
+        {
+            return 0;
+        }
+        else if (rand < 65)
+        {
+            return 1;
+        }
+        else if (rand < 90)
+        {
+            return 2;
+        }
+        else
+        {
+            return 3;
+        }
     }
 }
