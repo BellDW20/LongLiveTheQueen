@@ -58,7 +58,7 @@ public class LevelManagerScript : MonoBehaviour {
         //for every POSSIBLE player (P1, P2, etc.)
         for (int i = 0; i < pInfos.Length; i++) {
             //If that player is actually in the game
-            if (pInfos[i] != null) {
+            if (pInfos[i] != null && pInfos[i].stock >= 0) {
                 //Create a player of the correct type (sniper, commando, etc.)
                 //at that given player number's spawn point in the current level
                 players[i] = Instantiate(
