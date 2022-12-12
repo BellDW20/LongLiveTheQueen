@@ -3,6 +3,8 @@ using UnityEngine.UI;
 
 public class SaleSignScript : MonoBehaviour {
 
+    public const float ACTIVATION_RANGE = 1f;
+
     [SerializeField] protected Text _tooltipText;
     [SerializeField] protected Sprite _icon;
     [SerializeField] protected int _price;
@@ -16,7 +18,7 @@ public class SaleSignScript : MonoBehaviour {
     }
 
     protected virtual void Update() {
-        _tooltipText.enabled = Physics2D.OverlapCircle((Vector2)_transform.position, 1f, 1 << (LayerMask.NameToLayer("Players")));
+        _tooltipText.enabled = Physics2D.OverlapCircle((Vector2)_transform.position, ACTIVATION_RANGE, 1 << (LayerMask.NameToLayer("Players")));
     }
 
     public virtual void AttemptPurchase(PlayerController pController, PlayerInfo pInfo) {
@@ -39,10 +41,6 @@ public class SaleSignScript : MonoBehaviour {
 
     protected void OnPurchaseFailure() {
         SoundManager.PlaySFX(SFX.MENU_ERROR);
-    }
-
-    public static string GetDefaultText() {
-        return "[ E (KEYBOARD) / A (GAMEPAD) ]";
     }
 
 }

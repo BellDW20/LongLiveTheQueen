@@ -16,6 +16,9 @@ public class TextFlasher : MonoBehaviour {
     }
 
     void Update() {
+        if(_period <= 0) {
+            return;
+        }
         _time += Time.unscaledDeltaTime; //Update how long this text has existed
 
         //Calculate a factor between 0 and 1 depending on how long the
@@ -30,4 +33,16 @@ public class TextFlasher : MonoBehaviour {
         //Make the text have this color
         _text.color = new Color(r,g,b);
     }
+
+    public void SetPeriod(float period) {
+        _period = period;
+    }
+
+    public void ResetValues() {
+        _time = 0;
+        if(_text != null) {
+            _text.color = _color0;
+        }
+    }
+
 }

@@ -15,6 +15,7 @@ public class PlayerStatShop : MonoBehaviour {
     [SerializeField] Text _damageCostText;
     [SerializeField] Text _cooldownCostText;
     [SerializeField] Text _spreadCostText;
+    [SerializeField] TextFlasher _confirmFlash;
 
     [SerializeField] MenuSelector _statsMenu;
 
@@ -59,6 +60,8 @@ public class PlayerStatShop : MonoBehaviour {
     }
     public void Reset() {
         _confirmed = false;
+        _confirmFlash.SetPeriod(0);
+        _confirmFlash.ResetValues();
         _statsMenu.Enable();
     }
 
@@ -91,6 +94,7 @@ public class PlayerStatShop : MonoBehaviour {
 
     public void Confirm() {
         _confirmed = true;
+        _confirmFlash.SetPeriod(0.5f);
         _statsMenu.Disable();
     }
     public bool IsConfirmed() {

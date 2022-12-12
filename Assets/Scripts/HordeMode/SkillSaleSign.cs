@@ -8,7 +8,7 @@ public class SkillSaleSign : SaleSignScript {
 
     protected override void Start() {
         base.Start();
-        _tooltipText.text = SaleSignScript.GetDefaultText() + "\nUNLOCK " + _skillName + ":\n" + _price + " LVLS";
+        _tooltipText.text = CommonText.GetInteractPrefix() + "\nUNLOCK " + _skillName + ":\n" + _price + " LVLS";
     }
 
     public override void AttemptPurchase(PlayerController pController, PlayerInfo pInfo) {
