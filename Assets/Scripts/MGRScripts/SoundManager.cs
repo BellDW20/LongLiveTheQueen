@@ -29,7 +29,7 @@ public class SoundManager : MonoBehaviour {
             case "Level1Scene":
                 I_PlayMusic(Music.LEVEL_1);
                 break;
-            case "Level2Scene":
+            case "Level2Revamp":
                 I_PlayMusic(Music.LEVEL_2);
                 break;
             case "BossRoom":
@@ -49,7 +49,7 @@ public class SoundManager : MonoBehaviour {
                 I_PlayMusic(Music.TITLE_THEME);
                 break;
             case "QueenRoom":
-                I_PlayMusic(Music.BOSS_THEME);
+                I_PlayMusic(Music.FINAL_BOSS_THEME);
                 break;
         }
     }

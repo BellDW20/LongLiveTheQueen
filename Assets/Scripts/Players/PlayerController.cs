@@ -309,9 +309,11 @@ public class PlayerController : MonoBehaviour {
 
         if (_playerInfo.stock>=0) {
             Invoke("Respawn", 3);
-        } else if (LevelManagerScript.IsGameOver()) {
+        } else {
             _gravestoneInstance.GetComponent<GravestoneScript>().DisableText();
-            Invoke("GameOver", 3);
+            if (LevelManagerScript.IsGameOver()) {
+                Invoke("GameOver", 3);
+            }
         }
     }
 

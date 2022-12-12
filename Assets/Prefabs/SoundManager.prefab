@@ -57,6 +57,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 42515ee8008fecd4e934d134a51ee3ba, type: 3}
   - {fileID: 8300000, guid: a0e7764c74fdcc84e90bcb5caf9443a7, type: 3}
   - {fileID: 8300000, guid: ee0138858683c1c49a718ddb2ba7151a, type: 3}
+  - {fileID: 8300000, guid: 31eb233bf8350ec469a8dddc1365af08, type: 3}
   loop:
   - {fileID: 8300000, guid: 6c60fdb09f6bc1f4baf2c36973bc906d, type: 3}
   - {fileID: 8300000, guid: 8e1594190c4236c44a77c87fc0c5d3e9, type: 3}
@@ -66,6 +67,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 42515ee8008fecd4e934d134a51ee3ba, type: 3}
   - {fileID: 8300000, guid: a0e7764c74fdcc84e90bcb5caf9443a7, type: 3}
   - {fileID: 8300000, guid: 6f118c0fbc8c0b24ab326e935cf210da, type: 3}
+  - {fileID: 8300000, guid: 31eb233bf8350ec469a8dddc1365af08, type: 3}
   sfxSource: {fileID: 208066106791135595}
   sfx:
   - {fileID: 8300000, guid: 1d9043366b09a20419ad065ffe74ed65, type: 3}

@@ -5710,10 +5710,10 @@ Tilemap:
   m_AnimatedTiles: {}
   m_TileAssetArray:
   - m_RefCount: 520
-    m_Data: {fileID: 11400000, guid: 3d700ad432385a84f810d2e8f9789caf, type: 2}
+    m_Data: {fileID: 11400000, guid: 519f92f69360abf43a06e726181d9096, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 520
-    m_Data: {fileID: 7566998463966926115, guid: 91f73b23ffb33fd4d9c6440590f120fd, type: 3}
+    m_Data: {fileID: -7674098298057087676, guid: 91f73b23ffb33fd4d9c6440590f120fd, type: 3}
   m_TileMatrixArray:
   - m_RefCount: 520
     m_Data:
@@ -6173,6 +6173,10 @@ PrefabInstance:
     - target: {fileID: 3208360775705789200, guid: 7154366388197174eb35a087576fb92d, type: 3}
       propertyPath: m_Name
       value: NewGameHUD
+      objectReference: {fileID: 0}
+    - target: {fileID: 3208360775705789200, guid: 7154366388197174eb35a087576fb92d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6701005439202620395, guid: 7154366388197174eb35a087576fb92d, type: 3}
       propertyPath: m_RootOrder
@@ -54213,10 +54217,10 @@ Tilemap:
   m_AnimatedTiles: {}
   m_TileAssetArray:
   - m_RefCount: 4772
-    m_Data: {fileID: 11400000, guid: cb86afa04e77a7d47ad10d2e7e7c1c7b, type: 2}
+    m_Data: {fileID: 11400000, guid: 0f4cd08386bede749a62e21fc0f78f97, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 4772
-    m_Data: {fileID: 2738917978213363822, guid: 91f73b23ffb33fd4d9c6440590f120fd, type: 3}
+    m_Data: {fileID: 1696574330576721413, guid: 91f73b23ffb33fd4d9c6440590f120fd, type: 3}
   m_TileMatrixArray:
   - m_RefCount: 4772
     m_Data:
