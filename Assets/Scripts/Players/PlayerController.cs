@@ -27,8 +27,10 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private GameObject _crosshair;
     [SerializeField] private GameObject LEVEL_UP_INDICATOR;
     [SerializeField] private GameObject SPECIAL_READY_INDICATOR;
+    [SerializeField] private GameObject RELOAD_INDICATOR;
     private bool _lastSpecialReady, _specialReady;
     private int _lastLevel, _thisLevel;
+    private bool _lastReloading, _thisReloading;
 
     [SerializeField] private GameObject GRAVESTONE;
     private GameObject _gravestoneInstance;
@@ -182,10 +184,21 @@ public class PlayerController : MonoBehaviour {
         _thisLevel = _playerInfo.level;
         if(_lastLevel != _thisLevel) {
             GameObject lvUp = Instantiate(LEVEL_UP_INDICATOR, transform.position, Quaternion.identity);
-            lvUp.GetComponent<FloatingTextScript>().SetTrackingWith(_transform);
+            FloatingTextScript fts = lvUp.GetComponent<FloatingTextScript>();
+            fts.SetTrackingWith(_transform);
+            fts.SetOffset(new Vector2(0, 0.8f));
         }
 
         HandleShooting();
+
+        _lastReloading = _thisReloading;
+        _thisReloading = _currentGun.IsReloading();
+        if(_thisReloading && !_lastReloading) {
+            GameObject reload = Instantiate(RELOAD_INDICATOR, transform.position, Quaternion.identity);
+            FloatingTextScript fts = reload.GetComponent<FloatingTextScript>();
+            fts.SetTrackingWith(_transform);
+            fts.SetOffset(new Vector2(0,0.8f));
+        }
 
         if (_isDashing) return;
 
@@ -213,7 +226,10 @@ public class PlayerController : MonoBehaviour {
         _specialReady = _specialGun.CanUse();
         if(!_lastSpecialReady && _specialReady) {
             GameObject spReady = Instantiate(SPECIAL_READY_INDICATOR, transform.position, Quaternion.identity);
-            spReady.GetComponent<FloatingTextScript>().SetTrackingWith(_transform);
+            FloatingTextScript fts = spReady.GetComponent<FloatingTextScript>();
+            fts.SetTrackingWith(_transform);
+            fts.SetOffset(new Vector2(0, 0.8f));
+
         }
         NewGameHUD.UpdatePlayerSpecialVisual(_playerNumber, _specialGun);
     }
@@ -290,6 +306,7 @@ public class PlayerController : MonoBehaviour {
         if (_playerInfo.stock>=0) {
             Invoke("Respawn", 3);
         } else if (LevelManagerScript.IsGameOver()) {
+            _gravestoneInstance.GetComponent<GravestoneScript>().DisableText();
             Invoke("GameOver", 3);
         }
     }

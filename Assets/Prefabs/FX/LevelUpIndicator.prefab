@@ -147,7 +147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TIME_TO_LIVE: 0.75
   _text: {fileID: 439731145316154874}
-  _direction: {x: 0, y: 0}
+  _direction: {x: 0, y: -0.8}
 --- !u!1 &8317295563322927596
 GameObject:
   m_ObjectHideFlags: 0
