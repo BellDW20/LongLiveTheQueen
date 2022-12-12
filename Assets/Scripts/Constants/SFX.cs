@@ -20,5 +20,7 @@ public enum SFX {
     MENU_CONFIRM,
     MENU_ERROR,
     AMBIENT_0,
-    ROUND_CLEAR
+    ROUND_CLEAR,
+    WEAPON_PICKUP,
+    WEAPON_THROW
 }

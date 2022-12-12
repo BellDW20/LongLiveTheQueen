@@ -132,6 +132,7 @@ public class PlayerController : MonoBehaviour {
                 _secondaryGun.Init();
                 Destroy(col.gameObject);
                 _currentGun = _secondaryGun;
+                SoundManager.PlaySFX(SFX.WEAPON_PICKUP);
             } else { }
 
             col = Physics2D.OverlapCircle(_rbody.position, SaleSignScript.ACTIVATION_RANGE, 1 << LayerMask.NameToLayer("WeaponSales"));
@@ -333,6 +334,7 @@ public class PlayerController : MonoBehaviour {
             temp.GetComponent<WeaponPickupScript>().SetGun(_secondaryGun);
             _secondaryGun = null;
             _currentGun = _primaryGun;
+            SoundManager.PlaySFX(SFX.WEAPON_THROW);
         }
     }
 

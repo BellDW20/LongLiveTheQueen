@@ -46,14 +46,10 @@ public class BestTimeEntry
     {
         string playerTypeString = "";
 
-        foreach (int playerType in _playerTypes)
-        {
-            playerTypeString += $"{PlayerInfo.PLAYER_NAME[playerType]}, ";
+        for (int i = 0; i < _playerTypes.Count-1; i++) {
+            playerTypeString += $"{PlayerInfo.PLAYER_NAME[_playerTypes[i]]}, ";
         }
-
-        //Remove trailing ", "
-        char[] charsToTrim = {' ', ','};
-        playerTypeString.TrimEnd(charsToTrim);
+        playerTypeString += $"{PlayerInfo.PLAYER_NAME[_playerTypes[_playerTypes.Count-1]]}";
 
         return $"{playerTypeString}: {_time.ToString("mm':'ss")}";
     }
