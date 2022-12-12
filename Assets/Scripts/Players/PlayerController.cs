@@ -53,8 +53,8 @@ public class PlayerController : MonoBehaviour {
     private Vector2 _lookDirection;
 
     //Horde mode stuff
-    private const float TIME_BEFORE_HEAL = 4f;
-    private const float HEAL_AMT_PER_SEC = 20;
+    private const float TIME_BEFORE_HEAL = 5f;
+    private const float HEAL_AMT_PER_SEC = 15;
 
     private bool _dead;
 
