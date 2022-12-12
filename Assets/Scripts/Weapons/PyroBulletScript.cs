@@ -6,7 +6,7 @@ public class PyroBulletScript : PlayerProjectileScript {
 
     // Start is called before the first frame update
     void Start() {
-        Invoke("Die", 0.05f);
+        Invoke("Die", 0.1f);
     }
 
     public override void OnEnemyHit(GameObject enemy)

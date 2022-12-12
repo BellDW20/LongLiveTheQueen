@@ -48,6 +48,9 @@ public class SoundManager : MonoBehaviour {
             case "MainMenu":
                 I_PlayMusic(Music.TITLE_THEME);
                 break;
+            case "QueenRoom":
+                I_PlayMusic(Music.BOSS_THEME);
+                break;
         }
     }
 

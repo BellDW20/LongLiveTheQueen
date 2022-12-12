@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class TargetScript : MonoBehaviour
 {
-
     public GameObject EXPLOSION_ANIM; //Explosion animation
     public GameObject EXPLOSION_PARTICLES; //Explosion particle effect
 
@@ -15,7 +14,6 @@ public class TargetScript : MonoBehaviour
     int _damage = 80;
 
     SpriteRenderer _sRender;
-    Transform _transform;
 
     Color _startColor;
 
@@ -25,7 +23,6 @@ public class TargetScript : MonoBehaviour
     {
         _sRender = GetComponent<SpriteRenderer>();
         _rbody = GetComponent<Rigidbody2D>();
-        _transform = transform;
         _startColor = _sRender.color;
 
         StartCoroutine(ColorChange(Color.black));
@@ -69,15 +66,25 @@ public class TargetScript : MonoBehaviour
             GameObject enemyGameObject = enemy.gameObject;
             if (enemyGameObject.layer == enLayer)
             {
-                EnemyHealthScript.DamageAndScore(enemyGameObject, _damage, MSMScript.NearestPlayer(gameObject).GetComponent<PlayerController>().GetPlayerNumber());
+                if (MSMScript.NearestPlayer(gameObject) != null)
+                {
+                    EnemyHealthScript.DamageAndScore(enemyGameObject, _damage, MSMScript.NearestPlayer(gameObject).GetComponent<PlayerController>().GetPlayerNumber());
+                }
+
                 if (enemyGameObject.CompareTag("Boss"))
                 {
-                    enemyGameObject.GetComponent<Boss2Script>().Stun();
+                    if (enemyGameObject.GetComponent<Boss2Script>() != null)
+                    {
+                        enemyGameObject.GetComponent<Boss2Script>().Stun();
+                    }
                 }
             }
             else if (enemyGameObject.layer == plLayer)
             {
-                enemyGameObject.GetComponent<PlayerController>().Damage(_damage);
+                if (enemyGameObject.GetComponent<PlayerController>() != null)
+                {
+                    enemyGameObject.GetComponent<PlayerController>().Damage(_damage);
+                }
             }
         }
 
