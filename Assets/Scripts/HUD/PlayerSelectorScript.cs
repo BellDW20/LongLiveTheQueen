@@ -14,7 +14,7 @@ public class PlayerSelectorScript : MonoBehaviour {
 
     [SerializeField] private Sprite[] CHARACTER_IMAGES;
     private static string[] CHARACTER_WEAPON_NAMES = new string[] { "Assault Rifle", "Sniper Rifle", "Flamethrower" };
-    private static string[] CHARACTER_SPECIAL_NAMES = new string[] { "Molotov Cocktail", "Piercing Shot", "Flame Dash" };
+    private static string[] CHARACTER_SPECIAL_NAMES = new string[] { "Molotov Cocktail", "Piercing Shot", "Wall of Flame" };
 
     public int _joystickNumber;
     public int _selection;

@@ -48,9 +48,9 @@ public class CharacterSelectMenuScript : MonoBehaviour {
 
         //Then tell the level manager to start the first level using a full level transition
         if (LevelManagerScript.GetMode() == GameMode.ARCADE_MODE) {
-            LevelManagerScript.BeginLevel(LevelManagerScript.LEVEL_1_1, LevelManagerScript.LEVEL_TRANSITION);
+            LevelManagerScript.BeginLevel(Level.BOSS_1, LevelManagerScript.LEVEL_TRANSITION);
         } else {
-            LevelManagerScript.BeginLevel(LevelManagerScript.HORDE_MODE, LevelManagerScript.LEVEL_TRANSITION);
+            LevelManagerScript.BeginLevel(Level.HORDE_MODE, LevelManagerScript.LEVEL_TRANSITION);
         }
     }
 

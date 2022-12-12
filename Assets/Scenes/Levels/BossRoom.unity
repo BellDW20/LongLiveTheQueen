@@ -138,6 +138,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BossPrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 6771691624525475782, guid: c1c06d0856a40734a80405b4e7fc651b, type: 3}
+      propertyPath: bossName
+      value: The Phat Lord
+      objectReference: {fileID: 0}
     - target: {fileID: 8724415014313659396, guid: c1c06d0856a40734a80405b4e7fc651b, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -53814,11 +53818,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5863447526847757231, guid: 4aafb214eafa980469c2ee358d71f936, type: 3}
       propertyPath: _levelToGoTo
-      value: -1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5863447526847757231, guid: 4aafb214eafa980469c2ee358d71f936, type: 3}
       propertyPath: _levelTransitionType
-      value: -1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6891577027184340145, guid: 4aafb214eafa980469c2ee358d71f936, type: 3}
       propertyPath: m_Name

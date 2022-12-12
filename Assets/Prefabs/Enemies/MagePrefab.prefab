@@ -168,6 +168,8 @@ MonoBehaviour:
   isBoss: 0
   BLOOD_PARTICLES: {fileID: 423819991086098478, guid: 12f1530a4737f974ba5e594a062af0a0, type: 3}
   DAMAGE_PARTICLE: {fileID: 1979408659339054658, guid: a1420778f82e322478bd0a4213574dd6, type: 3}
+  loot:
+    _lootChance: 0.1
 --- !u!95 &6108088528640993536
 Animator:
   serializedVersion: 3

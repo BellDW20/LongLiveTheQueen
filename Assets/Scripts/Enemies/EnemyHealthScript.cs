@@ -6,8 +6,10 @@ public class EnemyHealthScript : MonoBehaviour {
 
     [SerializeField] private float max_health; //The maximum health of the enemy
     [SerializeField] private bool isBoss; //Whether or not this enemy is a boss
+    [SerializeField] private string bossName; //name to give if a boss
     [SerializeField] private GameObject BLOOD_PARTICLES; //Blood particle prefab to spawn when damaged
     [SerializeField] private GameObject DAMAGE_PARTICLE; //Damage amount particle prefab to spawn when damaged
+    [SerializeField] private EnemyLoot loot;
     private Transform _transform; //Position of the enemy
     private float health; //Current health of the enemy
     private float damageTaken; //The amount of damage this enemy has taken over time
@@ -15,6 +17,7 @@ public class EnemyHealthScript : MonoBehaviour {
     public void Start() {
         if(isBoss) {
             NewGameHUD.BeginBossFight(this);
+            NewGameHUD.EditBossBar(bossName, 1);
         }
         //Set our health to max
         health = max_health;
@@ -42,6 +45,7 @@ public class EnemyHealthScript : MonoBehaviour {
             health = 0;
             //Play a death sound effect and destroy the enemy object
             SoundManager.PlaySFX(SFX.ENEMY_DEATH);
+            loot.GenerateLoot(_transform.position);
             Destroy(gameObject);
         }
 

@@ -5,21 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class LevelManagerScript : MonoBehaviour {
 
-    //Level codes representing levels / sub levels [FORMAT: LEVEL_{level number}_{sublevel number}]
-    public const int LEVEL_1_1 = 0;
-    public const int LEVEL_2_1 = 1;
-    public const int LEVEL_3_1 = 2;
-    public const int HORDE_MODE = 3;
-    public const int LEVEL_DEBUG = 4;
-
-
     //Names of the level/sublevel scenes corresponding to level codes
     private static readonly string[] LEVEL_SCENE_NAMES = {
-        "Level1Scene", "Level2Revamp", "BossRoom", "HordeMode", "EnemyTestScene"
+        "Level1Scene", "Level2Revamp", "BossRoom", "Level3Scene", "QueenRoom", "HordeMode"
     };
     //Names of the levels/sublevels to be displayed corresponding to level codes
     private static readonly string[] LEVEL_DISPLAY_NAMES = {
-        "Level 1", "Level 2", "Final Boss", "Horde Mode", "Debug"
+        "Level 1", "Level 2", "Miniboss", "Level 3", "Final Boss", "Horde Mode"
     };
 
     //Constants representing how to transition between level scenes
@@ -85,9 +77,9 @@ public class LevelManagerScript : MonoBehaviour {
     }
 
     //Sets up a transition to a given level / sublevel
-    public static void BeginLevel(int levelID, int transitionType) {
+    public static void BeginLevel(Level levelID, int transitionType) {
         _levelTransitionType = transitionType;
-        _levelToTransitionTo = levelID;
+        _levelToTransitionTo = (int)levelID;
         SceneTransitioner.BeginTransition(SceneTransitioner.FADE_OUT, 0.5f, "LevelTransitionScene");
     }
 

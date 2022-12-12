@@ -247,8 +247,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   max_health: 50
+  isBoss: 0
   BLOOD_PARTICLES: {fileID: 423819991086098478, guid: 12f1530a4737f974ba5e594a062af0a0, type: 3}
   DAMAGE_PARTICLE: {fileID: 1979408659339054658, guid: a1420778f82e322478bd0a4213574dd6, type: 3}
+  loot:
+    _lootChance: 0.05
 --- !u!114 &3680745036438269555
 MonoBehaviour:
   m_ObjectHideFlags: 0
