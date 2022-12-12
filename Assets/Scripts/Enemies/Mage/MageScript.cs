@@ -58,6 +58,7 @@ public class MageScript : MonoBehaviour {
 
     private bool IsGroupNearby() {
         if(FindEnemiesInRange() == 0) {
+            _target = MSMScript.NearestPlayerPosition(gameObject);
             return false;
         }
 
