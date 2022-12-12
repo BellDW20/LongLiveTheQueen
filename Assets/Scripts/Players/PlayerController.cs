@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour {
 
     //Horde mode stuff
     private const float TIME_BEFORE_HEAL = 5f;
-    private const float HEAL_AMT_PER_SEC = 15;
+    private const float HEAL_AMT_PER_SEC = 2;
 
     private bool _dead;
 
