@@ -15,7 +15,7 @@ public class LevelManagerScript : MonoBehaviour {
 
     //Names of the level/sublevel scenes corresponding to level codes
     private static readonly string[] LEVEL_SCENE_NAMES = {
-        "Level1Scene", "Level2Scene", "BossRoom", "HordeMode", "EnemyTestScene"
+        "Level1Scene", "Level2Revamp", "BossRoom", "HordeMode", "EnemyTestScene"
     };
     //Names of the levels/sublevels to be displayed corresponding to level codes
     private static readonly string[] LEVEL_DISPLAY_NAMES = {

@@ -35,4 +35,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Levels/HordeMode.unity
     guid: 247c1b427dedeca4eb25c8b8323db607
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level3Scene.unity
+    guid: b3c7c6dfe97822d4493cbf2a17642d73
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level2Revamp.unity
+    guid: 2023d1af365bd3349a14ae2682d8299d
   m_configObjects: {}

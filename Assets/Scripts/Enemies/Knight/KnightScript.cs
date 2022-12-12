@@ -54,8 +54,7 @@ public class KnightScript : MonoBehaviour {
     private void CircleUpdate() {
         _anim.SetAnimation("Walk");
         float dt = Time.time - Mathf.Max(_lastChargeTime, _lastDodgeTime);
-        if (dt > CHARGE_DELAY) {
-            _nearestPlayerPos = MSMScript.NearestPlayerPosition(gameObject);
+        if (dt > CHARGE_DELAY && PlayerInRange()) {
             _lastChargeTime = Time.time;
             SetSwordActivation(true);
             SoundManager.PlaySFX(SFX.KNIGHT_SLASH);
@@ -75,6 +74,11 @@ public class KnightScript : MonoBehaviour {
                 }
             }
         }
+    }
+
+    private bool PlayerInRange() {
+        _nearestPlayerPos = MSMScript.NearestPlayerPosition(gameObject);
+        return (_nearestPlayerPos - _rbody.position).magnitude < 12f;
     }
 
     private void ChargeUpdate() {

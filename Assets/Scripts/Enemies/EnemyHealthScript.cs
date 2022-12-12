@@ -53,7 +53,7 @@ public class EnemyHealthScript : MonoBehaviour {
         }
 
         GameObject dmgParticle = Instantiate(DAMAGE_PARTICLE, _transform.position, Quaternion.identity);
-        dmgParticle.GetComponent<DamageIndicatorScript>().SetText("" + (int)(prevHealth - health));
+        dmgParticle.GetComponent<DamageIndicatorScript>().SetText("-" + (int)(prevHealth - health));
 
         //return the total 
         return (damageTaken < 1.1f*max_health) ? (prevHealth - health) : 0;

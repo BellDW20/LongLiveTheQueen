@@ -10,6 +10,7 @@ public class MageScript : MonoBehaviour {
     private Transform _transform;
     private Vector2 _target;
     [SerializeField] private GameObject _healParticles;
+    [SerializeField] private GameObject _healAmtParticles;
     [SerializeField] private LayerMask _enemyMask;
     private List<GameObject> _enemiesInRange;
 
@@ -36,6 +37,8 @@ public class MageScript : MonoBehaviour {
         foreach (GameObject enemy in _enemiesInRange) {
             if(Random.value < HEAL_LIKELIHOOD && enemy != null) {
                 enemy.GetComponent<EnemyHealthScript>().Heal(20);
+                GameObject _healAmt = Instantiate(_healAmtParticles, enemy.transform.position, Quaternion.identity);
+                _healAmt.GetComponent<DamageIndicatorScript>().SetText("+20");
                 Instantiate(_healParticles, enemy.transform.position, Quaternion.identity);
             }
         }
