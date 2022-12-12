@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 4940511761641165940}
   - component: {fileID: 1131385441826374133}
   - component: {fileID: 178407912735914700}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Boss2Prefab
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -120,6 +120,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _minionPrefab: {fileID: 0}
+  _corgiPrefab: {fileID: 0}
+  _teaPrefab: {fileID: 0}
+  _targetPrefab: {fileID: 0}
   _enhancement: {fileID: 0}
   _gameClearBox: {fileID: 0}
 --- !u!95 &1131385441826374133

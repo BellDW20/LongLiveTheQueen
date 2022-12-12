@@ -6,6 +6,9 @@ using UnityEngine;
 public class Boss2Script : MonoBehaviour
 {
     public GameObject _minionPrefab;
+    public GameObject _corgiPrefab;
+    public GameObject _teaPrefab;
+    public GameObject _targetPrefab;
 
     Animator _animator;
     Rigidbody2D _rbody;
@@ -13,6 +16,9 @@ public class Boss2Script : MonoBehaviour
 
     public GameObject _enhancement;
     public GameObject _gameClearBox;
+
+
+    bool _isStun = false;
 
     int _currentAttack = 0;
     float _attackCooldown = 1.5f;
@@ -66,56 +72,45 @@ public class Boss2Script : MonoBehaviour
 
             if (_currentAttack == 0)
             {
-                RollAttack();
+                CorgiAttack();
             }
             else if (_currentAttack == 1)
             {
-                DashAttack();
+                TeaAttack();
             }
             else if (_currentAttack == 2)
             {
                 SpawnAttack();
             }
-        }
-    }
-
-    void RollAttack()
-    {
-        _transform.Rotate(0, 0, 100 * Time.deltaTime);
-
-        if (_rollTimer <= 0)
-        {
-            _rbody.velocity = (new Vector2(-1, -1)) * _rollSpeed;
-            _rollTimer = Time.time;
-
-        }
-        else if (Time.time - _rollTimer > _rollDuration)
-        {
-            _rbody.velocity = Vector2.zero;
-            _transform.rotation = Quaternion.identity;
-            _rollTimer = 0;
-            _currentAttack = 1;
-            _attackTimer = 0;
-        }
-    }
-
-    void DashAttack()
-    {
-        _transform.Rotate(0, 0, 500 * Time.deltaTime);
-
-        if (_dashStartupTimer <= 0)
-        {
-            _dashStartupTimer = Time.time;
-        }
-        else if (Time.time - _dashStartupTimer > _dashStartupDuration)
-        {
-            if (!_isDashing)
+            else if (_currentAttack == 3)
             {
-                Vector2 temp = MSMScript.NearestPlayerPosition(this.gameObject);
-                Vector2 vel = temp - _rbody.position;
-                _rbody.velocity = vel.normalized * _dashSpeed;
-                _isDashing = true;
+                AirStrike();
             }
+        }
+    }
+
+    void CorgiAttack()
+    {
+        
+    }
+
+    void TeaAttack()
+    {
+        //PLAY TEA ANIM
+
+        Instantiate(_teaPrefab, _transform.position, Quaternion.identity);
+    }
+
+    void AirStrike()
+    {
+        LinkedList<GameObject> players = MSMScript.GetPlayers();
+
+        LinkedListNode<GameObject> temp = players.First;
+
+        for (int i = 0; i < players.Count; i++)
+        {
+            Instantiate(_targetPrefab, temp.Value.transform.position, Quaternion.identity);
+            temp = temp.Next;
         }
     }
 
@@ -171,7 +166,10 @@ public class Boss2Script : MonoBehaviour
                 _rbody.velocity = Vector2.zero;
             }
         }
+    }
 
-
+    public void Stun()
+    {
+        _isStun = true;
     }
 }
