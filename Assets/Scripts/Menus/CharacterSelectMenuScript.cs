@@ -45,7 +45,6 @@ public class CharacterSelectMenuScript : MonoBehaviour {
             pTypes[i] = _playersJoined[i].GetSelection();
         }
 
-        pTypes = new PlayerType[] { PlayerType.COMMANDO, PlayerType.COMMANDO, PlayerType.SNIPER, PlayerType.PRYO };
         LevelManagerScript.SetupGame(pTypes);
 
         //Then tell the level manager to start the first level using a full level transition
