@@ -28,8 +28,10 @@ public class HordeModeRound {
     public void ScaleDifficulty(int scale) {
         ENEMY_HEALTH_SCALE *= scale;
         ENEMY_SPEED_SCALE *= Mathf.Sqrt(scale);
+        totalEnemies = 0;
         foreach(Horde horde in _hordes) {
             horde.ScaleDifficulty(scale);
+            totalEnemies += horde.GetEnemyCount();
         }
     }
 
