@@ -11,6 +11,7 @@ public class HighscoreMenuScript : MonoBehaviour
     [SerializeField] private List<Text> _storyTimeTexts;
     [SerializeField] private List<Text> _arcadeHighscoreTexts;
     [SerializeField] private List<Text> _arcadeTimeTexts;
+    [SerializeField] private Text _modeSelectText;
     [SerializeField] private GameObject _storyMode;
     [SerializeField] private GameObject _hordeMode;
 
@@ -46,11 +47,13 @@ public class HighscoreMenuScript : MonoBehaviour
     public void OnArcadeModePressed() {
         _storyMode.SetActive(true);
         _hordeMode.SetActive(false);
+        _modeSelectText.text = "ARCADE MODE SCORES";
     }
 
     public void OnHordeModePressed() {
         _storyMode.SetActive(false);
         _hordeMode.SetActive(true);
+        _modeSelectText.text = "HORDE MODE SCORES";
     }
 
 }
