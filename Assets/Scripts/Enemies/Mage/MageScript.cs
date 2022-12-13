@@ -58,7 +58,12 @@ public class MageScript : MonoBehaviour {
 
     private bool IsGroupNearby() {
         if(FindEnemiesInRange() == 0) {
-            _target = MSMScript.NearestPlayerPosition(gameObject);
+            Vector3 pPos = MSMScript.NearestPlayerPosition(gameObject);
+            if (LevelManagerScript.GetMode() == GameMode.HORDE_MODE) {
+                _target = pPos;
+            } else if ((_transform.position - pPos).magnitude < 9f) {
+                _target = pPos;
+            }
             return false;
         }
 

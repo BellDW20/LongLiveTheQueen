@@ -68,7 +68,14 @@ public class KnightScript : MonoBehaviour {
                 _agent.enabled = false;
                 _state = ST_CIRCLING;
             } else {
-                _agent.SetDestination(_nearestPlayerPos);
+                if (LevelManagerScript.GetMode() == GameMode.HORDE_MODE) {
+                    _agent.SetDestination(_nearestPlayerPos);
+                } else if((_rbody.position - _nearestPlayerPos).magnitude < 9f) {
+                    _agent.SetDestination(_nearestPlayerPos);
+                } else {
+                    _agent.enabled = false;
+                    _state = ST_CIRCLING;
+                }
             }
             _lastPathRefresh = Time.time;
         }
@@ -96,8 +103,16 @@ public class KnightScript : MonoBehaviour {
                 SoundManager.PlaySFX(SFX.KNIGHT_SLASH);
                 _state = ST_CHARGING;
             } else {
-                _agent.enabled = true;
-                _state = ST_FOLLOWING;
+                if (LevelManagerScript.GetMode() == GameMode.HORDE_MODE) {
+                    _agent.enabled = true;
+                    _state = ST_FOLLOWING;
+                    _agent.SetDestination(_nearestPlayerPos);
+                }
+                else if ((_rbody.position - _nearestPlayerPos).magnitude < 9f) {
+                    _agent.enabled = true;
+                    _state = ST_FOLLOWING;
+                    _agent.SetDestination(_nearestPlayerPos);
+                }
             }
         } else {
             dt *= 2*Mathf.PI / CIRCLE_PERIOD;
