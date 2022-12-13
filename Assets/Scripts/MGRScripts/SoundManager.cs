@@ -32,6 +32,9 @@ public class SoundManager : MonoBehaviour {
             case "Level2Revamp":
                 I_PlayMusic(Music.LEVEL_2);
                 break;
+            case "Level3Scene":
+                I_PlayMusic(Music.LEVEL_3);
+                break;
             case "BossRoom":
                 I_PlayMusic(Music.BOSS_THEME);
                 break;
