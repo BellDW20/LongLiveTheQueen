@@ -37,7 +37,7 @@ public class NewPlayerHUD : MonoBehaviour {
     }
 
     public void UpdateScoreVisual() {
-        _scoreText.text = _isHordeMode ? ("PTS: " + _pInfo.spendableScore) : ("SCORE: " + _pInfo.score);
+        _scoreText.text = "PTS: " + (_isHordeMode ? _pInfo.spendableScore : _pInfo.score);
         _lvlUpText.text = ((int)(100 * _pInfo.ProgressToNextLevel())) + "%";
         _skillPointsText.text = "LVL PTS: " + _pInfo.spendableLevels;
     }

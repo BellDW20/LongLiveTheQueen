@@ -303,6 +303,9 @@ public class PlayerController : MonoBehaviour {
         _spr.enabled = false;
         _rbody.simulated = false;
         _collider.enabled = false;
+        if(_joystickNumber > 0) {
+            _crosshair.SetActive(false);
+        }
 
         _gravestoneInstance = Instantiate(GRAVESTONE, _transform.position, Quaternion.identity);
 
@@ -322,6 +325,9 @@ public class PlayerController : MonoBehaviour {
         _spr.enabled = true;
         _rbody.simulated = true;
         _collider.enabled = true;
+        if (_joystickNumber > 0) {
+            _crosshair.SetActive(true);
+        }
         _timeLastRespawned = Time.time;
         _playerInfo.health = _playerInfo.GetMaxHealth();
         if (_gravestoneInstance != null) { Destroy(_gravestoneInstance); }

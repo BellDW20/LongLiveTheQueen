@@ -23,6 +23,8 @@ public class NewGameHUD : MonoBehaviour {
     [SerializeField] private GameObject roundHud;
     [SerializeField] private Text roundText;
 
+    private bool _inited = false;
+
     void Awake() {
         //make the current scene's HUD instance the current instance
         instance = this;
@@ -53,6 +55,19 @@ public class NewGameHUD : MonoBehaviour {
     }
 
     public void Update() {
+        if (!_inited) {
+            for (int i = 0; i < playerHudObjects.Length; i++) {
+                //if that player is in the game...
+                bool playerInGame = (LevelManagerScript.pInfos[i] != null);
+                playerHudObjects[i].SetActive(playerInGame);
+                playerHudBackdrops[i].enabled = playerInGame;
+                if (playerInGame) {
+                    playerHuds[i] = playerHudObjects[i].GetComponent<NewPlayerHUD>();
+                    playerHuds[i].Refresh();
+                }
+            }
+            _inited = true;
+        }
         if(isBossActive) { UpdateBossHealthBar(); }
 
         float time = LevelManagerScript.GetTimeTakenOnLevel();

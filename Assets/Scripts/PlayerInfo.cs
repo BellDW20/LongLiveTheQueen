@@ -131,6 +131,7 @@ public class PlayerInfo {
         else if (skill == PlayerSkill.MAX_HEALTH_SCALE && maxHealthLevel != MAX_HEALTH_LEVELS && MAX_HEALTH_COST[maxHealthLevel + 1] <= spendableLevels) {
             maxHealthLevel++;
             spendableLevels -= MAX_HEALTH_COST[maxHealthLevel];
+            health = GetMaxHealth();
             bought = true;
         }
         else if (skill == PlayerSkill.SPECIAL_COOLDOWN_SCALE && specialCooldownLevel != SPECIAL_COOLDOWN_LEVELS && SPECIAL_COOLDOWN_COST[specialCooldownLevel + 1] <= spendableLevels) {
